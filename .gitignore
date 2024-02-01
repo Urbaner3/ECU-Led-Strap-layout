@@ -4,11 +4,14 @@
 *.dfm
 *.exe
 
-./Win32/
-./__astcache/
+#directories
+Win32/
+__astcache/
+__history/
+__recovery/
 
-*.cproj
-*.cproj.local
+mapping.cbproj
+mapping.cbproj.local
 
 # 當然你要忽略自己也可以，只是通常不會這麼做
 # .gitignore

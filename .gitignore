@@ -3,6 +3,7 @@
 #dfm R studio design file
 *.dfm
 *.exe
+*.swp
 
 #directories
 Win32/
@@ -12,6 +13,18 @@ __recovery/
 
 mapping.cbproj
 mapping.cbproj.local
+
+#pictures
+*.PNG
+*.bmp
+
+#variances
+__astcache/d@@os000175@documents@embarcadero@studio@projects@ecu_projs/
+astcache
+@
+__astcache/@d@@os000175@documents@embarcadero@studio@projects@ecu_projs/
+__astcache/@d@@os000175@documents@embarcadero@studio@projects@ecu_projs/ls2txt3.cpp
+
 
 # 當然你要忽略自己也可以，只是通常不會這麼做
 # .gitignore

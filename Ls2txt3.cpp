@@ -26,6 +26,8 @@ TForm1* Form1;
 
 using namespace std;
 
+//color maps ; defined in Tcolor
+
 struct Info
 {
     unsigned int id; //ID
@@ -279,6 +281,25 @@ void TForm1::Read_File2(int sselect)
         }
         //    Form1->RichEdit->Lines->Add("if checks!!");
         string line;
+        struct Tmap
+        {
+            TColor col;
+        };
+        struct Tmap mmp[5]; // my color map
+
+        enum clmp
+        {
+            red = 0,
+            green,
+            blue,
+            cyan,
+            yellow
+        };
+        int Size_clmp = 5;
+        int mpen = red; //variable
+        mmp[red].col = clRed, mmp[green].col = clLime, mmp[blue].col = clBlue;
+        mmp[cyan].col = clFuchsia, mmp[yellow].col = clYellow;
+
         while (getline(inputFile, line)) {
             line = "," + line; // balance the difference in c
             currentRow = split(line, ",");
@@ -323,7 +344,16 @@ void TForm1::Read_File2(int sselect)
                 myword = (UnicodeString)sent.c_str();
                 Form1->RichEdit->Lines->Add(myword);
 
-                Form1->PaintEq->Canvas->Pen->Color = clRed;
+                // colors in circle take turns.
+                Form1->PaintEq->Canvas->Pen->Color =
+                    mmp[mpen].col; //my map color of mpen color
+                // mpen color name is chosen
+
+                mpen++;  //looping with while
+                if (mpen == Size_clmp) { // mpen reached liimit
+                    mpen = red;
+                }
+
                 //   // g.DrawLine(pen, buff[1], buff[2], buff[7], buff[8]);
                 Form1->PaintEq->Canvas->MoveTo(buff[1], buff[2]);
                 Form1->PaintEq->Canvas->LineTo(buff[7], buff[8]);

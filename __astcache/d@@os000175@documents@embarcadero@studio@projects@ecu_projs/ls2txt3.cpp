@@ -18,6 +18,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <dir.h> // save function
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -25,6 +26,8 @@
 TForm1* Form1;
 
 using namespace std;
+
+//color maps ; defined in Tcolor
 
 struct Info
 {
@@ -279,6 +282,25 @@ void TForm1::Read_File2(int sselect)
         }
         //    Form1->RichEdit->Lines->Add("if checks!!");
         string line;
+        struct Tmap
+        {
+            TColor col;
+        };
+        struct Tmap mmp[5]; // my color map
+
+        enum clmp
+        {
+            red = 0,
+            green,
+            blue,
+            cyan,
+            yellow
+        };
+        int Size_clmp = 5;
+        int mpen = red; //variable
+        mmp[red].col = clRed, mmp[green].col = clLime, mmp[blue].col = clBlue;
+        mmp[cyan].col = clFuchsia, mmp[yellow].col = clYellow;
+
         while (getline(inputFile, line)) {
             line = "," + line; // balance the difference in c
             currentRow = split(line, ",");
@@ -323,7 +345,16 @@ void TForm1::Read_File2(int sselect)
                 myword = (UnicodeString)sent.c_str();
                 Form1->RichEdit->Lines->Add(myword);
 
-                Form1->PaintEq->Canvas->Pen->Color = clRed;
+                // colors in circle take turns.
+                Form1->PaintEq->Canvas->Pen->Color =
+                    mmp[mpen].col; //my map color of mpen color
+                // mpen color name is chosen
+
+                mpen++; //looping with while
+                if (mpen == Size_clmp) { // mpen reached liimit
+                    mpen = red;
+                }
+
                 //   // g.DrawLine(pen, buff[1], buff[2], buff[7], buff[8]);
                 Form1->PaintEq->Canvas->MoveTo(buff[1], buff[2]);
                 Form1->PaintEq->Canvas->LineTo(buff[7], buff[8]);
@@ -349,14 +380,62 @@ void TForm1::Read_File2(int sselect)
 }
 
 //---------------------------------------------------------------------------
-__fastcall TForm1::TForm1(TComponent* Owner) : TForm(Owner) {}
+__fastcall TForm1::TForm1(TComponent* Owner) : TForm(Owner) {
+
+StringGrid1->Cells[1][0] = L"Column 1";
+  StringGrid1->Cells[2][0] = L"Column 2";
+  StringGrid1->Cells[3][0] = L"Column 3";
+  StringGrid1->Cells[4][0] = L"Column 4";
+  StringGrid1->Cells[0][1] = L"Row 1";
+  StringGrid1->Cells[1][1] = L"Object";
+  StringGrid1->Cells[2][1] = L"Pascal";
+  StringGrid1->Cells[3][1] = L"is";
+  StringGrid1->Cells[4][1] = L"excellent";
+  StringGrid1->Cells[0][2] = L"Row 2";
+  StringGrid1->Cells[1][2] = L"Delphi";
+  StringGrid1->Cells[2][2] = L"is";
+  StringGrid1->Cells[4][2] = L"RAD well";
+
+}
 //---------------------------------------------------------------------------
 
 void __fastcall TForm1::BtnSavTxt1Click(TObject* Sender)
 {
+    //set the name to variable
+    wchar_t szFileName[MAXFILE + 4];
+    int FileHandle;
+    int theLen;
+    int count;
+
     if (SavTxtDlg1->Execute()) {
-        SaveFileName = SavTxtDlg1->FileName;
-        SaveFilePath = SaveFileName;
+        //backup existing files
+        if (FileExists(Form1->SavTxtDlg1->FileName)) {
+            _wfnsplit(Form1->SavTxtDlg1->FileName.w_str(), 0, 0, szFileName, 0);
+            wcscat(szFileName, L".BAK");
+
+            RenameFile(SavTxtDlg1->FileName, szFileName);
+        }
+        //creating file
+        FileHandle = FileCreate(SavTxtDlg1->FileName);
+        // Write out the number of rows and columns in the grid.
+        count = StringGrid1->ColCount;
+        FileWrite(FileHandle, &count, sizeof(count));
+        count = StringGrid1->RowCount;
+        FileWrite(FileHandle, &count, sizeof(count));
+        for (int x = 0; x < StringGrid1->ColCount; x++) {
+            for (int y = 0; y < StringGrid1->RowCount; y++) {
+                // Write out the length of each string, followed by the string itself.
+                theLen = StringGrid1->Cells[x][y].Length() * sizeof(wchar_t);
+                FileWrite(FileHandle, (wchar_t*)&theLen, sizeof(theLen));
+                FileWrite(
+                    FileHandle, StringGrid1->Cells[x][y].w_str(), theLen);
+            }
+        }
+
+        FileClose(FileHandle);
+
+        //        SaveFileName = SavTxtDlg1->FileName;
+        //        SaveFilePath = SaveFileName;
     }
     if (!Form1->SaveFileName.IsEmpty()) {
         Form1->SavFilLabl->Show();

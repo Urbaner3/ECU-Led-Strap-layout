@@ -1,4 +1,4 @@
-﻿//---------------------------------------------------------------------------
+//---------------------------------------------------------------------------
 
 #ifndef Ls2txt3H
 #define Ls2txt3H
@@ -12,6 +12,7 @@
 #include <Vcl.Dialogs.hpp>
 #include <Vcl.ExtDlgs.hpp>
 #include <Vcl.ComCtrls.hpp>
+#include <Vcl.Grids.hpp>
 
 #include <vector> //   split
 
@@ -39,7 +40,6 @@ class TForm1 : public TForm
     TSpinEdit* SBUptNum;
     TSpinEdit* DDUptNum;
     TOpenDialog* srcOpDlg1;
-    TSaveTextFileDialog* SavTxtDlg1;
     TPaintBox* PaintEq;
     TRichEdit* RichEdit;
     TLabel* SavFilLabl;
@@ -48,6 +48,9 @@ class TForm1 : public TForm
 	TSpinEdit *HeightSet;
 	TLabel *Label3;
 	TLabel *Label4;
+	TSaveDialog *SavTxtDlg1;
+	TSaveTextFileDialog *SavTxtDlg2;
+	TStringGrid *StringGrid1;
 
     //  make excel files
 

@@ -382,19 +382,6 @@ void TForm1::Read_File2(int sselect)
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner) : TForm(Owner) {
 
-StringGrid1->Cells[1][0] = L"Column 1";
-  StringGrid1->Cells[2][0] = L"Column 2";
-  StringGrid1->Cells[3][0] = L"Column 3";
-  StringGrid1->Cells[4][0] = L"Column 4";
-  StringGrid1->Cells[0][1] = L"Row 1";
-  StringGrid1->Cells[1][1] = L"Object";
-  StringGrid1->Cells[2][1] = L"Pascal";
-  StringGrid1->Cells[3][1] = L"is";
-  StringGrid1->Cells[4][1] = L"excellent";
-  StringGrid1->Cells[0][2] = L"Row 2";
-  StringGrid1->Cells[1][2] = L"Delphi";
-  StringGrid1->Cells[2][2] = L"is";
-  StringGrid1->Cells[4][2] = L"RAD well";
 
 }
 //---------------------------------------------------------------------------
@@ -417,25 +404,12 @@ void __fastcall TForm1::BtnSavTxt1Click(TObject* Sender)
         }
         //creating file
         FileHandle = FileCreate(SavTxtDlg1->FileName);
-        // Write out the number of rows and columns in the grid.
-        count = StringGrid1->ColCount;
-        FileWrite(FileHandle, &count, sizeof(count));
-        count = StringGrid1->RowCount;
-        FileWrite(FileHandle, &count, sizeof(count));
-        for (int x = 0; x < StringGrid1->ColCount; x++) {
-            for (int y = 0; y < StringGrid1->RowCount; y++) {
-                // Write out the length of each string, followed by the string itself.
-                theLen = StringGrid1->Cells[x][y].Length() * sizeof(wchar_t);
-                FileWrite(FileHandle, (wchar_t*)&theLen, sizeof(theLen));
-                FileWrite(
-                    FileHandle, StringGrid1->Cells[x][y].w_str(), theLen);
-            }
-        }
+
 
         FileClose(FileHandle);
 
-        //        SaveFileName = SavTxtDlg1->FileName;
-        //        SaveFilePath = SaveFileName;
+                SaveFileName = SavTxtDlg1->FileName;
+                SaveFilePath = SaveFileName;
     }
     if (!Form1->SaveFileName.IsEmpty()) {
         Form1->SavFilLabl->Show();
@@ -521,20 +495,10 @@ void __fastcall TForm1::PortLockBoxClick(TObject* Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::WidthSetChange(TObject* Sender)
-{
-    Form1->PaintEq->Width = Form1->WidthSet->Value;
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm1::HeightSetChange(TObject* Sender)
-{
-    Form1->PaintEq->Height = Form1->HeightSet->Value;
-}
-//---------------------------------------------------------------------------
-
 void __fastcall TForm1::FormCreate(TObject* Sender)
 {
+    Form1->PaintEq->Width = Form1->WidthSet->Value;
+    Form1->PaintEq->Height = Form1->HeightSet->Value;
     Form1->WidthSet->Value = Form1->PaintEq->Width;
     Form1->HeightSet->Value = Form1->PaintEq->Height;
 }

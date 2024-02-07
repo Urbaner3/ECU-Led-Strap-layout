@@ -162,8 +162,8 @@ void __fastcall TForm2::BtnOpnSrcClick(TObject* Sender)
 void __fastcall TForm2::FormCreate(TObject* Sender)
 {
     //    Form2->PaintBox1->Canvas->Brush->Color = clBlack;
-    Form2->Work->Height = Form1->PaintEq->Height;
-    Form2->Work->Width = Form1->PaintEq->Width;
+//    Form2->Work->Height = Form1->PaintEq->Height;
+//    Form2->Work->Width = Form1->PaintEq->Width;
 }
 //---------------------------------------------------------------------------
 

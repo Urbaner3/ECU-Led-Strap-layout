@@ -49,8 +49,6 @@ class TForm1 : public TForm
 	TLabel *Label3;
 	TLabel *Label4;
 	TSaveDialog *SavTxtDlg1;
-	TSaveTextFileDialog *SavTxtDlg2;
-	TStringGrid *StringGrid1;
 
     //  make excel files
 
@@ -63,8 +61,7 @@ class TForm1 : public TForm
     void __fastcall BtnchgClick(TObject* Sender);
     void __fastcall PaintEqPaint(TObject* Sender);
     void __fastcall PortLockBoxClick(TObject* Sender);
-	void __fastcall WidthSetChange(TObject *Sender);
-	void __fastcall HeightSetChange(TObject *Sender);
+	
 	void __fastcall FormCreate(TObject *Sender);
   private: // User declarations
   public: // User declarations

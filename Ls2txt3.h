@@ -44,13 +44,13 @@ class TForm1 : public TForm
     TRichEdit* RichEdit;
     TLabel* SavFilLabl;
     TLabel* OpnFilLabl;
-	TSpinEdit *WidthSet;
-	TSpinEdit *HeightSet;
-	TLabel *Label3;
-	TLabel *Label4;
-	TSaveDialog *SavTxtDlg1;
-	TButton *BtmF3show;
-	TButton *load_J_src;
+    TSpinEdit* WidthSet;
+    TSpinEdit* HeightSet;
+    TLabel* Label3;
+    TLabel* Label4;
+    TSaveDialog* SavTxtDlg1;
+    TButton* BtmF3show;
+    TButton* TestJSrc;
 
     //  make excel files
 
@@ -63,13 +63,16 @@ class TForm1 : public TForm
     void __fastcall BtnchgClick(TObject* Sender);
     void __fastcall PaintEqPaint(TObject* Sender);
     void __fastcall PortLockBoxClick(TObject* Sender);
-	
-	void __fastcall FormCreate(TObject *Sender);
-	void __fastcall BtmF3showClick(TObject *Sender);
+
+    void __fastcall FormCreate(TObject* Sender);
+    void __fastcall BtmF3showClick(TObject* Sender);
+    void __fastcall TestJSrcClick(TObject* Sender);
   private: // User declarations
   public: // User declarations
     __fastcall TForm1(TComponent* Owner);
     AnsiString OpenFileName, OpenFilePath, SaveFileName, SaveFilePath;
+    TStringList* f1str_rows = new TStringList();
+    TStringList* f1str_cols = new TStringList();
     int FileNumber;
     uint32_t GetEndPoint(
         int head_x, int head_y, int angle, int length, int* end_x, int* end_y);

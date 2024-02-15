@@ -21,6 +21,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <dir.h> // save function
+#include <clipbrd.hpp>
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -255,7 +256,6 @@ int TForm1::mystoi(const string &pat)
     if (pos == 1)
         sum *= (-1);
 
-
     return sum;
 }
 
@@ -384,10 +384,7 @@ void TForm1::Read_File2(int sselect)
 }
 
 //---------------------------------------------------------------------------
-__fastcall TForm1::TForm1(TComponent* Owner) : TForm(Owner) {
-
-
-}
+__fastcall TForm1::TForm1(TComponent* Owner) : TForm(Owner) {}
 //---------------------------------------------------------------------------
 
 void __fastcall TForm1::BtnSavTxt1Click(TObject* Sender)
@@ -409,11 +406,10 @@ void __fastcall TForm1::BtnSavTxt1Click(TObject* Sender)
         //creating file
         FileHandle = FileCreate(SavTxtDlg1->FileName);
 
-
         FileClose(FileHandle);
 
-                SaveFileName = SavTxtDlg1->FileName;
-                SaveFilePath = SaveFileName;
+        SaveFileName = SavTxtDlg1->FileName;
+        SaveFilePath = SaveFileName;
     }
     if (!Form1->SaveFileName.IsEmpty()) {
         Form1->SavFilLabl->Show();
@@ -508,12 +504,30 @@ void __fastcall TForm1::FormCreate(TObject* Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::BtmF3showClick(TObject *Sender)
+void __fastcall TForm1::BtmF3showClick(TObject* Sender)
 {
-      Form3->Show();
+    Form3->Show();
     //    Form1->Enabled = False;      //focus on TxtCheck Window
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TForm1::TestJSrcClick(TObject* Sender)
+{
+    // test if the data is reachable from different forms
+    UnicodeString us;
+    f1str_rows = Form3->str_rows;
+    f1str_cols = Form3->str_cols;
+    Form1->RichEdit->Lines->Add("J_src_start");
 
+
+    for (int j = 0; j < 3; j++) {
+
+        for (int i = 0; i < f1str_rows->Count; i++) {
+            Form1->RichEdit->Lines->Add(IntToStr(i+j) );
+//            RichEdit->Lines->Add(
+//                IntToStr(i) + "," + IntToStr(j) + "=" + f1str_cols->Strings[i]);
+        }
+    }
+}
+//---------------------------------------------------------------------------
 

@@ -32,6 +32,7 @@ __astcache/@d@@os000175@documents@embarcadero@studio@projects@ecu_projs/ls2txt3.
 
 #sample output
 supply/easy_tiny_out.txt
+supply/ECU_w2.xlsx
 
 # 當然你要忽略自己也可以，只是通常不會這麼做
 # .gitignore

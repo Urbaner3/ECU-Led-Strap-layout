@@ -14,6 +14,8 @@
 #include "check80ptLoc.h"
 #include "angle45.h"
 
+#include "J_src.h"
+
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -252,6 +254,8 @@ int TForm1::mystoi(const string &pat)
     }
     if (pos == 1)
         sum *= (-1);
+
+
     return sum;
 }
 
@@ -501,6 +505,13 @@ void __fastcall TForm1::FormCreate(TObject* Sender)
     Form1->PaintEq->Height = Form1->HeightSet->Value;
     Form1->WidthSet->Value = Form1->PaintEq->Width;
     Form1->HeightSet->Value = Form1->PaintEq->Height;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::BtmF3showClick(TObject *Sender)
+{
+      Form3->Show();
+    //    Form1->Enabled = False;      //focus on TxtCheck Window
 }
 //---------------------------------------------------------------------------
 

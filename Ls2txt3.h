@@ -49,6 +49,7 @@ class TForm1 : public TForm
 	TLabel *Label3;
 	TLabel *Label4;
 	TSaveDialog *SavTxtDlg1;
+	TButton *BtmF3show;
 
     //  make excel files
 
@@ -63,6 +64,7 @@ class TForm1 : public TForm
     void __fastcall PortLockBoxClick(TObject* Sender);
 	
 	void __fastcall FormCreate(TObject *Sender);
+	void __fastcall BtmF3showClick(TObject *Sender);
   private: // User declarations
   public: // User declarations
     __fastcall TForm1(TComponent* Owner);
@@ -81,6 +83,7 @@ class TForm1 : public TForm
     void Check80x80PointLocation(int ang, int &x1, int &y1, int &x2, int &y2);
     int Angle_45(int angle, int length, unsigned int x1, unsigned int y1,
         unsigned int x2, unsigned int y2, int point_buff[][100]);
+    void J_read(void);
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TForm1* Form1;

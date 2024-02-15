@@ -25,7 +25,7 @@ void split(wchar_t delimiter, UnicodeString str, TStringList *listofstrings)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TForm3::Button1Click(TObject *Sender)
+void __fastcall TForm3::Load_CpbrdClick(TObject *Sender)
 {
         UnicodeString us;
    TStringList *str_rows= new TStringList();

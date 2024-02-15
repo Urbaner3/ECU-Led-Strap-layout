@@ -16,8 +16,11 @@ __published:	// IDE-managed Components
 	TPanel *Panel1;
 	TStringGrid *StringGrid1;
 	TMemo *Memo1;
-	TButton *Button1;
-	void __fastcall Button1Click(TObject *Sender);
+	TButton *Load_Cpbrd;
+	TButton *Sav2csv;
+	TLabel *Read_place;
+	TEdit *Rd_bk;
+	void __fastcall Load_CpbrdClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	__fastcall TForm3(TComponent* Owner);

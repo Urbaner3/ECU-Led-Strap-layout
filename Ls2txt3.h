@@ -50,6 +50,7 @@ class TForm1 : public TForm
 	TLabel *Label4;
 	TSaveDialog *SavTxtDlg1;
 	TButton *BtmF3show;
+	TButton *load_J_src;
 
     //  make excel files
 

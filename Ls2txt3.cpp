@@ -544,6 +544,17 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
             //count line number and get the index
             cntnt = Form3->StringGrid1->Cells[ii][jj];
 
+            //show column 12
+            if (ii == 12) {
+                 Form1->RichEdit->Lines->Add(cntnt);
+            }
+
+
+            if (cntnt.Compare(L"¡ö") == 0) {
+                Form1->RichEdit->Lines->Add("conti. <");
+                continue;
+            }
+
             //empty square
             kk = cntnt.ToIntDef(44);
             if (kk == 44) { // use kk as empty flag
@@ -551,8 +562,9 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
                 continue;
             }
 
-            if ((AnsiString)cntnt == NULL || ii == 0) {
+            if ((AnsiString)cntnt == NULL) {
                 Form1->RichEdit->Lines->Add("conti. zero");
+                continue;
             }
 
             if (ii == 0) {
@@ -560,10 +572,7 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
                 continue;
             }
 
-            if (cntnt.Compare(L"¡ö") == 0) {
-                Form1->RichEdit->Lines->Add("conti. <");
-                continue;
-            } else
+            else
                 strip_cnt++;
             Dcol[0] = strip_cnt;
             Dcol[3] = ang;
@@ -577,8 +586,9 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
             //reset the Dcol array and ang
             for (kk = 0; kk < 7; kk++)
                 Dcol[kk] = 0;
-            ang = 0;
+
         }
+        	ang = 0;
     }
 }
 //---------------------------------------------------------------------------

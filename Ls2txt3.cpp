@@ -514,18 +514,55 @@ void __fastcall TForm1::BtmF3showClick(TObject* Sender)
 void __fastcall TForm1::TestJSrcClick(TObject* Sender)
 {
     // test if the data is reachable from different forms
-    UnicodeString us;
+
     f1str_rows = Form3->str_rows;
     f1str_cols = Form3->str_cols;
     Form1->RichEdit->Lines->Add("J_src_start");
 
+    //sheet variables
+    int ang = 0, kk, ii, jj;
 
-    for (int j = 0; j < 3; j++) {
+    //row index
+    for (jj = 0; jj < Form3->StringGrid1->RowCount; jj++) {
+        UnicodeString dir;
+        dir = Form3->StringGrid1->Cells[1][jj];
+        if ((AnsiString)dir != NULL) {
+            ang = 135;
 
-        for (int i = 0; i < f1str_rows->Count; i++) {
-            Form1->RichEdit->Lines->Add(IntToStr(i+j) );
-//            RichEdit->Lines->Add(
-//                IntToStr(i) + "," + IntToStr(j) + "=" + f1str_cols->Strings[i]);
+        } else {
+            Form1->RichEdit->Lines->Add(dir);
+            ang = 45;
+            break;
+        }
+        //column index
+        int strip_cnt = 0;
+        UnicodeString cntnt; //content
+        for (ii = 0; ii < Form3->StringGrid1->ColCount; ii++) {
+            //            Form1->RichEdit->Lines->Add(Form3->StringGrid1->Cells[ii][jj]);
+            int Dcol[7] = { 0 }; //column data
+
+            //count line number and get the index
+            cntnt = Form3->StringGrid1->Cells[ii][jj];
+
+            if ((AnsiString)cntnt == NULL || ii == 0) {
+                Form1->RichEdit->Lines->Add("conti. null or 1st col ");
+                continue;
+            }
+
+            if (cntnt.Compare(L"¡ö") == 0) {
+                Form1->RichEdit->Lines->Add("conti. <");
+                //continue;
+            } else
+                strip_cnt++;
+            Dcol[0] = strip_cnt;
+            Dcol[3] = ang;
+            Dcol[4] = cntnt.ToIntDef(0); //char
+            Form1->RichEdit->Lines->Add("hi, data input");
+            UnicodeString lineword = {};
+            for (kk = 0; kk < 7; kk++) {
+                lineword = lineword + IntToStr(Dcol[kk]) + " ";
+            }
+            Form1->RichEdit->Lines->Append(lineword);
         }
     }
 }

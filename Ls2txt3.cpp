@@ -511,7 +511,7 @@ void __fastcall TForm1::BtmF3showClick(TObject* Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::TestJSrcClick(TObject* Sender)
+   void __fastcall TForm1::TestJSrcClick(TObject* Sender)
 {
     // test if the data is reachable from different forms
 
@@ -547,11 +547,20 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
             //empty square
             kk = cntnt.ToIntDef(44);
             if (kk == 44) { // use kk as empty flag
+                //show column 12
                 if (ii == 12) { //special case!!!! end of the set
                     cntnt = Trim(cntnt);
-                    //                    Form1->RichEdit->Lines->Add(cntnt);
-
                     strip_cnt++;
+                    //compare content to find one end of the set in pole
+                    prev_cnt = Form3->StringGrid1->Cells[ii - 2][jj];
+                    if (prev_cnt.Compare(L"0") == 0)
+                    { // tell if previous is 0 when now is nonzero
+                        Form1->RichEdit->Lines->Add("found the end");
+                        end_col_ind = ii;
+                        end_flag = 1;
+                    } else {
+                    }
+
                 } else {
                     Form1->RichEdit->Lines->Add("conti. empty");
                     continue;
@@ -570,13 +579,19 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
                     Form1->RichEdit->Lines->Add("conti. 1st col ");
                     continue;
                 }
-                //show column 12
+
                 else
                 {
                     strip_cnt++;
 
                     //compare content to find one end of the set in pole
                     prev_cnt = Form3->StringGrid1->Cells[ii - 1][jj];
+                    kk = prev_cnt.ToIntDef(44);
+                    if (kk == 44) {
+                        prev_cnt = Form3->StringGrid1->Cells[ii - 2][jj];
+                    } else {
+                    }
+
                     if (prev_cnt.Compare(L"0") == 0)
                     { // tell if previous is 0 when now is nonzero
                         Form1->RichEdit->Lines->Add("found the end");
@@ -584,26 +599,23 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
                         end_flag = 1;
                     } else {
                     }
-                    //end point coordinate
-                    if (jj < 8 )
-                    { //first 8 straps && last strip
-                        xx = Form3->StringGrid1->Cells[0][jj].ToIntDef(44);
-                        yy = strip_cnt;
-                        //backtrack to the other end
-                        yy = yy - xx;
-                        xx = 0; // xx - xx is zero, skip the count
-                        yy *= 80;
-                        xx *= 80;
-                        if (end_flag == 1 && ii == Form3->StringGrid1->ColCount - 1) {
-                            //rewind
-                            ii = end_col_ind;
-                            Form1->RichEdit->Lines->Add("rewind");
-
-                        }
-                    }
                 }
             }
-
+            //end point coordinate
+//            if (jj < 8) { //first 8 straps && last strip
+//                xx = Form3->StringGrid1->Cells[0][jj].ToIntDef(44);
+//                yy = strip_cnt;
+//                //backtrack to the other end
+//                yy = yy - xx;
+//                xx = 0; // xx - xx is zero, skip the count
+//                yy *= 80;
+//                xx *= 80;
+//                if (end_flag == 1 && ii == Form3->StringGrid1->ColCount - 1) {
+//                    //rewind
+//                    ii = end_col_ind;
+//                    Form1->RichEdit->Lines->Add("rewind");
+//                }
+//            }
             //set values to now strap and update from the previous strap
             Dcol[4] = cntnt.ToIntDef(0); //char
             //            xx += Dcol[4];

@@ -520,7 +520,7 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
     Form1->RichEdit->Lines->Add("J_src_start");
 
     //sheet variables
-    int ang = 0, kk, ii, jj;
+    int ang = 0, kk, ii, jj, strip_cnt;
 
     //row index
     for (jj = 0; jj < Form3->StringGrid1->RowCount; jj++) {
@@ -535,7 +535,7 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
             break;
         }
         //column index
-        int strip_cnt = 0;
+        strip_cnt = 0;
         UnicodeString cntnt; //content
         for (ii = 0; ii < Form3->StringGrid1->ColCount; ii++) {
             //            Form1->RichEdit->Lines->Add(Form3->StringGrid1->Cells[ii][jj]);
@@ -544,36 +544,36 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
             //count line number and get the index
             cntnt = Form3->StringGrid1->Cells[ii][jj];
 
-            //show column 12
-            if (ii == 12) {
-                 Form1->RichEdit->Lines->Add(cntnt);
-            }
-
-
-            if (cntnt.Compare(L"¡ö") == 0) {
-                Form1->RichEdit->Lines->Add("conti. <");
-                continue;
-            }
-
             //empty square
             kk = cntnt.ToIntDef(44);
             if (kk == 44) { // use kk as empty flag
                 Form1->RichEdit->Lines->Add("conti. empty");
                 continue;
+            } else if (cntnt.Compare(L"¡ö") == 0) {
+                Form1->RichEdit->Lines->Add("conti. <");
+                continue;
             }
 
-            if ((AnsiString)cntnt == NULL) {
+            else if ((AnsiString)cntnt == NULL)
+            {
                 Form1->RichEdit->Lines->Add("conti. zero");
                 continue;
+            } else {
+                strip_cnt++;
             }
 
             if (ii == 0) {
                 Form1->RichEdit->Lines->Add("conti. 1st col ");
                 continue;
             }
-
-            else
+            //show column 12
+            else if (ii == 12)
+            {
+                Form1->RichEdit->Lines->Add(cntnt);
                 strip_cnt++;
+            } else {
+            }
+
             Dcol[0] = strip_cnt;
             Dcol[3] = ang;
             Dcol[4] = cntnt.ToIntDef(0); //char
@@ -586,9 +586,8 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
             //reset the Dcol array and ang
             for (kk = 0; kk < 7; kk++)
                 Dcol[kk] = 0;
-
         }
-        	ang = 0;
+        ang = 0;
     }
 }
 //---------------------------------------------------------------------------

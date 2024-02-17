@@ -520,7 +520,7 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
     Form1->RichEdit->Lines->Add("J_src_start");
 
     //sheet variables
-    int ang = 0, kk, ii, jj, strip_cnt;
+    int ang = 0, kk, ii, jj;
 
     //row index
     for (jj = 0; jj < Form3->StringGrid1->RowCount; jj++) {
@@ -535,8 +535,8 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
             break;
         }
         //column index
-        strip_cnt = 0;
-        UnicodeString cntnt; //content
+        int strip_cnt = 0, xx, yy, end_flag, end_col_ind = 0;
+        UnicodeString cntnt, prev_cnt; //content, previous content
         for (ii = 0; ii < Form3->StringGrid1->ColCount; ii++) {
             //            Form1->RichEdit->Lines->Add(Form3->StringGrid1->Cells[ii][jj]);
             int Dcol[7] = { 0 }; //column data
@@ -547,9 +547,9 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
             //empty square
             kk = cntnt.ToIntDef(44);
             if (kk == 44) { // use kk as empty flag
-                if (ii == 12) {
-                cntnt = Trim(cntnt);
-//                    Form1->RichEdit->Lines->Add(cntnt);
+                if (ii == 12) { //special case!!!! end of the set
+                    cntnt = Trim(cntnt);
+                    //                    Form1->RichEdit->Lines->Add(cntnt);
 
                     strip_cnt++;
                 } else {
@@ -564,7 +564,7 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
             else if ((AnsiString)cntnt == NULL)
             {
                 Form1->RichEdit->Lines->Add("conti. zero");
-                continue;
+                strip_cnt++;
             } else {
                 if (ii == 0) {
                     Form1->RichEdit->Lines->Add("conti. 1st col ");
@@ -574,13 +574,44 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
                 else
                 {
                     strip_cnt++;
+
+                    //compare content to find one end of the set in pole
+                    prev_cnt = Form3->StringGrid1->Cells[ii - 1][jj];
+                    if (prev_cnt.Compare(L"0") == 0)
+                    { // tell if previous is 0 when now is nonzero
+                        Form1->RichEdit->Lines->Add("found the end");
+                        end_col_ind = ii;
+                        end_flag = 1;
+                    } else {
+                    }
+                    //end point coordinate
+                    if (jj < 8 )
+                    { //first 8 straps && last strip
+                        xx = Form3->StringGrid1->Cells[0][jj].ToIntDef(44);
+                        yy = strip_cnt;
+                        //backtrack to the other end
+                        yy = yy - xx;
+                        xx = 0; // xx - xx is zero, skip the count
+                        yy *= 80;
+                        xx *= 80;
+                        if (end_flag == 1 && ii == Form3->StringGrid1->ColCount - 1) {
+                            //rewind
+                            ii = end_col_ind;
+                            Form1->RichEdit->Lines->Add("rewind");
+
+                        }
+                    }
                 }
             }
 
+            //set values to now strap and update from the previous strap
+            Dcol[4] = cntnt.ToIntDef(0); //char
+            //            xx += Dcol[4];
+            //            yy += Dcol[4];
+            //            Dcol[1] = xx;
+            //            Dcol[2] = yy;
             Dcol[0] = strip_cnt;
             Dcol[3] = ang;
-            Dcol[4] = cntnt.ToIntDef(0); //char
-            Form1->RichEdit->Lines->Add("hi, data input");
             UnicodeString lineword = {};
             for (kk = 0; kk < 7; kk++) {
                 lineword = lineword + IntToStr(Dcol[kk]) + " ";
@@ -590,8 +621,9 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
             for (kk = 0; kk < 7; kk++)
                 Dcol[kk] = 0;
         }
+        //variables need reset
         ang = 0;
-        if (jj == Form3->StringGrid1->RowCount-1) {
+        if (jj == Form3->StringGrid1->RowCount - 1) {
             break; // stop the last column
         }
     }

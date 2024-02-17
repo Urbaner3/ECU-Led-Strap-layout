@@ -548,7 +548,9 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
             kk = cntnt.ToIntDef(44);
             if (kk == 44) { // use kk as empty flag
                 if (ii == 12) {
-                    Form1->RichEdit->Lines->Add(cntnt);
+                cntnt = Trim(cntnt);
+//                    Form1->RichEdit->Lines->Add(cntnt);
+
                     strip_cnt++;
                 } else {
                     Form1->RichEdit->Lines->Add("conti. empty");
@@ -589,6 +591,9 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
                 Dcol[kk] = 0;
         }
         ang = 0;
+        if (jj == Form3->StringGrid1->RowCount-1) {
+            break; // stop the last column
+        }
     }
 }
 //---------------------------------------------------------------------------

@@ -547,6 +547,7 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
             //empty square
             kk = cntnt.ToIntDef(44);
             if (kk == 44) { // use kk as empty flag
+
                 Form1->RichEdit->Lines->Add("conti. empty");
                 continue;
             } else if (cntnt.Compare(L"¡ö") == 0) {
@@ -559,19 +560,19 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
                 Form1->RichEdit->Lines->Add("conti. zero");
                 continue;
             } else {
-                strip_cnt++;
-            }
-
-            if (ii == 0) {
-                Form1->RichEdit->Lines->Add("conti. 1st col ");
-                continue;
-            }
-            //show column 12
-            else if (ii == 12)
-            {
-                Form1->RichEdit->Lines->Add(cntnt);
-                strip_cnt++;
-            } else {
+                if (ii == 0) {
+                    Form1->RichEdit->Lines->Add("conti. 1st col ");
+                    continue;
+                }
+                //show column 12
+                else if (ii == 12)
+                {
+                    Form1->RichEdit->Lines->Add(cntnt);
+                    strip_cnt++;
+                }
+                else {
+                    strip_cnt++;
+                }
             }
 
             Dcol[0] = strip_cnt;

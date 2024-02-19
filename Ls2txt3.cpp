@@ -554,7 +554,7 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
                     cntnt = Trim(cntnt);
                     strip_cnt++;
                     //compare content to find one end of the set in pole
-                    prev_cnt = Form3->StringGrid1->Cells[ii - 2][jj];
+                    prev_cnt = Form3->StringGrid1->Cells[ii - 1][jj];
                     if (prev_cnt.Compare(L"0") == 0)
                     { // tell if previous is 0 when now is nonzero
                         Form1->RichEdit->Lines->Add("found the end");
@@ -658,7 +658,7 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
 //                    cntnt = Trim(cntnt);
 //                    strip_cnt++;
                     //compare content to find one end of the set in pole
-                    prev_cnt = Form3->StringGrid1->Cells[ii - 2][jj];
+                    prev_cnt = Form3->StringGrid1->Cells[ii - 1][jj];
                     if (prev_cnt.Compare(L"0") == 0)
                     { // tell if previous is 0 when now is nonzero
                         Form1->RichEdit->Lines->Add("found the end");

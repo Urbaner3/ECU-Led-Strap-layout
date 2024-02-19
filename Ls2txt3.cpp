@@ -604,20 +604,20 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
                 }
             }
             //end point coordinate
-            if (jj < 8 && end_flag == 1) { //first 8 straps && last strip
-                xx = Form3->StringGrid1->Cells[0][jj].ToIntDef(44);
-                yy = strip_cnt;
-                //backtrack to the other end
-                yy = yy - xx;
-                xx = 0; // xx - xx is zero, skip the count
-                yy *= 80;
-                xx *= 80;
-                if (ii == Form3->StringGrid1->ColCount - 1) {
-                    //rewind with the same loop
-                    //ii = end_col_ind;
-                    Form1->RichEdit->Lines->Add("rewind");
-                }
-            }
+//            if (jj < 8 && end_flag == 1) { //first 8 straps && last strip
+//                xx = Form3->StringGrid1->Cells[0][jj].ToIntDef(44);
+//                yy = strip_cnt;
+//                //backtrack to the other end
+//                yy = yy - xx;
+//                xx = 0; // xx - xx is zero, skip the count
+//                yy *= 80;
+//                xx *= 80;
+//                if (ii == Form3->StringGrid1->ColCount - 1) {
+//                    //rewind with the same loop
+//                    //ii = end_col_ind;
+//                    Form1->RichEdit->Lines->Add("rewind");
+//                }
+//            }
             //set values to now strap and update from the previous strap
             Dcol[4] = cntnt.ToIntDef(0); //char
             //            xx += Dcol[4];
@@ -644,7 +644,7 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
         }
 
         //second run
-        for (ii = 0; ii < Form3->StringGrid1->ColCount; ii++) {
+        for (ii = end_col_ind; ii < Form3->StringGrid1->ColCount; ii++) {
             int Dcol[7] = { 0 }; //column data
 
             //count line number and get the index
@@ -655,7 +655,7 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
             if (kk == 44) { // use kk as empty flag
                 //show column 12
                 if (ii == 12) { //special case!!!! end of the set
-//                    cntnt = Trim(cntnt);
+                    cntnt = Trim(cntnt);
 //                    strip_cnt++;
                     //compare content to find one end of the set in pole
                     prev_cnt = Form3->StringGrid1->Cells[ii - 1][jj];
@@ -730,11 +730,11 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
             //            Dcol[2] = yy;
             Dcol[0] = strip_cnt;
             Dcol[3] = ang;
-//            UnicodeString lineword = {};
-//            for (kk = 0; kk < 7; kk++) {
-//                lineword = lineword + IntToStr(Dcol[kk]) + " ";
-//            }
-//            Form1->RichEdit->Lines->Append(lineword);
+            UnicodeString lineword = {};
+            for (kk = 0; kk < 7; kk++) {
+                lineword = lineword + IntToStr(Dcol[kk]) + " ";
+            }
+            Form1->RichEdit->Lines->Append(lineword);
             //reset the Dcol array and ang
             for (kk = 0; kk < 7; kk++)
                 Dcol[kk] = 0;

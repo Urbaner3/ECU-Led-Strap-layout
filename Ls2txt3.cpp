@@ -15,6 +15,7 @@
 #include "angle45.h"
 #include "loop_rewind.h"
 #include "J_src.h"
+#include "JSavToCsv.h"
 
 #include <stdio.h>
 #include <stdbool.h>
@@ -535,7 +536,6 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
             break;
         }
 
-
         //column index
         int strip_cnt = 0, xx, yy, end_flag, end_col_ind = 0;
         UnicodeString cntnt, prev_cnt; //content, previous content
@@ -604,20 +604,21 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
                 }
             }
             //end point coordinate
-//            if (jj < 8 && end_flag == 1) { //first 8 straps && last strip
-//                xx = Form3->StringGrid1->Cells[0][jj].ToIntDef(44);
-//                yy = strip_cnt;
-//                //backtrack to the other end
-//                yy = yy - xx;
-//                xx = 0; // xx - xx is zero, skip the count
-//                yy *= 80;
-//                xx *= 80;
-//                if (ii == Form3->StringGrid1->ColCount - 1) {
-//                    //rewind with the same loop
-//                    //ii = end_col_ind;
-//                    Form1->RichEdit->Lines->Add("rewind");
-//                }
-//            }
+            if (jj < 8 && end_flag == 1) { //first 8 straps && last strip
+
+                if (ii == Form3->StringGrid1->ColCount - 1) {
+                    //rewind with the same loop
+                    //ii = end_col_ind;
+                    Form1->RichEdit->Lines->Add("rewind");
+                    xx = Form3->StringGrid1->Cells[0][jj].ToIntDef(44);
+                    yy = strip_cnt;
+                    //backtrack to the other end
+                    yy = yy - xx;
+                    xx = 0; // xx - xx is zero, skip the count
+                    yy *= 80;
+                    xx *= 80;
+                }
+            }
             //set values to now strap and update from the previous strap
             Dcol[4] = cntnt.ToIntDef(0); //char
             //            xx += Dcol[4];
@@ -626,11 +627,13 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
             //            Dcol[2] = yy;
             Dcol[0] = strip_cnt;
             Dcol[3] = ang;
+
             UnicodeString lineword = {};
             for (kk = 0; kk < 7; kk++) {
                 lineword = lineword + IntToStr(Dcol[kk]) + " ";
             }
             Form1->RichEdit->Lines->Append(lineword);
+
             //reset the Dcol array and ang
             for (kk = 0; kk < 7; kk++)
                 Dcol[kk] = 0;
@@ -656,13 +659,13 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
                 //show column 12
                 if (ii == 12) { //special case!!!! end of the set
                     cntnt = Trim(cntnt);
-//                    strip_cnt++;
+                    //                    strip_cnt++;
                     //compare content to find one end of the set in pole
                     prev_cnt = Form3->StringGrid1->Cells[ii - 1][jj];
                     if (prev_cnt.Compare(L"0") == 0)
                     { // tell if previous is 0 when now is nonzero
                         Form1->RichEdit->Lines->Add("found the end");
-//                        end_col_ind = ii;
+                        //                        end_col_ind = ii;
                         end_flag = 1;
                     } else {
                     }
@@ -679,7 +682,7 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
             else if ((AnsiString)cntnt == NULL)
             {
                 Form1->RichEdit->Lines->Add("conti. zero");
-//                strip_cnt++;
+                //                strip_cnt++;
             } else {
                 if (ii == 0) {
                     Form1->RichEdit->Lines->Add("conti. 1st col ");
@@ -688,7 +691,7 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
 
                 else
                 {
-//                    strip_cnt++;
+                    //                    strip_cnt++;
 
                     //compare content to find one end of the set in pole
                     prev_cnt = Form3->StringGrid1->Cells[ii - 1][jj];
@@ -707,34 +710,43 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
                     }
                 }
             }
-            //end point coordinate
-            if (jj < 8 && end_flag == 1) { //first 8 straps && last strip
-                xx = Form3->StringGrid1->Cells[0][jj].ToIntDef(44);
-                yy = strip_cnt;
-                //backtrack to the other end
-                yy = yy - xx;
-                xx = 0; // xx - xx is zero, skip the count
-                yy *= 80;
-                xx *= 80;
-                if (ii == Form3->StringGrid1->ColCount - 1) {
-                    //rewind with the same loop
-                    //ii = end_col_ind;
-                    Form1->RichEdit->Lines->Add("rewind");
-                }
-            }
-            //set values to now strap and update from the previous strap
+            //end point coordinate, set values to now strap and update from the previous strap
             Dcol[4] = cntnt.ToIntDef(0); //char
-            //            xx += Dcol[4];
-            //            yy += Dcol[4];
-            //            Dcol[1] = xx;
-            //            Dcol[2] = yy;
+
+            Dcol[1] = xx;
+            Dcol[2] = yy;
+            xx += Dcol[4];
+            yy += Dcol[4];
+
             Dcol[0] = strip_cnt;
             Dcol[3] = ang;
+
+            //------------- WRTING TO AN OUTPUT FILE STREAM -----------------------------------
+            std::ofstream ofs;
+
+            ofs.open(
+                "D:\\OS000175\\Documents\\Embarcadero\\Studio\\Projects\\ECU_projs\\supply\\my_stream_test.csv",
+                std::ios::out | // output file stream
+                    std::ios::app | // can append to a existing file
+                    std::ios::ate); // set file cursor at the end
+
             UnicodeString lineword = {};
+            //prepare for string
+            std::string myline = {};
             for (kk = 0; kk < 7; kk++) {
                 lineword = lineword + IntToStr(Dcol[kk]) + " ";
+                myline = myline + std::to_string(Dcol[kk]) + ",";
             }
+            //            myline = myline + "\n\n";
             Form1->RichEdit->Lines->Append(lineword);
+
+            //csv output print
+            if (ofs) {
+                ofs << myline << std::endl;
+
+            } else
+                ShowMessage("file open failed.");
+
             //reset the Dcol array and ang
             for (kk = 0; kk < 7; kk++)
                 Dcol[kk] = 0;
@@ -746,9 +758,7 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
         if (jj == Form3->StringGrid1->RowCount - 1) {
             break; // stop the last column
         }
-
     }
 }
 //---------------------------------------------------------------------------
-
 

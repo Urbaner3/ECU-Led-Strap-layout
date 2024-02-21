@@ -4,6 +4,9 @@
 #pragma hdrstop
 
 #include <clipbrd.hpp>
+#include <iostream>
+#include <fstream>
+#include <string>
 
 #include "J_src.h"
 //---------------------------------------------------------------------------
@@ -74,6 +77,46 @@ void __fastcall TForm3::Sav2csvClick(TObject* Sender)
         }
         // SaveToFile failed
     }
+
+    //------------- WRTING TO AN OUTPUT FILE STREAM -----------------------------------
+    std::ofstream ofs;
+
+    ofs.open(
+        "D:\\OS000175\\Documents\\Embarcadero\\Studio\\Projects\\ECU_projs\\supply\\my_stream_test.txt",
+        std::ios::out | // output file stream
+            std::ios::app | // can append to a existing file
+            std::ios::ate); // set file cursor at the end
+
+    if (ofs) {
+        Memo1->Lines->Add("my first");
+        Memo1->Lines->Add("my second");
+        Memo1->Lines->Add("my third");
+        ofs << "This is my first record" << std::endl;
+        ofs << "This is my second record" << std::endl;
+        ofs << "This is my third record" << std::endl;
+
+        ofs.close();
+    } else
+        std::cout << "Unable to open file to write" << std::endl;
+
+    //------------- READING FROM AN INPUT FILE STREAM -----------------------------------
+    std::ifstream ifs;
+    std::string str;
+    ifs.open(
+        "D:\\OS000175\\Documents\\Embarcadero\\Studio\\Projects\\ECU_projs\\supply\\my_stream_out.txt",
+        std::ios::in); // input file stream
+
+    if (ifs) {
+        while (!ifs.eof()) {
+            std::getline(ifs, str);
+//            std::cout << str << std::endl;
+            Memo1->Lines->Add((UnicodeString)str.c_str());
+        }
+        ifs.close();
+    } else
+        std::cout << "Unable to open file to read" << std::endl;
+
+    getchar();
 }
 //---------------------------------------------------------------------------
 

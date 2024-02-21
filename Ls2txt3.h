@@ -51,6 +51,8 @@ class TForm1 : public TForm
     TSaveDialog* SavTxtDlg1;
     TButton* BtmF3show;
     TButton* TestJSrc;
+	TButton *JSavToCsv;
+	TSaveDialog *JSavCsvDlg;
 
     //  make excel files
 
@@ -67,6 +69,7 @@ class TForm1 : public TForm
     void __fastcall FormCreate(TObject* Sender);
     void __fastcall BtmF3showClick(TObject* Sender);
     void __fastcall TestJSrcClick(TObject* Sender);
+	void __fastcall JSavToCsvClick(TObject *Sender);
   private: // User declarations
   public: // User declarations
     __fastcall TForm1(TComponent* Owner);

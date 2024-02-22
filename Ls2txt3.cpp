@@ -546,7 +546,7 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
             std::ios::ate); // set file cursor at the end
 
     //prepare for string
-    myline = { "Dend\n" };
+    myline = "Dend\n";
 
     //csv output print
     if (ofs) {
@@ -674,7 +674,7 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
         }
 
         //variables need reset
-        ang = 0;
+//        ang = 0;
         //stop on the col-12 special case
         if (jj == Form3->StringGrid1->RowCount - 1) {
             break; // stop the last column

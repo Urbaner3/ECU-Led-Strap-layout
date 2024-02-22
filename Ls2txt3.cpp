@@ -523,6 +523,40 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
     //sheet variables
     int ang = 0, kk, ii, jj;
 
+    //implement csv file head
+    //clear fiile content
+    std::ofstream ofs;
+
+    ofs.open(
+        "D:\\OS000175\\Documents\\Embarcadero\\Studio\\Projects\\ECU_projs\\supply\\my_stream_test.csv",
+        std::ios::out | // output file stream
+            //            std::ios::app | // no append would clear the content
+            std::ios::ate); // set file cursor at the end
+    std::string myline = {};
+    if (ofs) {
+        ofs << myline << std::endl;
+        ofs.close();
+    } else
+        ShowMessage("file not clear yet.");
+
+    ofs.open(
+        "D:\\OS000175\\Documents\\Embarcadero\\Studio\\Projects\\ECU_projs\\supply\\my_stream_test.csv",
+        std::ios::out | // output file stream
+            std::ios::app | // can append to a existing file
+            std::ios::ate); // set file cursor at the end
+
+    //prepare for string
+    myline = { "Dend\n" };
+
+    //csv output print
+    if (ofs) {
+        ofs << myline << std::endl;
+        myline = {};
+        ofs.close();
+
+    } else
+        ShowMessage("file head open failed in writing.");
+
     //row index
     for (jj = 0; jj < Form3->StringGrid1->RowCount; jj++) {
         UnicodeString dir;
@@ -722,8 +756,6 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
             Dcol[3] = ang;
 
             //------------- WRTING TO AN OUTPUT FILE STREAM -----------------------------------
-            std::ofstream ofs;
-
             ofs.open(
                 "D:\\OS000175\\Documents\\Embarcadero\\Studio\\Projects\\ECU_projs\\supply\\my_stream_test.csv",
                 std::ios::out | // output file stream
@@ -743,6 +775,7 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
             //csv output print
             if (ofs) {
                 ofs << myline << std::endl;
+                ofs.close();
 
             } else
                 ShowMessage("file open failed.");

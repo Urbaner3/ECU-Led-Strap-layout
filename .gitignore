@@ -1,4 +1,4 @@
-# æª”æ¡ˆåç¨± .gitignore
+# ™n°¸Ãû·Q .gitignore
 
 #dfm R studio design file
 *.dfm
@@ -34,5 +34,11 @@ __astcache/@d@@os000175@documents@embarcadero@studio@projects@ecu_projs/ls2txt3.
 supply/easy_tiny_out.txt
 supply/ECU_w2.xlsx
 
-# ç•¶ç„¶ä½ è¦å¿½ç•¥è‡ªå·±ä¹Ÿå¯ä»¥ï¼Œåªæ˜¯é€šå¸¸ä¸æœƒé€™éº¼åš
+# ®”È»ÄãÒªºöÂÔ×Ô¼ºÒ²¿ÉÒÔ£¬Ö»ÊÇÍ¨³£²»•şß@üN×ö
 # .gitignore
+# ™n°¸Ãû·Q .gitignore
+
+#branch my stream -- csv file is stable reporting
+
+east_tiny.txt
+easy_tiny_out.txt

@@ -106,8 +106,7 @@ void TForm2::Show_picture(void)
     mmp[red].col = clRed, mmp[green].col = clLime, mmp[blue].col = clBlue;
     mmp[cyan].col = clFuchsia, mmp[yellow].col = clYellow;
 
-
-    int pause = 0;
+    int ps_count = 0;
     //str: cut the strings
     while (!read_file->EndOfStream) {
         str = read_file->ReadLine();
@@ -129,8 +128,11 @@ void TForm2::Show_picture(void)
                    (str1.SubString(1, 6) == "555555" &&
                        str2.SubString(1, 6) == "555555"))
         {
-
-//            break;
+            ps_count++;
+            if (ps_count == br_line->Value) {
+                break;
+            }
+            //            break;
         } else if (str1.SubString(1, 1) == "0" && str2.SubString(1, 1) == "0") {
             myword = "";
             continue;
@@ -168,7 +170,6 @@ void TForm2::Show_picture(void)
             //            ptr[point_buff[0]].rgbtRed = 255;
             //            ptr[point_buff[0]].rgbtGreen = 0;
             //            ptr[point_buff[0]].rgbtBlue = 0;
-
         }
         RichEdit->Lines->Add(myword);
     }

@@ -12,6 +12,7 @@
 #include <Vcl.Dialogs.hpp>
 #include <Vcl.ExtDlgs.hpp>
 #include <Vcl.Buttons.hpp>
+#include <Vcl.Samples.Spin.hpp>
 //---------------------------------------------------------------------------
 class TForm2 : public TForm
 {
@@ -28,6 +29,8 @@ __published:	// IDE-managed Components
 	TSpeedButton *PdfGenBtn;
 	TSaveDialog *SavePicDialog1;
 	TLabel *SavPicLabl;
+	TSpinEdit *br_line;
+	TLabel *bk_labl;
 	void __fastcall BtnOpnSrcClick(TObject *Sender);
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall Btn_ShowClick(TObject *Sender);

@@ -31,6 +31,8 @@ __published:	// IDE-managed Components
 	TLabel *SavPicLabl;
 	TSpinEdit *br_line;
 	TLabel *bk_labl;
+	TLabel *pt_break;
+	TSpinEdit *br_led;
 	void __fastcall BtnOpnSrcClick(TObject *Sender);
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall Btn_ShowClick(TObject *Sender);

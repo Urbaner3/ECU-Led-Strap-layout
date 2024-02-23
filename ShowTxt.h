@@ -20,13 +20,14 @@ __published:	// IDE-managed Components
 	TButton *Btn_Clear;
 	TButton *Btn_Show;
 	TButton *Btn_Exit;
-	TRichEdit *RichEdit1;
+	TRichEdit *RichEdit;
 	TOpenTextFileDialog *OpnTxtFlDiag;
 	TLabel *TxtLoadLbl;
 	TImage *Work;
 	TSpeedButton *SavPicBtn;
 	TSpeedButton *PdfGenBtn;
 	TSaveDialog *SavePicDialog1;
+	TLabel *SavPicLabl;
 	void __fastcall BtnOpnSrcClick(TObject *Sender);
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall Btn_ShowClick(TObject *Sender);

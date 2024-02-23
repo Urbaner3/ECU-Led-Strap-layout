@@ -410,7 +410,9 @@ void __fastcall TForm1::BtnSavTxt1Click(TObject* Sender)
         FileClose(FileHandle);
 
         SaveFileName = SavTxtDlg1->FileName;
-        SaveFilePath = SaveFileName;
+
+        RichEdit->Lines->Add("prt name:" + SaveFileName);
+        ¡@ SaveFilePath = SaveFileName;
     }
     if (!Form1->SaveFileName.IsEmpty()) {
         Form1->SavFilLabl->Show();
@@ -512,11 +514,10 @@ void __fastcall TForm1::BtmF3showClick(TObject* Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::TestJSrcClick(TObject* Sender)
-{
-    // test if the data is reachable from different forms
 
-    f1str_rows = Form3->str_rows;
+void __fastcall TForm1::TestJSrcClick(TObject *Sender)
+{
+     f1str_rows = Form3->str_rows;
     f1str_cols = Form3->str_cols;
     Form1->RichEdit->Lines->Add("J_src_start");
 
@@ -528,7 +529,7 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
     std::ofstream ofs;
 
     ofs.open(
-        "D:\\OS000175\\Documents\\Embarcadero\\Studio\\Projects\\ECU_projs\\supply\\my_stream_test.csv",
+        SaveFileName.c_str(),
         std::ios::out | // output file stream
             //            std::ios::app | // no append would clear the content
             std::ios::ate); // set file cursor at the end
@@ -540,7 +541,7 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
         ShowMessage("file not clear yet.");
 
     ofs.open(
-        "D:\\OS000175\\Documents\\Embarcadero\\Studio\\Projects\\ECU_projs\\supply\\my_stream_test.csv",
+        SaveFileName.c_str(),
         std::ios::out | // output file stream
             std::ios::app | // can append to a existing file
             std::ios::ate); // set file cursor at the end
@@ -674,7 +675,7 @@ void __fastcall TForm1::TestJSrcClick(TObject* Sender)
         }
 
         //variables need reset
-//        ang = 0;
+        //        ang = 0;
         //stop on the col-12 special case
         if (jj == Form3->StringGrid1->RowCount - 1) {
             break; // stop the last column

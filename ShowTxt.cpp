@@ -7,6 +7,8 @@
 #include "Ls2txt3.h"
 #include <string> // RightStr
 #include <typeinfo> //typeid
+#include <dir.h> // save function MAXFILE
+
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -132,7 +134,7 @@ void TForm2::Show_picture(void)
             ptr[point_buff[0]].rgbtGreen = 0;
             ptr[point_buff[0]].rgbtBlue = 0;
         }
-        RichEdit1->Lines->Add(myword);
+        RichEdit->Lines->Add(myword);
     }
 
     Work->Canvas->Draw(0, 0, Bitmap.get());
@@ -173,8 +175,8 @@ void __fastcall TForm2::Btn_ShowClick(TObject* Sender)
     //
     //    // Draw a circle at position (50, 50) with a radius of 30
     //    mycanvas->Ellipse(50, 50, 80, 80);
-    Form2->RichEdit1->Lines->Clear();
-    Form2->RichEdit1->Lines->Add("my data");
+    Form2->RichEdit->Lines->Clear();
+    Form2->RichEdit->Lines->Add("my data");
 
     //do Show_picture();
     TForm2::Show_picture();
@@ -198,25 +200,33 @@ void __fastcall TForm2::Btn_ClearClick(TObject* Sender)
 
 void __fastcall TForm2::SavPicBtnClick(TObject* Sender)
 {
-    if (Form2->SavePicDialog1->Execute()) {
-        SavPicName = Form2->SavePicDialog1->FileName;
-        //check if extensoin is correct
-        int ptplace;
-        ptplace = LastDelimiter(".", Form2->SavPicName);
-        if (ptplace == 0) {
-            SavPicName = Form2->SavPicName + ".bmp";
-        } else if (SavPicName.SubString(SavPicName.Length() - ptplace + 2, 3) ==
-                   "bmp") {
-            ShowMessage("ª`·N°ÆÀÉ¦W");
-        }
+     wchar_t szFileName[MAXFILE + 4];
+    int FileHandle;
+    int theLen;
+    int count;
 
-        else
-        {
-            SavPicName.Delete(SavPicName.Length() - ptplace + 2, 10);
-            SavPicName = Form2->SavPicName + ".bmp";
+    if (SavePicDialog1->Execute()) {
+        //backup existing files
+        if (FileExists(Form2->SavePicDialog1->FileName)) {
+            _wfnsplit(Form2->SavePicDialog1->FileName.w_str(), 0, 0, szFileName, 0);
+            wcscat(szFileName, L".BAK");
+
+            RenameFile(SavePicDialog1->FileName, szFileName);
         }
+        //creating file
+        FileHandle = FileCreate(SavePicDialog1->FileName);
+
+        FileClose(FileHandle);
+
+        SavPicName = SavePicDialog1->FileName;
+        RichEdit->Lines->Add("prt name:" + SavPicName);
+//        SaveFilePath = SavPicName;
         Work->Picture->SaveToFile(SavPicName);
     }
+    if (!Form2->SavPicName.IsEmpty()) {
+        Form2->SavPicLabl->Show();
+    }
+
 }
 //---------------------------------------------------------------------------
 

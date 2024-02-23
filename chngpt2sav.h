@@ -259,14 +259,14 @@ void TForm1::ChangePointToSave(AnsiString file_path)
                 if (scan_board_add_zero_data == 0) {
                     scan_board_add_zero_data = 1;
                 }
-                str = "  0 0 tres_b";
+                str = "  0 0 tres_b\r\n";
                 TFileStream* fs = new TFileStream(SaveFilePath, fmOpenWrite);
                 fs->Seek(0, soFromEnd);
                 fs->Write(str.c_str(), str.Length());
                 ScanBoard_Portlocation++;
                 delete fs;
 
-                str = "  333333 333333 tres_b";
+                str = "  333333 333333 tres_b\r\n";
                 TFileStream* fs2 = new TFileStream(SaveFilePath, fmOpenWrite);
                 fs2->Seek(0, soFromEnd);
                 fs2->Write(str.c_str(), str.Length());
@@ -282,7 +282,7 @@ void TForm1::ChangePointToSave(AnsiString file_path)
 //        } else
         if (DDUBoard_Portlocation < DDUBoard_Port) {
             while (DDUBoard_Portlocation < DDUBoard_Port) {
-                str = "  555555 555555 ";
+                str = "  555555 555555 ddus \r\n";
                 TFileStream* fs3 = new TFileStream(SaveFilePath, fmOpenWrite);
                 fs3->Seek(0, soFromEnd);
                 fs3->Write(str.c_str(), str.Length());

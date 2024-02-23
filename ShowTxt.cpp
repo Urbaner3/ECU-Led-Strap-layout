@@ -9,7 +9,6 @@
 #include <typeinfo> //typeid
 #include <dir.h> // save function MAXFILE
 
-
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -88,6 +87,27 @@ void TForm2::Show_picture(void)
     //        ptr[99 + (80 * jj) + 130].rgbtBlue = 255;
     //    }
 
+    struct Tmap
+    {
+        TColor col;
+    };
+    struct Tmap mmp[5]; // my color map
+
+    enum clmp
+    {
+        red = 0,
+        green,
+        blue,
+        cyan,
+        yellow
+    };
+    int Size_clmp = 5;
+    int mpen = red; //variable
+    mmp[red].col = clRed, mmp[green].col = clLime, mmp[blue].col = clBlue;
+    mmp[cyan].col = clFuchsia, mmp[yellow].col = clYellow;
+
+
+    int pause = 0;
     //str: cut the strings
     while (!read_file->EndOfStream) {
         str = read_file->ReadLine();
@@ -109,7 +129,8 @@ void TForm2::Show_picture(void)
                    (str1.SubString(1, 6) == "555555" &&
                        str2.SubString(1, 6) == "555555"))
         {
-           
+
+//            break;
         } else if (str1.SubString(1, 1) == "0" && str2.SubString(1, 1) == "0") {
             myword = "";
             continue;
@@ -127,12 +148,27 @@ void TForm2::Show_picture(void)
             point_buff[0] = Form1->mystoi(str1.c_str());
             point_buff[1] = Form1->mystoi(str2.c_str());
             //set red
+
+            int nwcl = (int)mmp[mpen].col;
             ptr = reinterpret_cast<TRGBTriple*>(
-                Bitmap
-                    ->ScanLine[point_buff[1]]); // all rows makes vertical line.
-            ptr[point_buff[0]].rgbtRed = 255;
-            ptr[point_buff[0]].rgbtGreen = 0;
-            ptr[point_buff[0]].rgbtBlue = 0;
+                Bitmap->ScanLine[point_buff[1]]); // certain 4 rows
+            ptr[point_buff[0]].rgbtBlue = nwcl % 256;
+            nwcl /= 256;
+            ptr[point_buff[0]].rgbtGreen = nwcl % 256;
+            nwcl /= 256;
+            ptr[point_buff[0]].rgbtRed = nwcl % 256;
+            mpen++; //looping with while
+            if (mpen == Size_clmp) {
+                mpen = red;
+            }
+
+            //            ptr = reinterpret_cast<TRGBTriple*>(
+            //                Bitmap
+            //                    ->ScanLine[point_buff[1]]); // all rows makes vertical line.
+            //            ptr[point_buff[0]].rgbtRed = 255;
+            //            ptr[point_buff[0]].rgbtGreen = 0;
+            //            ptr[point_buff[0]].rgbtBlue = 0;
+
         }
         RichEdit->Lines->Add(myword);
     }
@@ -164,8 +200,8 @@ void __fastcall TForm2::BtnOpnSrcClick(TObject* Sender)
 void __fastcall TForm2::FormCreate(TObject* Sender)
 {
     //    Form2->PaintBox1->Canvas->Brush->Color = clBlack;
-//    Form2->Work->Height = Form1->PaintEq->Height;
-//    Form2->Work->Width = Form1->PaintEq->Width;
+    //    Form2->Work->Height = Form1->PaintEq->Height;
+    //    Form2->Work->Width = Form1->PaintEq->Width;
 }
 //---------------------------------------------------------------------------
 
@@ -200,7 +236,7 @@ void __fastcall TForm2::Btn_ClearClick(TObject* Sender)
 
 void __fastcall TForm2::SavPicBtnClick(TObject* Sender)
 {
-     wchar_t szFileName[MAXFILE + 4];
+    wchar_t szFileName[MAXFILE + 4];
     int FileHandle;
     int theLen;
     int count;
@@ -208,7 +244,8 @@ void __fastcall TForm2::SavPicBtnClick(TObject* Sender)
     if (SavePicDialog1->Execute()) {
         //backup existing files
         if (FileExists(Form2->SavePicDialog1->FileName)) {
-            _wfnsplit(Form2->SavePicDialog1->FileName.w_str(), 0, 0, szFileName, 0);
+            _wfnsplit(
+                Form2->SavePicDialog1->FileName.w_str(), 0, 0, szFileName, 0);
             wcscat(szFileName, L".BAK");
 
             RenameFile(SavePicDialog1->FileName, szFileName);
@@ -220,13 +257,12 @@ void __fastcall TForm2::SavPicBtnClick(TObject* Sender)
 
         SavPicName = SavePicDialog1->FileName;
         RichEdit->Lines->Add("prt name:" + SavPicName);
-//        SaveFilePath = SavPicName;
+        //        SaveFilePath = SavPicName;
         Work->Picture->SaveToFile(SavPicName);
     }
     if (!Form2->SavPicName.IsEmpty()) {
         Form2->SavPicLabl->Show();
     }
-
 }
 //---------------------------------------------------------------------------
 

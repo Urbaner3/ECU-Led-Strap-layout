@@ -604,7 +604,7 @@ void __fastcall TForm1::TestJSrcClick(TObject *Sender)
 				}
 			} else  if (cntnt.Compare(L"¡ö") == 0) {
                 Form1->RichEdit->Lines->Add("conti. <");
-                continue;
+				//continue;
             }
 
             else if ((AnsiString)cntnt == NULL)
@@ -651,7 +651,8 @@ void __fastcall TForm1::TestJSrcClick(TObject *Sender)
 					yy = yy - xx;
 					xx = 0; // xx - xx is zero, skip the count
 					yy *= 80;
-                    xx *= 80;
+					xx *= 80;
+                    continue;
                 }
             }
             //set values to now strap and update from the previous strap

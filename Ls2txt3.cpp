@@ -572,7 +572,7 @@ void __fastcall TForm1::TestJSrcClick(TObject *Sender)
         }
 
         //column index
-        int strip_cnt = 0, xx, yy, end_flag, end_col_ind = 0;
+        int strip_cnt = 0, xx=0, yy=0, end_flag, end_col_ind = 0;
         UnicodeString cntnt, prev_cnt; //content, previous content
         for (ii = 0; ii < Form3->StringGrid1->ColCount; ii++) {
             //            Form1->RichEdit->Lines->Add(Form3->StringGrid1->Cells[ii][jj]);
@@ -590,9 +590,9 @@ void __fastcall TForm1::TestJSrcClick(TObject *Sender)
                     strip_cnt++;
                     //compare content to find one end of the set in pole
                     prev_cnt = Form3->StringGrid1->Cells[ii - 1][jj];
-                    if (prev_cnt.Compare(L"0") == 0)
+					if (prev_cnt.Compare(L"0") == 0)
                     { // tell if previous is 0 when now is nonzero
-                        Form1->RichEdit->Lines->Add("found the end");
+						Form1->RichEdit->Lines->Add("found the end");
                         end_col_ind = ii;
                         end_flag = 1;
                     } else {
@@ -600,9 +600,9 @@ void __fastcall TForm1::TestJSrcClick(TObject *Sender)
 
                 } else {
                     Form1->RichEdit->Lines->Add("conti. empty");
-                    continue;
-                }
-            } else if (cntnt.Compare(L"¡ö") == 0) {
+					continue;
+				}
+			} else  if (cntnt.Compare(L"¡ö") == 0) {
                 Form1->RichEdit->Lines->Add("conti. <");
                 continue;
             }
@@ -641,16 +641,16 @@ void __fastcall TForm1::TestJSrcClick(TObject *Sender)
             //end point coordinate
             if (jj < 8 && end_flag == 1) { //first 8 straps && last strip
 
-                if (ii == Form3->StringGrid1->ColCount - 1) {
-                    //rewind with the same loop
-                    //ii = end_col_ind;
-                    Form1->RichEdit->Lines->Add("rewind");
-                    xx = Form3->StringGrid1->Cells[0][jj].ToIntDef(44);
-                    yy = strip_cnt;
-                    //backtrack to the other end
-                    yy = yy - xx;
-                    xx = 0; // xx - xx is zero, skip the count
-                    yy *= 80;
+				if (ii == Form3->StringGrid1->ColCount - 1) {
+					//rewind with the same loop
+					//ii = end_col_ind;
+					Form1->RichEdit->Lines->Add("rewind");
+					xx = Form3->StringGrid1->Cells[0][jj].ToIntDef(44);
+					yy = strip_cnt;
+					//backtrack to the other end
+					yy = yy - xx;
+					xx = 0; // xx - xx is zero, skip the count
+					yy *= 80;
                     xx *= 80;
                 }
             }
@@ -681,8 +681,8 @@ void __fastcall TForm1::TestJSrcClick(TObject *Sender)
             break; // stop the last column
         }
 
-        //second run
-        for (ii = end_col_ind; ii < Form3->StringGrid1->ColCount; ii++) {
+		//second run
+		for (ii = end_col_ind; ii < Form3->StringGrid1->ColCount; ii++) {
             int Dcol[7] = { 0 }; //column data
 
             //count line number and get the index
@@ -746,11 +746,11 @@ void __fastcall TForm1::TestJSrcClick(TObject *Sender)
                 }
             }
             //end point coordinate, set values to now strap and update from the previous strap
-            Dcol[4] = cntnt.ToIntDef(0); //char
+			Dcol[4] = cntnt.ToIntDef(0); //char
 
-            Dcol[1] = xx;
+			Dcol[1] = xx;
             Dcol[2] = yy;
-            xx += Dcol[4];
+			xx += Dcol[4];
             yy += Dcol[4];
 
             Dcol[0] = strip_cnt;
@@ -758,7 +758,7 @@ void __fastcall TForm1::TestJSrcClick(TObject *Sender)
 
             //------------- WRTING TO AN OUTPUT FILE STREAM -----------------------------------
             ofs.open(
-                "D:\\OS000175\\Documents\\Embarcadero\\Studio\\Projects\\ECU_projs\\supply\\my_stream_test.csv",
+                SaveFileName.c_str(),
                 std::ios::out | // output file stream
                     std::ios::app | // can append to a existing file
                     std::ios::ate); // set file cursor at the end

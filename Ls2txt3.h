@@ -71,6 +71,7 @@ class TForm1 : public TForm
     void __fastcall BtmF3showClick(TObject* Sender);
 	void __fastcall JSavToCsvClick(TObject *Sender);
 	void __fastcall TestJSrcClick(TObject *Sender);
+	void __fastcall Label1Click(TObject *Sender);
   private: // User declarations
   public: // User declarations
     __fastcall TForm1(TComponent* Owner);

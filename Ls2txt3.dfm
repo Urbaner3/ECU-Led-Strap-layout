@@ -20,7 +20,6 @@ object Form1: TForm1
     Width = 84
     Height = 15
     Caption = 'Scan Board port'
-    OnClick = Label1Click
   end
   object Label2: TLabel
     Left = 356

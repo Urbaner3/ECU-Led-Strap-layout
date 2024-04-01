@@ -574,7 +574,7 @@ void __fastcall TForm1::TestJSrcClick(TObject *Sender)
         //column index
         int strip_cnt = 0, xx=0, yy=0, end_flag, end_col_ind = 0;
         UnicodeString cntnt, prev_cnt; //content, previous content
-        for (ii = 0; ii < Form3->StringGrid1->ColCount; ii++) {
+		for (ii = 0; ii < Form3->StringGrid1->ColCount; ii++) {
             //            Form1->RichEdit->Lines->Add(Form3->StringGrid1->Cells[ii][jj]);
             int Dcol[7] = { 0 }; //column data
 
@@ -641,7 +641,7 @@ void __fastcall TForm1::TestJSrcClick(TObject *Sender)
             //end point coordinate
             if (jj < 8 && end_flag == 1) { //first 8 straps && last strip
 
-				if (ii == Form3->StringGrid1->ColCount - 1) {
+				if (ii == Form3->StringGrid1->ColCount - 2) {
 					//rewind with the same loop
 					//ii = end_col_ind;
 					Form1->RichEdit->Lines->Add("rewind");

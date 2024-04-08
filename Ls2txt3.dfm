@@ -181,7 +181,7 @@ object Form1: TForm1
     Top = 8
     Width = 196
     Height = 364
-    Font.Charset = CHINESEBIG5_CHARSET
+    Font.Charset = 254
     Font.Color = clWindowText
     Font.Height = -12
     Font.Name = 'Segoe UI'

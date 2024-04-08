@@ -36,15 +36,15 @@ using namespace std;
 struct Info
 {
     unsigned int id; //ID
-    int x1; //°_©l®y¼Ð x
-    int y1; //°_©l®y¼Ð y
-    int x2; //²×ÂI®y¼Ð x
-    int y2; //²×ÂI®y¼Ð y
-    int ang; //¨¤«×
-    int length; //ªø«×(LED¼Æ¶q)
-    int scan_port; //¬O§_¤Á´« Scan Board ªº¿é¥X port
-    int ddu_port; //¬O§_¤Á´« DDU Board ªº¿é¥X port
-    int spu_port; //¬O§_¤Á´« SPU Board ªº¿é¥X port
+    int x1; //ï¿½_ï¿½lï¿½yï¿½ï¿½ x
+    int y1; //ï¿½_ï¿½lï¿½yï¿½ï¿½ y
+    int x2; //ï¿½ï¿½ï¿½Iï¿½yï¿½ï¿½ x
+    int y2; //ï¿½ï¿½ï¿½Iï¿½yï¿½ï¿½ y
+    int ang; //ï¿½ï¿½ï¿½ï¿½
+    int length; //ï¿½ï¿½ï¿½ï¿½(LEDï¿½Æ¶q)
+    int scan_port; //ï¿½Oï¿½_ï¿½ï¿½ï¿½ï¿½ Scan Board ï¿½ï¿½ï¿½ï¿½X port
+    int ddu_port; //ï¿½Oï¿½_ï¿½ï¿½ï¿½ï¿½ DDU Board ï¿½ï¿½ï¿½ï¿½X port
+    int spu_port; //ï¿½Oï¿½_ï¿½ï¿½ï¿½ï¿½ SPU Board ï¿½ï¿½ï¿½ï¿½X port
 };
 Info PointData;
 
@@ -412,7 +412,7 @@ void __fastcall TForm1::BtnSavTxt1Click(TObject* Sender)
         SaveFileName = SavTxtDlg1->FileName;
 
         RichEdit->Lines->Add("prt name:" + SaveFileName);
-        ¡@ SaveFilePath = SaveFileName;
+        SaveFilePath = SaveFileName;
     }
     if (!Form1->SaveFileName.IsEmpty()) {
         Form1->SavFilLabl->Show();
@@ -710,7 +710,7 @@ void __fastcall TForm1::TestJSrcClick(TObject *Sender)
                     Form1->RichEdit->Lines->Add("conti. empty");
                     continue;
                 }
-            } else if (cntnt.Compare(L"¡ö") == 0) {
+            } else if (cntnt.Compare(L"ï¿½ï¿½") == 0) {
                 Form1->RichEdit->Lines->Add("conti. <");
                 continue;
             }

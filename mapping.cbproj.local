@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2024/01/03 16:18:34.000.179,=D:\OS000175\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2024/01/03 16:18:34.000.146,=D:\OS000175\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2024/01/19 14:08:26.000.819,=D:\OS000175\Documents\Embarcadero\Studio\Projects\Unit3.cpp</Transaction>
+    <Transaction>2024/01/19 14:08:26.000.789,=D:\OS000175\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2024/01/19 14:15:43.000.559,=D:\OS000175\Documents\Embarcadero\Studio\Projects\Unit3.cpp</Transaction>
+    <Transaction>2024/01/19 14:15:43.000.529,=D:\OS000175\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2024/01/31 11:34:34.000.255,=D:\OS000175\Documents\Embarcadero\Studio\Projects\Unit3.cpp</Transaction>
+    <Transaction>2024/01/31 11:34:34.000.205,=D:\OS000175\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2024/01/31 11:37:46.000.016,D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\map_frame.cpp=D:\OS000175\Documents\Embarcadero\Studio\Projects\Unit3.cpp</Transaction>
+    <Transaction>2024/01/31 11:37:46.000.016,D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\map_frame.dfm=D:\OS000175\Documents\Embarcadero\Studio\Projects\Unit3.dfm</Transaction>
+    <Transaction>2024/01/31 11:37:46.000.016,D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\map_frame.h=D:\OS000175\Documents\Embarcadero\Studio\Projects\Unit3.h</Transaction>
+    <Transaction>2024/01/31 11:41:51.000.731,=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\Ls2txt3.cpp</Transaction>
+    <Transaction>2024/01/31 11:41:51.000.831,=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\ShowTxt.cpp</Transaction>
+    <Transaction>2024/01/31 11:46:23.000.976,=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\chngpt2sav.h</Transaction>
+    <Transaction>2024/01/31 11:46:23.000.939,=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\check80ptLoc.h</Transaction>
+    <Transaction>2024/01/31 11:46:23.000.892,=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\angle45.h</Transaction>
+    <Transaction>2024/01/31 11:47:47.000.715,D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\mappingPCH1.h=D:\OS000175\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2024/01/31 11:47:47.000.771,D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\mapping.cbproj=D:\OS000175\Documents\Embarcadero\Studio\Projects\Project1.cbproj</Transaction>
+    <Transaction>2024/02/06 13:47:35.000.325,=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\Unit4.cpp</Transaction>
+    <Transaction>2024/02/06 13:48:42.000.256,D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\map_frame.cpp=</Transaction>
+    <Transaction>2024/02/06 15:57:24.000.157,D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\Xls2txt.dfm=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\Ls2txt3.dfm</Transaction>
+    <Transaction>2024/02/06 15:57:24.000.157,D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\Xls2txt.h=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\Ls2txt3.h</Transaction>
+    <Transaction>2024/02/06 15:57:24.000.157,D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\Xls2txt.cpp=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\Ls2txt3.cpp</Transaction>
+    <Transaction>2024/02/06 16:00:04.000.011,D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\Ls2txt3.dfm=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\Xls2txt.dfm</Transaction>
+    <Transaction>2024/02/06 16:00:04.000.011,D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\Ls2txt3.h=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\Xls2txt.h</Transaction>
+    <Transaction>2024/02/06 16:00:04.000.011,D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\Ls2txt3.cpp=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\Xls2txt.cpp</Transaction>
+    <Transaction>2024/02/06 16:00:33.000.174,D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\mApping\Xls2txt.h=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\Ls2txt3.h</Transaction>
+    <Transaction>2024/02/06 16:00:33.000.174,D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\mApping\Xls2txt.dfm=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\Ls2txt3.dfm</Transaction>
+    <Transaction>2024/02/06 16:00:33.000.174,D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\mApping\Xls2txt.cpp=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\Ls2txt3.cpp</Transaction>
+    <Transaction>2024/02/06 16:01:46.000.564,D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\Ls2txt3.cpp=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\mApping\Xls2txt.cpp</Transaction>
+    <Transaction>2024/02/06 16:01:46.000.564,D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\Ls2txt3.h=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\mApping\Xls2txt.h</Transaction>
+    <Transaction>2024/02/06 16:01:46.000.564,D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\Ls2txt3.dfm=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\mApping\Xls2txt.dfm</Transaction>
+    <Transaction>2024/02/15 11:20:33.000.190,=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\J_read.h</Transaction>
+    <Transaction>2024/02/15 11:21:08.000.080,=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\Unit1.cpp</Transaction>
+    <Transaction>2024/02/15 11:21:29.000.721,=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\Unit1.cpp</Transaction>
+    <Transaction>2024/02/15 11:24:49.000.561,=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\Unit3.cpp</Transaction>
+    <Transaction>2024/02/15 11:25:52.000.223,D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\J_src.cpp=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\Unit3.cpp</Transaction>
+    <Transaction>2024/02/15 11:25:52.000.223,D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\J_src.h=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\Unit3.h</Transaction>
+    <Transaction>2024/02/15 11:25:52.000.223,D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\J_src.dfm=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\Unit3.dfm</Transaction>
+    <Transaction>2024/02/15 11:45:08.000.028,D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\J_read.h=</Transaction>
+    <Transaction>2024/02/15 12:00:13.000.389,D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\mapping.cbproj=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\mapping.cbproj</Transaction>
+    <Transaction>2024/02/15 12:00:23.000.177,D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\mapping.cbproj=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\mapping.cbproj</Transaction>
+    <Transaction>2024/02/20 11:11:06.000.426,=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\Unit1.cpp</Transaction>
+    <Transaction>2024/02/20 11:11:23.000.587,=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\File1.h</Transaction>
+    <Transaction>2024/02/20 11:12:53.000.130,D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\JSavToCsv.h=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\File1.h</Transaction>
+    <Transaction>2024/03/01 10:17:30.000.348,=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\Unit4.cpp</Transaction>
+    <Transaction>2024/03/01 10:26:05.000.858,D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\Unit4.h=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\ViewImage.h</Transaction>
+    <Transaction>2024/03/01 10:26:05.000.858,D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\Unit4.dfm=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\ViewImage.dfm</Transaction>
+    <Transaction>2024/03/01 10:26:05.000.858,D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\Unit4.cpp=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\ViewImage.cpp</Transaction>
+    <Transaction>2024/03/06 17:15:19.000.398,D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\ViewImage.cpp=</Transaction>
+    <Transaction>2024/03/06 17:15:37.000.920,=D:\OS000175\Documents\Embarcadero\Studio\Projects\ECU_projs\ViewImage.cpp</Transaction>
+    <Transaction>2024/04/08 13:52:54.125,=C:\Users\Peter\Documents\ECU_projs\ViewImage.cpp</Transaction>
+  </Transactions>
+	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="angle45.h"/>
+    <File Path="check80ptLoc.h"/>
+    <File Path="chngpt2sav.h"/>
+    <File Path="JSavToCsv.h"/>
+    <File Path="J_src.cpp"/>
+    <File Path="J_src.cpp"/>
+    <File Path="J_src.dfm"/>
+    <File Path="J_src.h"/>
+    <File Path="Ls2txt3.cpp"/>
+    <File Path="Ls2txt3.cpp"/>
+    <File Path="Ls2txt3.dfm"/>
+    <File Path="Ls2txt3.h"/>
+    <File Path="mapping.cpp"/>
+    <File Path="mappingPCH1.h"/>
+    <File Path="ShowTxt.cpp"/>
+    <File Path="ShowTxt.cpp"/>
+    <File Path="ShowTxt.dfm"/>
+    <File Path="ShowTxt.h"/>
+  </ProjectSortOrder>
+</BorlandProject>

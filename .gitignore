@@ -12,8 +12,8 @@ __recovery/
 mApping/
 
 #BCB, C++ builder group, project files, meta class
-mapping.cbproj
-mapping.cbproj.local
+#mapping.cbproj
+#mapping.cbproj.local
 *.groupproj
 *.groupproj.local
 

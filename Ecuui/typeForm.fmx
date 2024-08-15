@@ -1,0 +1,723 @@
+object DataFrm: TDataFrm
+  Left = 0
+  Top = 0
+  ActiveControl = TabItem4
+  Caption = 'Form6'
+  ClientHeight = 660
+  ClientWidth = 1033
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object Panel1: TPanel
+    Position.X = 28.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 477.000000000000000000
+    Size.Height = 583.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    object Expander1: TExpander
+      TextSettings.HorzAlign = Center
+      HelpType = htKeyword
+      Position.X = 263.000000000000000000
+      Position.Y = 210.000000000000000000
+      ShowCheck = False
+      Size.Width = 206.000000000000000000
+      Size.Height = 205.000000000000000000
+      Size.PlatformDefault = False
+      Text = #30456#20381#38364#20418
+      TabOrder = 5
+      ContentSize = '180'
+      object Text1: TText
+        Position.X = 22.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 169.000000000000000000
+        Size.Height = 161.000000000000000000
+        Size.PlatformDefault = False
+      end
+    end
+    object Blockhead: TExpander
+      TextSettings.HorzAlign = Center
+      HelpType = htKeyword
+      Position.X = 259.000000000000000000
+      ShowCheck = False
+      Size.Width = 217.000000000000000000
+      Size.Height = 183.000000000000000000
+      Size.PlatformDefault = False
+      Text = '('#65298') Block_head'
+      TabOrder = 0
+      ContentSize = '158'
+      object Label1: TLabel
+        HelpType = htKeyword
+        Position.X = -8.000000000000000000
+        Position.Y = -3.000000000000000000
+        Size.Width = 155.000000000000000000
+        Size.Height = 23.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Center
+        Text = '2-1 '#29128#31649#21312#36215#22987#22823#24231#27161
+        TabOrder = 1
+      end
+      object Label2: TLabel
+        Position.X = 72.000000000000000000
+        Position.Y = 22.000000000000000000
+        Size.Width = 33.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'x'
+        TabOrder = 4
+      end
+      object Label3: TLabel
+        Position.X = 138.000000000000000000
+        Position.Y = 19.000000000000000000
+        Size.Width = 33.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'y'
+        TabOrder = 3
+      end
+      object Label13: TLabel
+        HelpType = htKeyword
+        Position.Y = 47.000000000000000000
+        Size.Width = 121.000000000000000000
+        Size.Height = 23.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Center
+        Text = '2-2 '#29128#31649#21312#36039#26009#26041#21521
+        TabOrder = 0
+      end
+      object dir_strap1: TComboBox
+        Position.X = 88.000000000000000000
+        Position.Y = 73.000000000000000000
+        Size.Width = 97.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 5
+        object Leftup: TListBoxItem
+          TabOrder = 0
+          Text = 'Leftup'
+        end
+        object Rightdown: TListBoxItem
+          TabOrder = 1
+          Text = 'Rightdown'
+        end
+      end
+      object ButtonLoad: TButton
+        HelpType = htKeyword
+        Position.X = 16.000000000000000000
+        Position.Y = 118.000000000000000000
+        Size.Width = 113.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        Text = 'load to led_lang'
+        OnClick = ButtonLoadClick
+      end
+      object block_start_x: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 6
+        Position.X = 89.000000000000000000
+        Position.Y = 18.000000000000000000
+        Size.Width = 41.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object block_start_y: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 7
+        Position.X = 155.000000000000000000
+        Position.Y = 18.000000000000000000
+        Size.Width = 41.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+      end
+    end
+    object portN: TExpander
+      TextSettings.HorzAlign = Center
+      HelpType = htKeyword
+      Position.X = -3.000000000000000000
+      ShowCheck = False
+      Size.Width = 254.000000000000000000
+      Size.Height = 161.000000000000000000
+      Size.PlatformDefault = False
+      Text = '('#65297') port number'
+      TabOrder = 3
+      ContentSize = '136'
+      object Label5: TLabel
+        HelpType = htKeyword
+        Position.Y = -3.000000000000000000
+        Size.Width = 135.000000000000000000
+        Size.Height = 18.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Center
+        Text = '1-1'#34892#25976#31684#22285#32232#34399#65306'1-3'
+        TabOrder = 4
+      end
+      object Label9: TLabel
+        Position.X = 177.000000000000000000
+        Position.Y = 21.000000000000000000
+        Size.Width = 26.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'to'
+        TabOrder = 5
+      end
+      object Label10: TLabel
+        HelpType = htKeyword
+        Position.Y = 47.000000000000000000
+        Size.Width = 107.000000000000000000
+        Size.Height = 26.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Center
+        Text = '1-2 '#29128#31649#34892#20301#31227#37327
+        TabOrder = 2
+      end
+      object Label11: TLabel
+        Position.X = 169.000000000000000000
+        Position.Y = 62.000000000000000000
+        Size.Width = 80.000000000000000000
+        Size.Height = 35.000000000000000000
+        Size.PlatformDefault = False
+        Text = '(1'#65292'0'#65289#22823#24231#27161
+        TabOrder = 9
+      end
+      object col_diff1: TComboEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        StyleLookup = 'ComboEdit2Style1'
+        TabOrder = 16
+        ItemHeight = 19.000000000000000000
+        Items.Strings = (
+          'sh'
+          'fdh'
+          'dfhdfh'
+          'dfh'
+          'fdh'
+          'fd'
+          'hdf'
+          'hdf'
+          'hd'
+          'fhdf'
+          'h')
+        ItemIndex = -1
+        ListBoxResource = 'combolistboxstyle'
+        Text = '(1,0)'
+        Position.X = 115.000000000000000000
+        Position.Y = 46.000000000000000000
+        HelpType = htKeyword
+        Size.Width = 68.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        OnChange = col_diff1Change
+      end
+      object Label4: TLabel
+        HelpType = htKeyword
+        Position.X = 8.000000000000000000
+        Position.Y = 107.000000000000000000
+        Size.Width = 128.000000000000000000
+        Size.Height = 18.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Center
+        Text = '1-4'#29128#31649#34892#20043#29128#31649#31649#25976
+        TabOrder = 1
+      end
+      object col_count1: TNumberBox
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 3
+        Cursor = crIBeam
+        Position.X = 103.000000000000000000
+        Position.Y = 81.000000000000000000
+        Size.Width = 49.000000000000000000
+        Size.Height = 23.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object Label6: TLabel
+        HelpType = htKeyword
+        Position.X = 8.000000000000000000
+        Position.Y = 81.000000000000000000
+        Size.Width = 99.000000000000000000
+        Size.Height = 18.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Center
+        Text = '1-3'#29128#31649#34892#25976#37327
+        TabOrder = 0
+      end
+      object strap_amount1: TComboEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        StyleLookup = 'ComboEdit2Style1'
+        TabOrder = 15
+        ItemHeight = 19.000000000000000000
+        Items.Strings = (
+          'sh'
+          'fdh'
+          'dfhdfh'
+          'dfh'
+          'fdh'
+          'fd'
+          'hdf'
+          'hdf'
+          'hd'
+          'fhdf'
+          'h')
+        ItemIndex = -1
+        ListBoxResource = 'combolistboxstyle'
+        Text = 'comboedit'
+        Position.X = 144.000000000000000000
+        Position.Y = 105.000000000000000000
+        HelpType = htKeyword
+        Size.Width = 68.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        OnChange = strap_amount1Change
+      end
+      object port_start1: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 8
+        ImeMode = imChineseClose
+        Position.X = 128.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 41.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object port_end1: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 7
+        Position.X = 201.000000000000000000
+        Position.Y = 9.000000000000000000
+        Enabled = False
+        Size.Width = 41.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+      end
+    end
+    object Expander5: TExpander
+      TextSettings.HorzAlign = Center
+      HelpType = htKeyword
+      Position.X = -3.000000000000000000
+      Position.Y = 210.000000000000000000
+      ShowCheck = False
+      Size.Width = 234.000000000000000000
+      Size.Height = 143.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Expander'
+      TabOrder = 4
+      ContentSize = '118'
+      object BtnReadFromSheet: TButton
+        HelpType = htKeyword
+        Position.X = 170.000000000000000000
+        Position.Y = -7.000000000000000000
+        Size.Width = 59.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = #21098#36028
+        OnClick = BtnReadFromSheetClick
+      end
+      object Label8: TLabel
+        Position.X = 9.000000000000000000
+        Size.Width = 167.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        Text = '3-1'#29128#31649#34892#20043#29128#31649#20043#29128#40670#25976#37327
+        TabOrder = 1
+      end
+      object Label7: TLabel
+        Position.X = 8.000000000000000000
+        Position.Y = 25.000000000000000000
+        Size.Width = 146.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        Text = '3-2 '#29128#31649#34892#20043#29128#31649#23614#20301#31227#37327
+        TabOrder = 2
+      end
+      object end_diff1: TComboEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        StyleLookup = 'ComboEdit2Style1'
+        TabOrder = 14
+        ItemHeight = 19.000000000000000000
+        Items.Strings = (
+          'sh'
+          'fdh'
+          'dfhdfh'
+          'dfh'
+          'fdh'
+          'fd'
+          'hdf'
+          'hdf'
+          'hd'
+          'fhdf'
+          'h')
+        ItemIndex = -1
+        ListBoxResource = 'combolistboxstyle'
+        Text = 'comboedit'
+        Position.X = 162.000000000000000000
+        Position.Y = 25.000000000000000000
+        HelpType = htKeyword
+        Size.Width = 68.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        OnChange = end_diff1Change
+      end
+      object Label12: TLabel
+        Position.X = 137.000000000000000000
+        Position.Y = 50.000000000000000000
+        Size.Width = 89.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
+        Text = '(-2, 2) '#23567#24231#27161
+        TabOrder = 15
+      end
+    end
+    object Image1: TImage
+      MultiResBitmap = <
+        item
+        end>
+      Position.X = 8.000000000000000000
+      Position.Y = 424.000000000000000000
+      Size.Width = 239.000000000000000000
+      Size.Height = 151.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object HintCorButton1: TCornerButton
+      StyledSettings = [Family, Style]
+      HelpType = htKeyword
+      Position.X = 255.000000000000000000
+      Position.Y = 448.000000000000000000
+      Sides = [Top, Left, Bottom, Right]
+      Size.Width = 91.000000000000000000
+      Size.Height = 73.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 7
+      Text = #25552#31034#65281
+      TextSettings.Font.Size = 24.000000000000000000
+      TextSettings.FontColor = xFFA93010
+      XRadius = 3.000000000000000000
+      YRadius = 3.000000000000000000
+      OnClick = HintCorButton1Click
+    end
+    object ButtonSave: TButton
+      HelpType = htKeyword
+      Position.X = 371.000000000000000000
+      Position.Y = 448.000000000000000000
+      Size.Width = 98.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'Save to CSV'
+      OnClick = ButtonSaveClick
+    end
+    object ButtonLoadCsv: TButton
+      HelpType = htKeyword
+      Position.X = 371.000000000000000000
+      Position.Y = 497.000000000000000000
+      Size.Width = 98.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Load CSV file'
+    end
+    object ButtonExtProg: TButton
+      Position.X = 371.000000000000000000
+      Position.Y = 536.000000000000000000
+      Size.Width = 98.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 8
+      Text = #22806#25509#31243#24335
+      OnClick = ButtonExtProgClick
+    end
+  end
+  object TabControl1: TTabControl
+    Align = Scale
+    Position.X = 513.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 504.000000000000000000
+    Size.Height = 625.000000000000000000
+    Size.PlatformDefault = False
+    TabIndex = 3
+    TabOrder = 0
+    TabPosition = Top
+    Sizes = (
+      504s
+      599s
+      504s
+      599s
+      504s
+      599s
+      504s
+      599s)
+    object TabLength: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      ImageIndex = 11
+      Size.Width = 68.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = #38263#24230#32232#36655
+      ExplicitSize.cx = 80.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      object StringGrid1: TStringGrid
+        CanFocus = True
+        ClipChildren = True
+        Size.Width = 505.000000000000000000
+        Size.Height = 609.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Viewport.Width = 485.000000000000000000
+        Viewport.Height = 568.000000000000000000
+        object StringColumn1: TStringColumn
+        end
+        object StringColumn2: TStringColumn
+        end
+        object StringColumn3: TStringColumn
+        end
+        object StringColumn4: TStringColumn
+        end
+        object StringColumn5: TStringColumn
+        end
+        object StringColumn6: TStringColumn
+        end
+        object StringColumn7: TStringColumn
+        end
+        object StringColumn8: TStringColumn
+        end
+        object StringColumn9: TStringColumn
+        end
+        object StringColumn10: TStringColumn
+        end
+        object StringColumn11: TStringColumn
+        end
+        object StringColumn12: TStringColumn
+        end
+        object StringColumn13: TStringColumn
+        end
+        object StringColumn14: TStringColumn
+        end
+        object StringColumn15: TStringColumn
+        end
+        object StringColumn16: TStringColumn
+        end
+        object StringColumn17: TStringColumn
+        end
+        object StringColumn18: TStringColumn
+        end
+      end
+    end
+    object TabMeta: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      ImageIndex = 9
+      Size.Width = 68.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = #36039#26009#32232#36655
+      ExplicitSize.cx = 49.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      object LedlengthGrid: TStringGrid
+        CanFocus = True
+        ClipChildren = True
+        Position.X = 7.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 496.000000000000000000
+        Size.Height = 591.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Viewport.Width = 476.000000000000000000
+        Viewport.Height = 550.000000000000000000
+        object port_start: TIntegerColumn
+          Header = #34892#25976#31684#22285#36215#22987
+        end
+        object port_end: TIntegerColumn
+          Header = #34892#25976#32080#26463
+        end
+        object col_diff: TStringColumn
+          Header = #29128#31649#34892#20301#31227#37327
+        end
+        object col_count: TIntegerColumn
+          Header = #29128#31649#34892#25976#37327
+        end
+        object strap_amount: TStringColumn
+          Header = #29128#31649#31649#25976
+        end
+        object block_start: TStringColumn
+          Header = #29128#31649#21312#36215#22987#24231#27161
+        end
+        object dir_strap: TStringColumn
+          Header = #29128#31649#21312#36039#26009#26041#21521
+        end
+        object end_diff: TIntegerColumn
+          Header = #29128#31649#23614#20301#31227#37327
+        end
+        object PopupColumn1: TPopupColumn
+        end
+      end
+    end
+    object TabItem3: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      ImageIndex = 10
+      Size.Width = 141.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Grid and Live Binding'
+      ExplicitSize.cx = 150.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      object Grid2: TGrid
+        Align = Client
+        CanFocus = True
+        ClipChildren = True
+        ControlType = Platform
+        Size.Width = 504.000000000000000000
+        Size.Height = 574.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Viewport.Width = 500.000000000000000000
+        Viewport.Height = 549.000000000000000000
+      end
+      object BindNavigator1: TBindNavigator
+        Align = Top
+        Size.Width = 504.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        xRadius = 4.000000000000000000
+        yRadius = 4.000000000000000000
+      end
+    end
+    object TabItem4: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = True
+      Size.Width = 88.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'visual check'
+      ExplicitSize.cx = 74.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      object PaintBox1: TPaintBox
+        Position.X = 24.000000000000000000
+        Position.Y = 21.000000000000000000
+        Size.Width = 353.000000000000000000
+        Size.Height = 263.000000000000000000
+        Size.PlatformDefault = False
+        object OutMemo: TMemo
+          Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+          DataDetectorTypes = []
+          Position.Y = 296.000000000000000000
+          Size.Width = 353.000000000000000000
+          Size.Height = 185.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Viewport.Width = 349.000000000000000000
+          Viewport.Height = 181.000000000000000000
+        end
+      end
+    end
+  end
+  object ImageList1: TImageList
+    Source = <
+      item
+        MultiResBitmap.Height = 60
+        MultiResBitmap.Width = 58
+        MultiResBitmap.LoadSize = 0
+        MultiResBitmap = <
+          item
+            Width = 58
+            Height = 60
+            PNG = {
+              89504E470D0A1A0A0000000D494844520000003A0000003C080600000037E2A9
+              35000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+              0202494441546843ED983D4EC43010461DCAB4112505A2E1101C8454DB20BA2D
+              E973110AC43510552828E83901DD965B5180279A20C7B19DBFB13D36FB1A6611
+              2BF9E9FBC641297E24E21F70863FB36756A24551E0C49339A5748A72173461D3
+              315617045394046CE71E89A62AA8620A6A209A83A48DC18EBA441DAB1C95A970
+              FA73FF89DABEC05550672A24E77334154960EAAC9D682EBBE992B5269A529A73
+              705637274EA2B97112CD8DEE1F06D3E365F6ADDB5CE34040F389C37A6C2EDB12
+              A594F44CF4EA5E3D7F8B46DC8AAFFB57FC8D1FB655D7942841FDB6E0A7BA2698
+              D6D94F7519CAD289EA9565264B9B28635912D18BC7234E124DB66D5B9CE24222
+              DA340D4E88227BF37227AAAAC24FF12011ADEB1A270545F6B03FC7291E24A265
+              59E2A4A1D638F2BED25E462698C8FA170518C886110522CB8613D5092C1B5654
+              4D1508281B3ED148B271AA1B4136E28E0E6577BB1D4E7E88270A28B24F97EF38
+              F961FBCB310AF4EAEAD55E40B8370C6B08B0B33C44810D29CE818FA8E4F8F081
+              938438551E3BAAA34A2E4C9AF78E6A1CF66F3849889265293A7A234120CB52B4
+              83F826E62B0A10CAF216058864F98B02AAECC25BB887E7E36503CEC78B49CAF4
+              85947156373559D7792777341559DB39FBB6763BDA4D92DCEA0AF47A83444DBB
+              9A32AA4F1A8F9715E8A18D44E10F524FD6747E6BA229CABA421A5C463993ED8E
+              0E11E217D9B3D71102FE1D8F0000000049454E44AE426082}
+            FileName = 
+              'C:\Users\Peter\Documents\Embarcadero\Studio\Projects\mappingUI\U' +
+              'Igrid\up-left.png'
+          end>
+        Name = 'up-left'
+      end
+      item
+        MultiResBitmap.Height = 56
+        MultiResBitmap.Width = 55
+        MultiResBitmap.LoadSize = 0
+        MultiResBitmap = <
+          item
+            Width = 55
+            Height = 56
+            PNG = {
+              89504E470D0A1A0A0000000D4948445200000037000000380806000000598D60
+              93000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+              020A494441546843ED98BD4E844010C7C1C4EA4A5FC2DEC286D2D73016BE08BD
+              A51DB12114BC880F61632C4C680CE5D19E8C0E06F696FD603F6696F84BCCCD5D
+              72647ECCEC9F9CF96924DB2917F8BA4B8C2797E73956B4D82C9A568E8B940C9D
+              E8EA5A8214673140D79F548EBBD41C55AFBB089435C1B333A7BA13BA1D8F814D
+              7F4693832F7110036CFA58C869CF5A79FDFB478CA9A076727F179A4B311034C1
+              3C50CA372C108682E2E6D9A525234193D5B493031298E084BD1C2008F67D8F15
+              2F16CF39595A2AC7BF081961A211D0F5BB6D721373A151F4783CE21B1EB8C901
+              33C1C3D30D563C7097136114307EE49826A85BA0C8F01532D37514D7081B2812
+              1E3E6EB11A219EA077B9BAAEB1420805FD070AC0E40C86910318088693038805
+              C3CA012E89E9487839602E18717A71E40002C178724064C1B8728081E0300C58
+              B9115F6EE4EAF90BAB118960DBB658B9412207BFDC5FEF5EF0DD882058962556
+              6E90C80145516085CC043F1F0F58B94126F783F80CF41C32B4724040417A3940
+              14F4040F392080A0F75FE25DD7655555654DD364EFF797F8A9030A695DBF61FF
+              CDE00307393E6B29C37155FD4F2E22694F4E814C4C24593919E29669E54CEE10
+              5716726BE78B9BA0693F8B4001745F5CBB01A1D9D2D7991C90E22ACAE4A4678E
+              6A3A5B59EB773550521154F5A94C4BCE82D09BAE3FE9995341791E6D6FB6B55C
+              4A681FE229F32F972659F60DE00AEAE612DD4EC40000000049454E44AE426082}
+            FileName = 
+              'C:\Users\Peter\Documents\Embarcadero\Studio\Projects\mappingUI\U' +
+              'Igrid\down-right.png'
+          end>
+        Name = 'down-right'
+      end>
+    Destination = <
+      item
+        Layers = <
+          item
+            Name = 'up-left'
+            SourceRect.Right = 58.000000000000000000
+            SourceRect.Bottom = 60.000000000000000000
+          end>
+      end
+      item
+        Layers = <
+          item
+            Name = 'down-right'
+            SourceRect.Right = 55.000000000000000000
+            SourceRect.Bottom = 56.000000000000000000
+          end>
+      end>
+    Left = 408
+    Top = 600
+  end
+end

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2024/08/02 11:02:36.000.146,=C:\Users\Peter\Documents\Embarcadero\Studio\Projects\Unit6.pas</Transaction>
+    <Transaction>2024/08/02 11:09:53.000.132,C:\Users\Peter\Documents\Embarcadero\Studio\Projects\python_code_run.dfm=C:\Users\Peter\Documents\Embarcadero\Studio\Projects\Unit6.dfm</Transaction>
+    <Transaction>2024/08/02 11:09:53.000.132,C:\Users\Peter\Documents\Embarcadero\Studio\Projects\python_code_run.pas=C:\Users\Peter\Documents\Embarcadero\Studio\Projects\Unit6.pas</Transaction>
+    <Transaction>2024/08/02 17:11:55.000.184,C:\Users\Peter\Documents\Embarcadero\Studio\Projects\mappingUI\Python\PythonFrm.dproj=C:\Users\Peter\Documents\Embarcadero\Studio\Projects\Project3.dproj</Transaction>
+    <Transaction>2024/08/02 17:12:32.000.698,C:\Users\Peter\Documents\Embarcadero\Studio\Projects\mappingUI\Python\python_code_run.pas=C:\Users\Peter\Documents\Embarcadero\Studio\Projects\python_code_run.pas</Transaction>
+    <Transaction>2024/08/02 17:12:32.000.698,C:\Users\Peter\Documents\Embarcadero\Studio\Projects\mappingUI\Python\python_code_run.dfm=C:\Users\Peter\Documents\Embarcadero\Studio\Projects\python_code_run.dfm</Transaction>
+  </Transactions>
+	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="python_code_run.pas"/>
+    <File Path="python_code_run.dfm"/>
+  </ProjectSortOrder>
+</BorlandProject>

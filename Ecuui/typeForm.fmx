@@ -305,13 +305,13 @@ object DataFrm: TDataFrm
       ContentSize = '118'
       object BtnReadFromSheet: TButton
         HelpType = htKeyword
-        Position.X = 170.000000000000000000
+        Position.X = 169.000000000000000000
         Position.Y = -7.000000000000000000
         Size.Width = 59.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
-        Text = #21098#36028
+        Text = #38263#24230#35712#21462
         OnClick = BtnReadFromSheetClick
       end
       object Label8: TLabel
@@ -368,6 +368,16 @@ object DataFrm: TDataFrm
         Text = '(-2, 2) '#23567#24231#27161
         TabOrder = 15
       end
+      object BtnWriteLen: TButton
+        Position.X = 27.000000000000000000
+        Position.Y = 64.000000000000000000
+        Size.Width = 62.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 16
+        Text = #38263#24230#23531#20837
+        OnClick = BtnWriteLenClick
+      end
     end
     object Image1: TImage
       MultiResBitmap = <
@@ -404,7 +414,7 @@ object DataFrm: TDataFrm
       Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 2
-      Text = 'Save to XLS'
+      Text = #23384#27284#36039#26009
       OnClick = ButtonSaveClick
     end
     object ButtonLoadXls: TButton
@@ -469,7 +479,7 @@ object DataFrm: TDataFrm
       Text = #38263#24230#32232#36655
       ExplicitSize.cx = 80.000000000000000000
       ExplicitSize.cy = 26.000000000000000000
-      object StringGrid1: TStringGrid
+      object StrapInColStringGrid: TStringGrid
         CanFocus = True
         ClipChildren = True
         Size.Width = 505.000000000000000000
@@ -507,12 +517,6 @@ object DataFrm: TDataFrm
         object StringColumn14: TStringColumn
         end
         object StringColumn15: TStringColumn
-        end
-        object StringColumn16: TStringColumn
-        end
-        object StringColumn17: TStringColumn
-        end
-        object StringColumn18: TStringColumn
         end
       end
     end

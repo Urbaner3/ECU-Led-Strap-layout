@@ -106,58 +106,72 @@ void __fastcall TDataFrm::BtnReadFromSheetClick(TObject* Sender)
 	TStringList* str_rows = new TStringList();
 	TStringList* str_cols = new TStringList();
 
+	// Assuming you have a TStringGrid named StrapInColStringGrid and a Button named LoadButton on your form
+	Fmx::Dialogs::TOpenDialog *OpenDialog = new Fmx::Dialogs::TOpenDialog(this);
+	OpenDialog->Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
+	OpenDialog->DefaultExt = "csv";
 
-//	//Read one line in strget function
-//	Strap xx;
-//	std::ofstream wd("east_led.txt");
-//	std::ifstream rd("east_port.txt");
-//	std::ofstream myout("myout.txt");
-//	// Redirect stdout to myout.txt
-//	std::streambuf* coutbuf = std::cout.rdbuf();
-//	std::cout.rdbuf(myout.rdbuf());
-//	AnsiString temp;
-//	temp = col_count1->Text;
-//	xx.colnum_read((String)temp);
-//	temp = dir_strap1->ItemIndex < 1 ? "-1, 1" : "1, -1";
-//	xx.vec_read((String)temp.c_str());
-//	temp = col_diff1->Text;
-//	xx.dir_read((String)temp.c_str());
-//	temp =strap_amount1->Text;
-//	xx.str_proc((String)temp.c_str());
-//	//bfs_on_port
-//	std::vector<int> buff = {block_start_x->Text.ToInt(), block_start_y->Text.ToInt()};
-//	xx.PLlist.clear();
-//	for (int ii = 0; ii < col_count1->Text.ToIntDef(-1); ++ii) {
-//		xx.PLlist.push_back(buff);
-//		buff = { buff[0] + xx.now_dir[0], buff[1] + xx.now_dir[1] };
-//	}
-//	//strap_dfs(wt_file, 80, 1);
-//	int block_size = 80;
-//    for (int jj = 0; jj < xx.port_num; ++jj) {
-//		std::vector<int> startup = xx.PLlist[jj];
-//		int port_n = xx.Flr_list[jj];
-//		int Nled = 76;
-//		OutMemo->Lines->Add("----------------");
-//		std::vector<int> scl_buff;
-//		String linetext = IntToStr(jj) + ",";
-//		std::vector<int> buff = startup;
-//		std::vector<std::vector<int> > scl_list;
-//
-//		for (int ii = 0; ii < port_n; ++ii) {
-//			scl_buff = { buff[0] * block_size, buff[1] * block_size };
-//			OutMemo->Lines->Add(scl_buff[0] + " " + scl_buff[1]);
-//			scl_list.push_back(scl_buff);
-//			buff = { buff[0] + xx.v_ang[0], buff[1] + xx.v_ang[1] };
-//			linetext += IntToStr(Nled);
-//			linetext += ",";
-//		}
-//
-//		xx.block_merge(linetext, scl_list, block_size);
-//		linetext += "\n";
-//		OutMemo->Lines->Add(linetext);
-//		wd << linetext;
-//	}
-	//print the text to string grid
+	if (OpenDialog->Execute())
+    {
+		LoadCSV(OpenDialog->FileName);
+    }
+
+	delete OpenDialog;
+}
+
+//---------------------------------------------------------------------------
+
+
+void __fastcall TDataFrm::LoadCSV(const String &FileName)
+{
+	TStringList *CSVContent = new TStringList();
+
+    try
+    {
+        CSVContent->LoadFromFile(FileName);
+
+		// Clear previous data
+		StrapInColStringGrid->RowCount = 215;  // Keep header row
+//		StrapInColStringGrid->ColumnCount = 0;  // Clear existing columns
+//		StrapInColStringGrid->ClearColumns();
+
+		if (CSVContent->Count > 0)
+		{
+            // Process header row
+			TStringList *Headers = new TStringList();
+			Headers->CommaText = CSVContent->Strings[0];  // Assuming first line is header
+//			StrapInColStringGrid->ColumnCount = Headers->Count;
+
+//			for (int col = 0; col < Headers->Count; col++)
+//			{
+//				StrapInColStringGrid->Cells[col][0] = Headers->Strings[col];
+//            }
+
+            // Process data rows
+            for (int row = 0; row < CSVContent->Count; row++)
+            {
+				TStringList *RowValues = new TStringList();
+                RowValues->CommaText = CSVContent->Strings[row];
+
+                StrapInColStringGrid->RowCount++;
+
+                for (int col = 0; col < RowValues->Count; col++)
+                {
+					StrapInColStringGrid->Cells[col][row] = RowValues->Strings[col];
+                }
+
+                delete RowValues;
+            }
+
+            delete Headers;
+        }
+    }
+    __finally
+    {
+        delete CSVContent;
+	}
+
+
 }
 //---------------------------------------------------------------------------
 
@@ -306,4 +320,59 @@ void __fastcall TDataFrm::end_diff1Change(TObject* Sender)
 //---------------------------------------------------------------------------
 
 
+
+
+void __fastcall TDataFrm::BtnWriteLenClick(TObject *Sender)
+{
+	Fmx::Dialogs::TSaveDialog *SaveDialog = new Fmx::Dialogs::TSaveDialog(this);
+    SaveDialog->Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
+    SaveDialog->DefaultExt = "csv";
+
+    if (SaveDialog->Execute())
+    {
+		SaveLenGridToCSV(SaveDialog->FileName);
+    }
+
+	delete SaveDialog;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TDataFrm::SaveLenGridToCSV(const String &FileName)
+{
+	TStringList *CSVContent = new TStringList();
+
+    try
+    {
+		// Loop through the grid to create CSV lines
+        String line;
+        // First, get the headers
+		for (int col = 0; col < StrapInColStringGrid->ColumnCount; col++)
+        {
+            if (col > 0)
+                line += ","; // Add a comma before next column
+			line += StrapInColStringGrid->Cells[col][0]; // Get header
+        }
+        CSVContent->Add(line); // Add header row to CSV
+
+        // Now process data rows
+		for (int row = 1; row < StrapInColStringGrid->RowCount; row++) // Start from 1 to skip header
+        {
+            line = "";
+			for (int col = 0; col < StrapInColStringGrid->ColumnCount; col++)
+            {
+                if (col > 0)
+                    line += ","; // Add a comma before next column
+				line += StrapInColStringGrid->Cells[col][row]; // Get cell data
+            }
+			CSVContent->Add(line); // Add data row to CSV
+        }
+
+        // Save to the specified file
+		CSVContent->SaveToFile(FileName);
+    }
+    __finally
+    {
+        delete CSVContent; // Clean up
+    }
+}
 

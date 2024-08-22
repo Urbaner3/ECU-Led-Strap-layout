@@ -83,7 +83,7 @@ class TDataFrm : public TForm
 	TEdit *port_start1;
 	TEdit *port_end1;
 	TButton *ButtonLoadXls;
-	TStringGrid *StringGrid1;
+	TStringGrid *StrapInColStringGrid;
 	TStringColumn *StringColumn1;
 	TStringColumn *StringColumn2;
 	TStringColumn *StringColumn3;
@@ -99,9 +99,6 @@ class TDataFrm : public TForm
 	TStringColumn *StringColumn13;
 	TStringColumn *StringColumn14;
 	TStringColumn *StringColumn15;
-	TStringColumn *StringColumn16;
-	TStringColumn *StringColumn17;
-	TStringColumn *StringColumn18;
 	TTabItem *TabItem4;
 	TStringColumn *strap_amount;
 	TStringColumn *block_start;
@@ -113,6 +110,7 @@ class TDataFrm : public TForm
 	TPaintBox *PaintBox1;
 	TMemo *OutMemo;
 	TComboBox *SheetComboBox;
+	TButton *BtnWriteLen;
     void __fastcall HintCorButton1Click(TObject* Sender);
     void __fastcall BtnReadFromSheetClick(TObject* Sender);
     void __fastcall FormCreate(TObject* Sender);
@@ -122,6 +120,9 @@ class TDataFrm : public TForm
 	void __fastcall col_diff1Change(TObject *Sender);
 	void __fastcall strap_amount1Change(TObject *Sender);
 	void __fastcall end_diff1Change(TObject *Sender);
+	void __fastcall LoadCSV(const String &FileName);
+	void __fastcall BtnWriteLenClick(TObject *Sender);
+    void __fastcall SaveLenGridToCSV(const String &FileName);
   private: // User declarations
 	void split(
 		wchar_t delimiter, UnicodeString str, TStringList* listofstrings);

@@ -125,7 +125,7 @@ class TDataFrm : public TForm
   private: // User declarations
 	void split(
 		wchar_t delimiter, UnicodeString str, TStringList* listofstrings);
-	void WriteToColumn(int columnIndex);
+	void WriteToRows(int columnIndex);
 	int datacount;
     void SaveGridToCSV(const String& fileName);
     String EscapeCSV(const String& str);

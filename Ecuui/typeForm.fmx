@@ -443,7 +443,7 @@ object DataFrm: TDataFrm
     Size.Width = 504.000000000000000000
     Size.Height = 625.000000000000000000
     Size.PlatformDefault = False
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 0
     TabPosition = Top
     Sizes = (
@@ -459,7 +459,7 @@ object DataFrm: TDataFrm
       CustomIcon = <
         item
         end>
-      IsSelected = False
+      IsSelected = True
       ImageIndex = 11
       Size.Width = 68.000000000000000000
       Size.Height = 26.000000000000000000
@@ -520,7 +520,7 @@ object DataFrm: TDataFrm
       CustomIcon = <
         item
         end>
-      IsSelected = True
+      IsSelected = False
       ImageIndex = 9
       Size.Width = 68.000000000000000000
       Size.Height = 26.000000000000000000

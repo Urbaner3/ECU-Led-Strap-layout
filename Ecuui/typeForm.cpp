@@ -10,6 +10,9 @@
 #include <System.IOUtils.hpp>
 #include "libxl.h"
 #include <Vcl.Dialogs.hpp> //use vcl instead
+#include <string.h>
+#include <wchar.h>
+
 
 #include <FMX.Clipboard.hpp>
 
@@ -31,6 +34,7 @@ __fastcall TDataFrm::TDataFrm(TComponent* Owner) : TForm(Owner)
 		燈管行之燈管管數·燈管行之燈管頭座標·燈管                \
 		行之燈管位移量·燈管行之燈管之燈點數量·燈                 \
 		管行之燈管之燈點座標";
+	LedlengthGrid->RowCount = 35;
 }
 //---------------------------------------------------------------------------
 void __fastcall TDataFrm::FormCreate(TObject* Sender)
@@ -69,24 +73,24 @@ void __fastcall TDataFrm::FormCreate(TObject* Sender)
 
 }
 //---------------------------------------------------------------------------
-void TDataFrm::WriteToColumn(int columnIndex)
+void TDataFrm::WriteToRows(int rowIndex)
 {
-    if (columnIndex < 0 || columnIndex >= LedlengthGrid->ColumnCount) {
+    if (rowIndex < 0 || rowIndex >=  LedlengthGrid->RowCount) {
         // Column index out of range
         return;
 	}
 	//else
     int dataRowCount = 7;
-	LedlengthGrid->Cells[0][columnIndex] = port_start1->Text;
+	LedlengthGrid->Cells[0][rowIndex] = port_start1->Text;
 	port_end1->Text = IntToStr(port_start1->Text.ToInt() + col_count1->Text.ToInt()) -1;
-	LedlengthGrid->Cells[1][columnIndex] = port_end1->Text;
-	LedlengthGrid->Cells[2][columnIndex] = col_diff1->Text;
-	LedlengthGrid->Cells[3][columnIndex] = col_count1->Text;
-    LedlengthGrid->Cells[4][columnIndex] = strap_amount1->Text;
+	LedlengthGrid->Cells[1][rowIndex] = port_end1->Text;
+	LedlengthGrid->Cells[2][rowIndex] = col_diff1->Text;
+	LedlengthGrid->Cells[3][rowIndex] = col_count1->Text;
+    LedlengthGrid->Cells[4][rowIndex] = strap_amount1->Text;
     String cord;
     cord = block_start_x->Text + ", " + block_start_y->Text;
-    LedlengthGrid->Cells[5][columnIndex] = cord;
-    LedlengthGrid->Cells[6][columnIndex] =
+    LedlengthGrid->Cells[5][rowIndex] = cord;
+    LedlengthGrid->Cells[6][rowIndex] =
 		dir_strap1->ItemIndex < 1 ? "-1, 1" : "1, -1";
 }
 
@@ -169,86 +173,93 @@ void TDataFrm::split(
 
 void __fastcall TDataFrm::ButtonLoadClick(TObject* Sender)
 {
-	WriteToColumn(this->datacount);
+	WriteToRows(this->datacount);
 	datacount++;
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TDataFrm::ButtonSaveClick(TObject* Sender)
 {
-    SaveGridToCSV("output.csv");
-	Fmx::Dialogs::ShowMessage("CSV file saved successfully!");
+	SaveGridToCSV("output");
+
 }
 //---------------------------------------------------------------------------
 
 void TDataFrm::SaveGridToCSV(const String &fileName)
 {
-    int BufferSize = 7;
+	int BufferSize = 7;
+	bool saved = false;
 	Fmx::Dialogs::TSaveDialog *SaveDialog = new Fmx::Dialogs::TSaveDialog(this);
-	SaveDialog->DefaultExt = "csv";
-	SaveDialog->Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
-    SaveDialog->Title = "Save CSV File As";
+	SaveDialog->DefaultExt = "xls";
+	SaveDialog->Filter = "Excel files (*.xls)|*.xlsx|All files (*.*)|*.*";
+    SaveDialog->Title = "Save Excel File As";
 	SaveDialog->FileName = fileName;
     if (SaveDialog->Execute())
 	{
-		TStringList* rowData = new TStringList();
-		try {
-			std::unique_ptr<TStreamWriter> writer(
-				new TStreamWriter(fileName, false, TEncoding::UTF8, BufferSize));
-			String data[8] = { "行數範圍起始", "行數結束", "燈管行位移量",
+		wchar_t *cont;
+		Book* book = xlCreateBook(); // xlCreateXMLBook() for xlsx
+		if(book)
+		{
+			Sheet* sheet = book->addSheet(L"meta_data");
+			if(sheet)
+			{
+				String data[8] = { "行數範圍起始", "行數結束", "燈管行位移量",
 				"燈管行數量", "燈管管數", "燈管區起始座標", "燈管區資料方向",
 				"燈管尾位移量" };
-			String line = "";
-			//fill in the first row
-			for (int col = 0; col < LedlengthGrid->ColumnCount; col++) {
-				LedlengthGrid->Cells[col][0] = data[col];
-			}
+				wchar_t *spc;
+				//fill in the first row
+				for (int col = 0; col < LedlengthGrid->ColumnCount; col++) {
+                    spc = data[col].c_str();
+					sheet->writeStr(1, col+1, spc);
+                    LedlengthGrid->Cells[col][0] = spc;
+				}
+//                LedlengthGrid->RowCount
+				for (int row = 0; row <  10 ; ++row) {
 
-
-			for (int row = 0; row < LedlengthGrid->RowCount; ++row) {
-
-				try {
-					for (int col = 0; col < LedlengthGrid->ColumnCount; ++col) {
-						line += LedlengthGrid->Cells[col][row];
-						if (col < LedlengthGrid->ColumnCount - 1)
-						{
-							line += ","; // Add a comma between values
+					try {
+						for (int col = 0; col < LedlengthGrid->ColumnCount; ++col) {
+							cont = String(LedlengthGrid->Cells[col][row+1]).c_str();
+							if(!sheet->writeStr(row+2, col+1, cont)){
+								sheet->writeNum(row+2, col+1, (double)(col+row));
+                            }
 						}
-
-//						rowData->Add(EscapeCSV(LedlengthGrid->Cells[col][row+1]));
 					}
-
-//					writer->WriteLine(rowData->CommaText);
-                    rowData->Add(line);
+					catch (Exception &e)
+					{
+						Fmx::Dialogs::ShowMessage("Error read file: " + e.Message);
+					}
 				}
-				catch (Exception &e)
+
+				// Check if the file exists
+				if (TFile::Exists(System::Ioutils::TPath::GetDirectoryName(ParamStr(0))))
 				{
-					Fmx::Dialogs::ShowMessage("Error read file: " + e.Message);
+					// Prompt the user for confirmation to replace the existing file
+					if (Vcl::Dialogs::MessageDlg("The file already exists. Do you want to replace it?", TMsgDlgType::mtInformation, mbYesNo, 0) != 0)
+					{
+						return; // Exit if the user does not want to replace
+					}
 				}
-			}
+				//else
+				saved = book->save((fileName + String(".xls")).c_str());
+				if (!saved)
+					 Fmx::Dialogs::ShowMessage("XLS file saved failed!");
+				//else
 
-            // Check if the file exists
-			if (TFile::Exists(System::Ioutils::TPath::GetDirectoryName(ParamStr(0))))
-			{
-				// Prompt the user for confirmation to replace the existing file
-				if (Vcl::Dialogs::MessageDlg("The file already exists. Do you want to replace it?", TMsgDlgType::mtInformation, mbYesNo, 0) != 0)
-				{
-					return; // Exit if the user does not want to replace
-				}
-				else {
-                     // Save to file
-					rowData->SaveToFile(SaveDialog->FileName);
-				}
 			}
+			//else sheet
+		}
+		//else book
 
-		}
-        catch (Exception &e)
-		{
-			Fmx::Dialogs::ShowMessage("Error saving file: " + e.Message);
-			delete rowData;
-		}
+
+		book->release();
 	}
-	delete SaveDialog;
+	//else
+//	delete SaveDialog;
+
+
+
+
+
 
 }
 
@@ -293,5 +304,6 @@ void __fastcall TDataFrm::end_diff1Change(TObject* Sender)
     end_diff1->Items->Add(end_diff1->Text);
 }
 //---------------------------------------------------------------------------
+
 
 

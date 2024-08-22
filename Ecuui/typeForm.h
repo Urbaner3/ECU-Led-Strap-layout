@@ -24,17 +24,19 @@
 #include <System.Rtti.hpp>
 #include <FMX.Objects.hpp>
 #include <FMX.Objects.hpp>
-
-
+#include <Data.DB.hpp>
+#include <Data.Win.ADODB.hpp>
+#include <FMX.ImgList.hpp>
 #include <FMX.Memo.hpp>
 #include <FMX.Memo.Types.hpp>
-#include <FMX.ImgList.hpp>
+
 #include <System.ImageList.hpp>
+
 //---------------------------------------------------------------------------
 class TDataFrm : public TForm
 {
   __published: // IDE-managed Components
-    TExpander* Expander1;
+	TExpander* Expander1;
 	TExpander *Blockhead;
     TLabel* Label1;
 	TLabel* Label2;
@@ -80,7 +82,7 @@ class TDataFrm : public TForm
 	TEdit *block_start_y;
 	TEdit *port_start1;
 	TEdit *port_end1;
-	TButton *ButtonLoadCsv;
+	TButton *ButtonLoadXls;
 	TStringGrid *StringGrid1;
 	TStringColumn *StringColumn1;
 	TStringColumn *StringColumn2;
@@ -110,6 +112,7 @@ class TDataFrm : public TForm
 	TStringColumn *col_diff;
 	TPaintBox *PaintBox1;
 	TMemo *OutMemo;
+	TComboBox *SheetComboBox;
     void __fastcall HintCorButton1Click(TObject* Sender);
     void __fastcall BtnReadFromSheetClick(TObject* Sender);
     void __fastcall FormCreate(TObject* Sender);

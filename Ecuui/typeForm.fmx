@@ -179,7 +179,7 @@ object DataFrm: TDataFrm
         Size.Width = 80.000000000000000000
         Size.Height = 35.000000000000000000
         Size.PlatformDefault = False
-        Text = '(1'#65292'0'#65289#22823#24231#27161
+        Text = '"1, 0" '#22823#24231#27161
         TabOrder = 9
       end
       object col_diff1: TComboEdit
@@ -404,10 +404,10 @@ object DataFrm: TDataFrm
       Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 2
-      Text = 'Save to CSV'
+      Text = 'Save to XLS'
       OnClick = ButtonSaveClick
     end
-    object ButtonLoadCsv: TButton
+    object ButtonLoadXls: TButton
       HelpType = htKeyword
       Position.X = 371.000000000000000000
       Position.Y = 497.000000000000000000
@@ -415,7 +415,7 @@ object DataFrm: TDataFrm
       Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
-      Text = 'Load CSV file'
+      Text = 'Load XLS file'
     end
     object ButtonExtProg: TButton
       Position.X = 371.000000000000000000
@@ -427,6 +427,14 @@ object DataFrm: TDataFrm
       Text = #22806#25509#31243#24335
       OnClick = ButtonExtProgClick
     end
+    object SheetComboBox: TComboBox
+      Position.X = 87.000000000000000000
+      Position.Y = 361.000000000000000000
+      Size.Width = 101.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 9
+    end
   end
   object TabControl1: TTabControl
     Align = Scale
@@ -435,7 +443,7 @@ object DataFrm: TDataFrm
     Size.Width = 504.000000000000000000
     Size.Height = 625.000000000000000000
     Size.PlatformDefault = False
-    TabIndex = 3
+    TabIndex = 1
     TabOrder = 0
     TabPosition = Top
     Sizes = (
@@ -512,7 +520,7 @@ object DataFrm: TDataFrm
       CustomIcon = <
         item
         end>
-      IsSelected = False
+      IsSelected = True
       ImageIndex = 9
       Size.Width = 68.000000000000000000
       Size.Height = 26.000000000000000000
@@ -601,7 +609,7 @@ object DataFrm: TDataFrm
       CustomIcon = <
         item
         end>
-      IsSelected = True
+      IsSelected = False
       Size.Width = 88.000000000000000000
       Size.Height = 26.000000000000000000
       Size.PlatformDefault = False
@@ -717,7 +725,7 @@ object DataFrm: TDataFrm
             SourceRect.Bottom = 56.000000000000000000
           end>
       end>
-    Left = 408
+    Left = 432
     Top = 600
   end
 end

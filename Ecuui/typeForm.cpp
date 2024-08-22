@@ -5,7 +5,11 @@
 
 #include "typeForm.h"
 #include "Hintfix.h"
-#include "Strap.h"
+//#include "Strap.h"
+#include <System.SysUtils.hpp>
+#include <System.IOUtils.hpp>
+#include "libxl.h"
+#include <Vcl.Dialogs.hpp> //use vcl instead
 
 #include <FMX.Clipboard.hpp>
 
@@ -17,12 +21,13 @@ TDataFrm* DataFrm;
 
 #include <System.IOUtils.hpp> //string writer
 using namespace std;
+using namespace libxl;
 //---------------------------------------------------------------------------
 __fastcall TDataFrm::TDataFrm(TComponent* Owner) : TForm(Owner)
 {
-    this->Image1->Bitmap->LoadFromFile("eqblock.png");
+	this->Image1->Bitmap->LoadFromFile("eqblock.png");
     this->Text1->Text =
-        L"區頭座標·行位移量·行頭座標·燈管行數量 \
+		L"區頭座標·行位移量·行頭座標·燈管行數量 \
 		燈管行之燈管管數·燈管行之燈管頭座標·燈管                \
 		行之燈管位移量·燈管行之燈管之燈點數量·燈                 \
 		管行之燈管之燈點座標";
@@ -30,17 +35,38 @@ __fastcall TDataFrm::TDataFrm(TComponent* Owner) : TForm(Owner)
 //---------------------------------------------------------------------------
 void __fastcall TDataFrm::FormCreate(TObject* Sender)
 {
-    this->datacount = 1; //leave the first line blank
-    port_start1->ImeMode = TImeMode::imOnHalf;
-    port_end1->ImeMode = TImeMode::imOnHalf;
-    col_diff1->ImeMode = TImeMode::imOnHalf;
-    strap_amount1->ImeMode = TImeMode::imOnHalf;
-    block_start_x->ImeMode = TImeMode::imOnHalf;
-    block_start_y->ImeMode = TImeMode::imOnHalf;
-    // dir_strap1->ImeMode = TImeMode::imOnHalf;
-    strap_amount1->Items->Clear();
-    col_diff1->Items->Clear();
-    end_diff1->Items->Clear();
+	this->datacount = 1; //leave the first line blank
+	port_start1->ImeMode = Fmx::Types::TImeMode::imOnHalf;
+	port_end1->ImeMode = Fmx::Types::TImeMode::imOnHalf;
+	col_diff1->ImeMode = Fmx::Types::TImeMode::imOnHalf;
+	strap_amount1->ImeMode = Fmx::Types::TImeMode::imOnHalf;
+	block_start_x->ImeMode = Fmx::Types::TImeMode::imOnHalf;
+	block_start_y->ImeMode = Fmx::Types::TImeMode::imOnHalf;
+	// dir_strap1->ImeMode = TImeMode::imOnHalf;
+	strap_amount1->Items->Clear();
+	col_diff1->Items->Clear();
+	end_diff1->Items->Clear();
+
+
+
+		// Set up the ADO connection
+
+
+//		UnicodeString Connection = String("Provider=MSDAOSP;Data Source=")
+//		+ System::Ioutils::TPath::GetDirectoryName(ParamStr(0))
+//		+ String("portfolio.xml;");
+//
+//		ADOConnection1->ConnectionString = Connection;
+//
+//		ADOConnection1->LoginPrompt = false; // Disable login prompt
+//		ADOConnection1->Connected = true; // Connect to the Excel file
+//
+//		// Set the query to select data from your Excel sheet
+//		ADOQuery1->SQL->Clear();
+//		ADOQuery1->SQL->Add("SELECT * FROM ["+ SheetComboBox->Items->Strings[
+//		SheetComboBox->ItemIndex ] +"]");// Adjust the sheet name as necessary
+//		ADOQuery1->Open(); // Execute the query
+
 }
 //---------------------------------------------------------------------------
 void TDataFrm::WriteToColumn(int columnIndex)
@@ -77,67 +103,67 @@ void __fastcall TDataFrm::BtnReadFromSheetClick(TObject* Sender)
 	TStringList* str_cols = new TStringList();
 
 
-	//Read one line in strget function
-	Strap xx;
-	std::ofstream wd("east_led.txt");
-	std::ifstream rd("east_port.txt");
-	std::ofstream myout("myout.txt");
-    // Redirect stdout to myout.txt
-	std::streambuf* coutbuf = std::cout.rdbuf();
-	std::cout.rdbuf(myout.rdbuf());
-	AnsiString temp;
-	temp = col_count1->Text;
-	xx.colnum_read((String)temp);
-	temp = dir_strap1->ItemIndex < 1 ? "-1, 1" : "1, -1";
-	xx.vec_read((String)temp.c_str());
-	temp = col_diff1->Text;
-	xx.dir_read((String)temp.c_str());
-	temp =strap_amount1->Text;
-	xx.str_proc((String)temp.c_str());
-	//bfs_on_port
-	std::vector<int> buff = {block_start_x->Text.ToInt(), block_start_y->Text.ToInt()};
-	xx.PLlist.clear();
-	for (int ii = 0; ii < col_count1->Text.ToIntDef(-1); ++ii) {
-		xx.PLlist.push_back(buff);
-		buff = { buff[0] + xx.now_dir[0], buff[1] + xx.now_dir[1] };
-	}
-	//strap_dfs(wt_file, 80, 1);
-    int block_size = 80;
-    for (int jj = 0; jj < xx.port_num; ++jj) {
-		std::vector<int> startup = xx.PLlist[jj];
-		int port_n = xx.Flr_list[jj];
-		int Nled = 76;
-		OutMemo->Lines->Add("----------------");
-		std::vector<int> scl_buff;
-		String linetext = IntToStr(jj) + ",";
-		std::vector<int> buff = startup;
-		std::vector<std::vector<int> > scl_list;
-
-		for (int ii = 0; ii < port_n; ++ii) {
-			scl_buff = { buff[0] * block_size, buff[1] * block_size };
-			OutMemo->Lines->Add(scl_buff[0] + " " + scl_buff[1]);
-			scl_list.push_back(scl_buff);
-			buff = { buff[0] + xx.v_ang[0], buff[1] + xx.v_ang[1] };
-			linetext += IntToStr(Nled);
-			linetext += ",";
-		}
-
-		xx.block_merge(linetext, scl_list, block_size);
-		linetext += "\n";
-		OutMemo->Lines->Add(linetext);
+//	//Read one line in strget function
+//	Strap xx;
+//	std::ofstream wd("east_led.txt");
+//	std::ifstream rd("east_port.txt");
+//	std::ofstream myout("myout.txt");
+//	// Redirect stdout to myout.txt
+//	std::streambuf* coutbuf = std::cout.rdbuf();
+//	std::cout.rdbuf(myout.rdbuf());
+//	AnsiString temp;
+//	temp = col_count1->Text;
+//	xx.colnum_read((String)temp);
+//	temp = dir_strap1->ItemIndex < 1 ? "-1, 1" : "1, -1";
+//	xx.vec_read((String)temp.c_str());
+//	temp = col_diff1->Text;
+//	xx.dir_read((String)temp.c_str());
+//	temp =strap_amount1->Text;
+//	xx.str_proc((String)temp.c_str());
+//	//bfs_on_port
+//	std::vector<int> buff = {block_start_x->Text.ToInt(), block_start_y->Text.ToInt()};
+//	xx.PLlist.clear();
+//	for (int ii = 0; ii < col_count1->Text.ToIntDef(-1); ++ii) {
+//		xx.PLlist.push_back(buff);
+//		buff = { buff[0] + xx.now_dir[0], buff[1] + xx.now_dir[1] };
+//	}
+//	//strap_dfs(wt_file, 80, 1);
+//	int block_size = 80;
+//    for (int jj = 0; jj < xx.port_num; ++jj) {
+//		std::vector<int> startup = xx.PLlist[jj];
+//		int port_n = xx.Flr_list[jj];
+//		int Nled = 76;
+//		OutMemo->Lines->Add("----------------");
+//		std::vector<int> scl_buff;
+//		String linetext = IntToStr(jj) + ",";
+//		std::vector<int> buff = startup;
+//		std::vector<std::vector<int> > scl_list;
+//
+//		for (int ii = 0; ii < port_n; ++ii) {
+//			scl_buff = { buff[0] * block_size, buff[1] * block_size };
+//			OutMemo->Lines->Add(scl_buff[0] + " " + scl_buff[1]);
+//			scl_list.push_back(scl_buff);
+//			buff = { buff[0] + xx.v_ang[0], buff[1] + xx.v_ang[1] };
+//			linetext += IntToStr(Nled);
+//			linetext += ",";
+//		}
+//
+//		xx.block_merge(linetext, scl_list, block_size);
+//		linetext += "\n";
+//		OutMemo->Lines->Add(linetext);
 //		wd << linetext;
-	}
-    //print the text to string grid
+//	}
+	//print the text to string grid
 }
 //---------------------------------------------------------------------------
 
 void TDataFrm::split(
-    wchar_t delimiter, UnicodeString str, TStringList* listofstrings)
+	wchar_t delimiter, UnicodeString str, TStringList* listofstrings)
 {
-    listofstrings->Clear();
-    listofstrings->Delimiter = delimiter;
+	listofstrings->Clear();
+	listofstrings->Delimiter = delimiter;
 	listofstrings->StrictDelimiter = True; // Requires D2006 or newer.
-    listofstrings->DelimitedText = str;
+	listofstrings->DelimitedText = str;
 }
 //---------------------------------------------------------------------------
 
@@ -151,57 +177,93 @@ void __fastcall TDataFrm::ButtonLoadClick(TObject* Sender)
 void __fastcall TDataFrm::ButtonSaveClick(TObject* Sender)
 {
     SaveGridToCSV("output.csv");
-    ShowMessage("CSV file saved successfully!");
+	Fmx::Dialogs::ShowMessage("CSV file saved successfully!");
 }
 //---------------------------------------------------------------------------
 
 void TDataFrm::SaveGridToCSV(const String &fileName)
 {
     int BufferSize = 7;
-    try {
-        std::unique_ptr<TStreamWriter> writer(
-            new TStreamWriter(fileName, false, TEncoding::UTF8, BufferSize));
-        String data[8] = { "行數範圍起始", "行數結束", "燈管行位移量",
-            "燈管行數量", "燈管管數", "燈管區起始座標", "燈管區資料方向",
-            "燈管尾位移量" };
+	Fmx::Dialogs::TSaveDialog *SaveDialog = new Fmx::Dialogs::TSaveDialog(this);
+	SaveDialog->DefaultExt = "csv";
+	SaveDialog->Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
+    SaveDialog->Title = "Save CSV File As";
+	SaveDialog->FileName = fileName;
+    if (SaveDialog->Execute())
+	{
+		TStringList* rowData = new TStringList();
+		try {
+			std::unique_ptr<TStreamWriter> writer(
+				new TStreamWriter(fileName, false, TEncoding::UTF8, BufferSize));
+			String data[8] = { "行數範圍起始", "行數結束", "燈管行位移量",
+				"燈管行數量", "燈管管數", "燈管區起始座標", "燈管區資料方向",
+				"燈管尾位移量" };
+			String line = "";
+			//fill in the first row
+			for (int col = 0; col < LedlengthGrid->ColumnCount; col++) {
+				LedlengthGrid->Cells[col][0] = data[col];
+			}
 
-        for (int col = 0; col < LedlengthGrid->ColumnCount; col++) {
-            LedlengthGrid->Cells[col][0] = data[col];
-        }
 
-		for (int row = 0; row < LedlengthGrid->RowCount; ++row) {
-            TStringList* rowData = new TStringList();
-            try {
-                for (int col = 0; col < LedlengthGrid->ColumnCount; ++col) {
-					rowData->Add(EscapeCSV(LedlengthGrid->Cells[col][row+1]));
-                }
+			for (int row = 0; row < LedlengthGrid->RowCount; ++row) {
 
-                writer->WriteLine(rowData->CommaText);
-            } __finally
-            {
-                delete rowData;
-            }
-        }
-    }
+				try {
+					for (int col = 0; col < LedlengthGrid->ColumnCount; ++col) {
+						line += LedlengthGrid->Cells[col][row];
+						if (col < LedlengthGrid->ColumnCount - 1)
+						{
+							line += ","; // Add a comma between values
+						}
 
-    catch (Exception &e)
-    {
-        ShowMessage("Error saving CSV file: " + e.Message);
-    }
+//						rowData->Add(EscapeCSV(LedlengthGrid->Cells[col][row+1]));
+					}
+
+//					writer->WriteLine(rowData->CommaText);
+                    rowData->Add(line);
+				}
+				catch (Exception &e)
+				{
+					Fmx::Dialogs::ShowMessage("Error read file: " + e.Message);
+				}
+			}
+
+            // Check if the file exists
+			if (TFile::Exists(System::Ioutils::TPath::GetDirectoryName(ParamStr(0))))
+			{
+				// Prompt the user for confirmation to replace the existing file
+				if (Vcl::Dialogs::MessageDlg("The file already exists. Do you want to replace it?", TMsgDlgType::mtInformation, mbYesNo, 0) != 0)
+				{
+					return; // Exit if the user does not want to replace
+				}
+				else {
+                     // Save to file
+					rowData->SaveToFile(SaveDialog->FileName);
+				}
+			}
+
+		}
+        catch (Exception &e)
+		{
+			Fmx::Dialogs::ShowMessage("Error saving file: " + e.Message);
+			delete rowData;
+		}
+	}
+	delete SaveDialog;
+
 }
 
 //---------------------------------------------------------------------------
 
 String TDataFrm::EscapeCSV(const String &str)
 {
-    String result = str;
-    if (result.Pos(",") > 0 || result.Pos("\"") > 0 || result.Pos("\n") > 0) {
-        result = "\"" +
-                 StringReplace(
-                     result, "\"", "\"\"", TReplaceFlags() << rfReplaceAll) +
-                 "\"";
-    }
-    return result;
+	String result = str;
+	if (result.Pos(",") > 0 || result.Pos("\"") > 0 || result.Pos("\n") > 0) {
+		result = "\"" +
+				 StringReplace(
+					 result, "\"", "\"\"", TReplaceFlags() << rfReplaceAll) +
+				 "\"";
+	}
+	return result;
 }
 
 //---------------------------------------------------------------------------
@@ -231,4 +293,5 @@ void __fastcall TDataFrm::end_diff1Change(TObject* Sender)
     end_diff1->Items->Add(end_diff1->Text);
 }
 //---------------------------------------------------------------------------
+
 

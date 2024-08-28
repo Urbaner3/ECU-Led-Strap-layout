@@ -17,7 +17,7 @@ class strap:
         self.floor_height = [1, 3, 3, 4, 4, 4, 4, 4, 4, 2]  # irregular floors
 
     # strget: read and write file, start points, strip dir, strip path, end points, strip amounts, list of length in the block, 2 more commands
-    def strget(self, rd_file, wt_file):
+    def strget(self, rd_file, wt_file, ledrd):
         n = 0
         for line in rd_file.readlines():
             if n > 0:
@@ -29,7 +29,7 @@ class strap:
                 self.c4(pat[3])
                 self.str_proc(pat[6])
                 self.bfs_on_port()
-                self.strap_dfs(wt_file, 80, 1)
+                self.strap_dfs(wt_file, ledrd, 80, 1)
             n += 1
 
     def c1(self, mystr):  # string mystr converted to list start
@@ -117,14 +117,60 @@ class strap:
             self.pport = [self.pport[0]+self.now_dir[0],
                           self.pport[1]+self.now_dir[1]]
 
-    def strap_dfs(self, wt_file, block_size, option: int):
+    def strap_dfs(self, wt_file, ledrd, block_size, option: int):
         # here block_merge is to print the led coordinate in the strap
         # option 0 is to initialize, option 1 is to read led file
         for jj in range(self.port_num):  # total num of ports in a block
             startup = self.PLlist[jj]
             # port_n is exact num of ports in jj-th port
             port_n = self.Flr_list[jj]
-            Nled = 76
+            if option == 0:
+                Nled = 76
+            else:
+                for line in ledrd.readlines():
+
+            print("----------------")
+            scl_buff = []
+            linetext = str(jj) + ','
+            buff = startup
+            scl_list = []
+
+            # scaled coordinates and list of amount to leds in strip is
+            # processed here
+            for ii in range(port_n):  # flr_h):
+                scl_buff = [buff[0]*block_size, buff[1]*block_size]  # scaling
+                print(scl_buff)
+                scl_list.append(scl_buff)
+                buff = [buff[0]+self.v_ang[0], buff[1]+self.v_ang[1]]
+                # if option > 0 :
+                linetext = linetext + str(Nled) + ','
+                # else :
+
+            # grep amount of led bulbs and precess it
+            self.block_merge(linetext, scl_list, block_size)
+            linetext += '\n'
+            print(linetext)
+            wt_file.write(linetext)
+
+    def read_strap_change(self, ledrd):
+        # here I would read and check all length of straps
+        # that is not 76, and then print the coordinates
+        for lines in ledrd.readlines():
+            pat = lines.split(',')
+            for items in range(len(pat)):
+                if pat[items] != '76':
+                    # return place
+
+        for jj in range(self.port_num):  # total num of ports in a block
+            startup = self.PLlist[jj]
+            # port_n is exact num of ports in jj-th port
+            port_n = self.Flr_list[jj]
+            if option == 0:
+                Nled = 76
+            else:
+                # according to list, set Nled to corresponding value.
+                for line in ledrd.readlines():
+
             print("----------------")
             scl_buff = []
             linetext = str(jj) + ','
@@ -173,12 +219,13 @@ class strap:
 
 def main():
     xx = strap()
-    wd = open("east_led.txt", "w")
+    wd = open("east_led.csv", "w")
     rd = open("east_port.txt", "r")
+    ledrd = open("east_led.csv", "r")
     # rd2 = open("north_led.csv", "r")
     original = sys.stdout
     sys.stdout = open("myout.txt", 'w')
-    xx.strget(rd, wd)
+    xx.strget(rd, wd, ledrd)
     sys.stdout = original
     rd.close()
     wd.close()

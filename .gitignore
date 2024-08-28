@@ -44,3 +44,5 @@ supply/my_stream_test.csv
 
 east_tiny.txt
 easy_tiny_out.txt
+
+*.txt

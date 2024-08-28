@@ -98,7 +98,6 @@ class TDataFrm : public TForm
 	TStringColumn *StringColumn12;
 	TStringColumn *StringColumn13;
 	TStringColumn *StringColumn14;
-	TStringColumn *StringColumn15;
 	TTabItem *TabItem4;
 	TStringColumn *strap_amount;
 	TStringColumn *block_start;
@@ -111,6 +110,22 @@ class TDataFrm : public TForm
 	TMemo *OutMemo;
 	TComboBox *SheetComboBox;
 	TButton *BtnWriteLen;
+	TStringColumn *StringColumn15;
+	TStringColumn *StringColumn16;
+	TStringColumn *StringColumn17;
+	TStringColumn *StringColumn18;
+	TStringColumn *StringColumn19;
+	TStringColumn *StringColumn20;
+	TStringColumn *StringColumn21;
+	TStringColumn *StringColumn22;
+	TStringColumn *StringColumn23;
+	TStringColumn *StringColumn24;
+	TStringColumn *StringColumn25;
+	TStringColumn *StringColumn26;
+	TButton *ButGenLed;
+	TButton *ButShowmap;
+	TLabel *Label14;
+	TLabel *Label15;
     void __fastcall HintCorButton1Click(TObject* Sender);
     void __fastcall BtnReadFromSheetClick(TObject* Sender);
     void __fastcall FormCreate(TObject* Sender);
@@ -120,15 +135,22 @@ class TDataFrm : public TForm
 	void __fastcall col_diff1Change(TObject *Sender);
 	void __fastcall strap_amount1Change(TObject *Sender);
 	void __fastcall end_diff1Change(TObject *Sender);
-	void __fastcall LoadCSV(const String &FileName);
+
 	void __fastcall BtnWriteLenClick(TObject *Sender);
-    void __fastcall SaveLenGridToCSV(const String &FileName);
+
+	void __fastcall ButGenLedClick(TObject *Sender);
+	void __fastcall ButShowmapClick(TObject *Sender);
+	void __fastcall ButtonLoadXlsClick(TObject *Sender);
+
   private: // User declarations
 	void split(
 		wchar_t delimiter, UnicodeString str, TStringList* listofstrings);
 	void WriteToRows(int columnIndex);
 	int datacount;
-    void SaveGridToCSV(const String& fileName);
+	void LoadCSV(const String &FileName);
+	void SaveLenGridToCSV(const String &FileName);
+	void SaveGridToCSV(const String& fileName);
+	void LoadGridToCSV(const String &FileName);
     String EscapeCSV(const String& str);
   public: // User declarations
     __fastcall TDataFrm(TComponent* Owner);

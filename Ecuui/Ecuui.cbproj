@@ -102,7 +102,7 @@
         <AUP_READ_PHONE_STATE>true</AUP_READ_PHONE_STATE>
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
         <Icns_MainIcns>$(BDS)\bin\cbuilder_PROJECTICNS.icns</Icns_MainIcns>
-        <AllPackageLibs>rtl.lib;fmx.lib;bindcomp.lib;dbrtl.lib;bindengine.lib;bindcompfmx.lib;adortl.lib</AllPackageLibs>
+        <AllPackageLibs>rtl.lib;fmx.lib;bindcomp.lib;dbrtl.lib;bindengine.lib;bindcompfmx.lib;adortl.lib;vcl.lib</AllPackageLibs>
         <_TCHARMapping>wchar_t</_TCHARMapping>
         <Multithreaded>true</Multithreaded>
         <IncludePath>..\..\Embarcadero\Studio\Projects\mappingUI\;..\..\..\..\ECU_projs\Ecuui\;mappingUI\;$(IncludePath)</IncludePath>
@@ -223,7 +223,7 @@
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
         <BCC_UseClassicCompiler>false</BCC_UseClassicCompiler>
         <ILINK_LibraryPath>$(BDSLIB)\$(PLATFORM)$(CC_SUFFIX)\debug;$(ILINK_LibraryPath)</ILINK_LibraryPath>
-        <LinkPackageImports>rtl.bpi;fmx.bpi;bindcomp.bpi;dbrtl.bpi;bindengine.bpi;bindcompfmx.bpi;adortl.bpi</LinkPackageImports>
+        <LinkPackageImports>rtl.bpi;fmx.bpi;bindcomp.bpi;dbrtl.bpi;bindengine.bpi;bindcompfmx.bpi;adortl.bpi;vcl.bpi</LinkPackageImports>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
     </PropertyGroup>

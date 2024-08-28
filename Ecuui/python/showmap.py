@@ -60,7 +60,7 @@ def d3read(rd_file) -> list:
 
 
 def main():
-    rd = open("east_led.txt", "r")
+    rd = open("myout.txt", "r")
     # adding option here, to different rd file the precess function is chossen
     # the following plt asset is adopted
     # ans = d3read(rd)

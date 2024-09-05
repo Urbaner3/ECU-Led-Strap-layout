@@ -98,7 +98,7 @@ class TDataFrm : public TForm
 	TStringColumn *StringColumn12;
 	TStringColumn *StringColumn13;
 	TStringColumn *StringColumn14;
-	TTabItem *TabItem4;
+	TTabItem *VisualCheckTab;
 	TStringColumn *strap_amount;
 	TStringColumn *block_start;
 	TPopupColumn *PopupColumn1;
@@ -126,6 +126,7 @@ class TDataFrm : public TForm
 	TButton *ButShowmap;
 	TLabel *Label14;
 	TLabel *Label15;
+	TButton *ButPdfRead;
     void __fastcall HintCorButton1Click(TObject* Sender);
     void __fastcall BtnReadFromSheetClick(TObject* Sender);
     void __fastcall FormCreate(TObject* Sender);
@@ -141,6 +142,7 @@ class TDataFrm : public TForm
 	void __fastcall ButGenLedClick(TObject *Sender);
 	void __fastcall ButShowmapClick(TObject *Sender);
 	void __fastcall ButtonLoadXlsClick(TObject *Sender);
+	void __fastcall ButPdfReadClick(TObject *Sender);
 
   private: // User declarations
 	void split(

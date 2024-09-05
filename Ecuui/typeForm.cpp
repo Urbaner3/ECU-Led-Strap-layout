@@ -461,3 +461,13 @@ void TDataFrm::LoadGridToCSV(const String &fileName)
     //	delete OpenDialog;
 }
 
+//---------------------------------------------------------------------------
+
+void __fastcall TDataFrm::ButPdfReadClick(TObject *Sender)
+{
+	ShellExecuteA(NULL, "open",
+		"..\\..\\viewpdf\\Win32\\Release\\PdfView.exe","",
+		NULL, SW_SHOWDEFAULT);
+}
+//---------------------------------------------------------------------------
+

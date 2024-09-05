@@ -72,7 +72,9 @@ void __fastcall THintFrm::FormCreate(TObject* Sender)
 
     // Initialize the current image index and load the first image
     currentImageIndex = 0;
-    LoadImage(currentImageIndex);
+	LoadImage(currentImageIndex);
+	ImageMemo->Text = checklist->Strings[currentImageIndex];
+
 }
 //---------------------------------------------------------------------------
 

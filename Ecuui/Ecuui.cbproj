@@ -247,7 +247,7 @@
         <UsePackages>false</UsePackages>
         <BCC_ExecutionCharacterSet>UTF-8</BCC_ExecutionCharacterSet>
         <BCC_EnableCodePaging>950</BCC_EnableCodePaging>
-        <LinkPackageStatics>rtl.lib;fmx.lib;bindcomp.lib;dbrtl.lib;bindengine.lib;bindcompfmx.lib</LinkPackageStatics>
+        <LinkPackageStatics>rtl.lib;fmx.lib;bindcomp.lib;dbrtl.lib;bindengine.lib;bindcompfmx.lib;adortl.lib;vcl.lib</LinkPackageStatics>
         <CfgDependentOn>..\..\Embarcadero\Studio\22.0\release.optset</CfgDependentOn>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">

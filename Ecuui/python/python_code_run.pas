@@ -18,6 +18,12 @@ type
     OpenDialog1: TOpenDialog;
     SaveDialog1: TSaveDialog;
     Label1: TLabel;
+    Panel2: TPanel;
+    ButGenLed: TButton;
+    ButShowmap: TButton;
+    Button6: TButton;
+    Label2: TLabel;
+    Label3: TLabel;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);

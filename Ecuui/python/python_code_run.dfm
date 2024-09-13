@@ -2,8 +2,8 @@ object Form6: TForm6
   Left = 0
   Top = 0
   Caption = 'Demo of python'
-  ClientHeight = 442
-  ClientWidth = 628
+  ClientHeight = 458
+  ClientWidth = 518
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,17 +12,17 @@ object Form6: TForm6
   Font.Style = []
   TextHeight = 15
   object Label1: TLabel
-    Left = 104
-    Top = 280
-    Width = 289
-    Height = 33
+    Left = 8
+    Top = 304
+    Width = 273
+    Height = 15
     Caption = #35201#21360#31243#24335#30340#37679#35492#36664#20986#12290#29376#24907#12290#32380#32396#19979#19968#27493#31243#24335#12290
   end
   object Memo1: TMemo
     Left = -5
     Top = -6
-    Width = 625
-    Height = 185
+    Width = 86
+    Height = 175
     Lines.Strings = (
       'Memo1')
     ScrollBars = ssVertical
@@ -31,8 +31,8 @@ object Form6: TForm6
   object Memo2: TMemo
     Left = 0
     Top = 185
-    Width = 620
-    Height = 64
+    Width = 81
+    Height = 80
     Lines.Strings = (
       'Memo2')
     ScrollBars = ssBoth
@@ -40,9 +40,9 @@ object Form6: TForm6
   end
   object Panel1: TPanel
     Left = 0
-    Top = 392
-    Width = 625
-    Height = 49
+    Top = 360
+    Width = 449
+    Height = 81
     Caption = 'Panel1'
     TabOrder = 2
     object Button1: TButton
@@ -73,9 +73,55 @@ object Form6: TForm6
       OnClick = Button3Click
     end
   end
+  object Panel2: TPanel
+    Left = 112
+    Top = 8
+    Width = 289
+    Height = 273
+    Caption = 'Panel2'
+    TabOrder = 3
+    object Label2: TLabel
+      Left = 128
+      Top = 36
+      Width = 50
+      Height = 21
+      Caption = 'Label2'
+    end
+    object Label3: TLabel
+      Left = 184
+      Top = 36
+      Width = 34
+      Height = 15
+      Caption = 'Label3'
+    end
+    object ButGenLed: TButton
+      Left = 16
+      Top = 32
+      Width = 75
+      Height = 25
+      Caption = #29986#29983#29128#40670
+      TabOrder = 0
+    end
+    object ButShowmap: TButton
+      Left = 16
+      Top = 81
+      Width = 75
+      Height = 25
+      Caption = #22294#24418#39023#31034
+      TabOrder = 1
+    end
+    object Button6: TButton
+      Left = 16
+      Top = 133
+      Width = 75
+      Height = 25
+      Caption = 'Button6'
+      TabOrder = 2
+    end
+  end
   object OpenDialog1: TOpenDialog
-    Left = 512
-    Top = 392
+    Left = 368
+    Top = 416
   end
   object SaveDialog1: TSaveDialog
     Left = 456

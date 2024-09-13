@@ -14,7 +14,7 @@ class strap:
         self.Flr_list = [1, 2, 3]
         self.PLlist = []
         self.pport = []
-        self.floor_height = [1, 3, 3, 4, 4, 4, 4, 4, 4, 2]  # irregular floors
+        self.block_width = list()  # irregular floors
 
     # strget: read and write file, start points, strip dir, strip path, end points, strip amounts, list of length in the block, 2 more commands
     def strget(self, rd_file, wt_file, ledrd):
@@ -29,7 +29,7 @@ class strap:
                 self.c4(pat[3])
                 self.str_proc(pat[6])
                 self.bfs_on_port()
-                self.strap_dfs(wt_file, ledrd, 80, 1)
+                self.strap_dfs(wt_file, ledrd, 80, 0)
             n += 1
 
     def c1(self, mystr):  # string mystr converted to list start
@@ -38,6 +38,7 @@ class strap:
 
     def c2(self, mystr):  # string mystr converted to length of straps
         self.port_num = int(mystr)
+        self.block_width.append(self.port_num)
 
     def c3(self, mystr):  # string mystr converted to direction of strap
         ind = mystr.split(', ')
@@ -126,9 +127,10 @@ class strap:
             port_n = self.Flr_list[jj]
             if option == 0:
                 Nled = 76
-            else:
-                for line in ledrd.readlines():
+            elif option == 1:
+                read_strap_change(wt_file, ledrd, block_size)
 
+                # end here
             print("----------------")
             scl_buff = []
             linetext = str(jj) + ','
@@ -152,24 +154,42 @@ class strap:
             print(linetext)
             wt_file.write(linetext)
 
-    def read_strap_change(self, ledrd):
+    def get_strap_index(self, line: int, NthStrip: int):
+        port_count = 0
+        for it in range(len(self.block_width)):
+            if port_count + self.block_width(it) > line:
+                break  # break when the block contains the port
+            else:
+                port_count += self.block_width(it)
+
+        # list data of block, port, strap
+        return list((it+1), (line-port_count), NthStrip)
+
+    def read_strap_change(self, wt_file, ledrd, block_size):
         # here I would read and check all length of straps
         # that is not 76, and then print the coordinates
+        read_count = 1
+
         for lines in ledrd.readlines():
             pat = lines.split(',')
             for items in range(len(pat)):
-                if pat[items] != '76':
+                if items == 0:
+                    continue
+                elif pat[items] != '76':
                     # return place
+                    print(items, "-th strip modified")
+                    Nled = int(pat[items])
+
+            read_count += 1
 
         for jj in range(self.port_num):  # total num of ports in a block
             startup = self.PLlist[jj]
             # port_n is exact num of ports in jj-th port
             port_n = self.Flr_list[jj]
-            if option == 0:
-                Nled = 76
-            else:
-                # according to list, set Nled to corresponding value.
-                for line in ledrd.readlines():
+            # else:
+            #     # according to list, set Nled to corresponding value.
+            #     for line in ledrd.readlines():
+            #         print("line
 
             print("----------------")
             scl_buff = []
@@ -217,6 +237,29 @@ class strap:
         # the end
 
 
+def modify():
+    xx = strap()
+    wd = open("east_led.csv", "w")
+    rd = open("east_port.txt", "r")
+    ledrd = open("east_led.csv", "r+")
+    # rd2 = open("north_led.csv", "r")
+    original = sys.stdout
+    sys.stdout = open("myout.txt", 'w')
+    xx.strap_dfs(wd, ledrd, 80, 1)  # modify function
+    sys.stdout = original
+    rd.close()
+    wd.close()
+    # xx.str_proc();
+    # Flr_list = seqre(Flr_list, flr_h, port_num)
+    # Flr_list = seqbak(Flr_list, 10, 1)
+    # xx.strap_cord()
+    # port_num = port_num + 11
+    # port_num = 29
+    # Flr_list = seqre(Flr_list, 21, 7)
+    # Flr_list = seqbak(Flr_list, 29,1)
+    # strap_cord(Flr_list, port_num)
+
+
 def main():
     xx = strap()
     wd = open("east_led.csv", "w")
@@ -242,6 +285,8 @@ def main():
 
 if __name__ == '__main__':
     main()
+elif __name__ == 'gen_led':
+    modify()
 
 # direction deg 135
 # Flr_list = range(1,9)

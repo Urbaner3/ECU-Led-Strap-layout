@@ -21,7 +21,7 @@ class strap:
         n = 0
         for line in rd_file.readlines():
             if n > 0:
-                # print(line)
+                print(line)
                 pat = line.split('|')
                 self.c1(pat[1])
                 self.c2(pat[5])
@@ -133,7 +133,7 @@ class strap:
                 read_strap_change(wt_file, ledrd, block_size)
 
                 # end here
-            # print("----------------")
+            print("----------------")
             scl_buff = []
             linetext = str(jj) + ','
             buff = startup
@@ -143,7 +143,8 @@ class strap:
             # processed here
             for ii in range(port_n):  # flr_h):
                 scl_buff = [buff[0]*block_size, buff[1]*block_size]  # scaling
-                print(str(scl_buff[0])+' | '+str(scl_buff[1]))
+                # print(str(scl_buff[0])+' | '+str(scl_buff[1]))
+                print(scl_buff)
                 scl_list.append(scl_buff)
                 buff = [buff[0]+self.v_ang[0], buff[1]+self.v_ang[1]]
                 # if option > 0 :
@@ -153,7 +154,7 @@ class strap:
             # grep amount of led bulbs and precess it
             self.block_merge(linetext, scl_list, block_size)
             linetext += '\n'
-            # print(linetext)
+            print(linetext)
             wt_file.write(linetext)
 
     def get_strap_index(self, line: int, NthStrip: int):
@@ -226,7 +227,8 @@ class strap:
             buff = stt
             for jj in range(int(leng[ii+1])):
                 buff = [buff[0]+vec[0], buff[1]+vec[1]]
-                print(str(buff[0]) + ' | ' + str(buff[1]))
+                # print(str(buff[0]) + ' | ' + str(buff[1]))
+                print(buff)
 
         #
 

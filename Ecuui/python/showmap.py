@@ -6,17 +6,23 @@ def strget(rd_file):
     linnum = 0
     count = 0
     col_pen = 0
+    port_count = 0
     xx = []
     yy = []
     pt_col = []
     for line in rd_file.readlines():
+
         if line[0] == '[':
             line = line[1:-2]
             pat = line.split(', ')
             # print('strget', int(pat[0]), int(pat[1]), pat[0], pat[1])
-            xx.append(int(pat[0]))
-            yy.append(int(pat[1]))
-            pt_col.append(col_pen)
+            if port_count == 2 and count < 5:
+                plt.plot(xx, yy, 'x')
+            else:
+                xx.append(int(pat[0]))
+                yy.append(int(pat[1]))
+                pt_col.append(col_pen)
+                # plt.plot(xx, yy, ',')
         # elif line[0] == '-' and line[1] == '-' :
         #     col_pen+=1
         # gather data of xx and yy and print format
@@ -25,6 +31,9 @@ def strget(rd_file):
             plt.plot(xx, yy, ',')
             xx = []
             yy = []
+            port_count += 1
+            count = 0
+
         count += 1
 
     # x, y, mycol = (ans[0], ans[1], ans[2])
@@ -47,7 +56,7 @@ def strget(rd_file):
         #     break
 
     # print([xx, yy])
-    plt.plot(xx, yy, ',')
+    plt.plot(xx, yy, 'o')
     return [xx, yy, pt_col]
 
 

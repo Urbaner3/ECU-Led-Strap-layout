@@ -32,6 +32,7 @@ def strget(rd_file):
             xx = []
             yy = []
             port_count += 1
+            print(port_count)
             count = 0
 
         count += 1
@@ -57,6 +58,7 @@ def strget(rd_file):
 
     # print([xx, yy])
     plt.plot(xx, yy, 'o')
+    print("here is o labels")
     return [xx, yy, pt_col]
 
 

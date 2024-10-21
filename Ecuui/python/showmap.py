@@ -1,12 +1,19 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from cycler import cycler
 
 
 def strget(rd_file):
-    linnum = 0
+    my_cycler = cycler(color=['r', 'g', 'b', 'y', 'c', 'm', 'k', '#FC5A50'])
+    plt.rc('axes', prop_cycle=my_cycler)
+
+    # linnum = 0
+
     count = 0
     col_pen = 0
     port_count = 0
+    txx = []
+    tyy = []
     xx = []
     yy = []
     pt_col = []
@@ -16,8 +23,11 @@ def strget(rd_file):
             line = line[1:-2]
             pat = line.split(', ')
             # print('strget', int(pat[0]), int(pat[1]), pat[0], pat[1])
-            if port_count == 2 and count < 5:
-                plt.plot(xx, yy, 'x')
+            if port_count == 2:  # """and count < 5""":
+                # plt.plot(xx, yy, 'x')
+                txx.append(int(pat[0]))
+                tyy.append(int(pat[1]))
+
             else:
                 xx.append(int(pat[0]))
                 yy.append(int(pat[1]))
@@ -28,7 +38,10 @@ def strget(rd_file):
         # gather data of xx and yy and print format
 
         elif line[0] == '-' and line[1] == '-':
-            plt.plot(xx, yy, ',')
+            if port_count == 2:  # """ and count < 5""":
+                plt.plot(txx, tyy, 'o')
+            else:
+                plt.plot(xx, yy, ',')
             xx = []
             yy = []
             port_count += 1

@@ -76,7 +76,7 @@ class TDataFrm : public TForm
     TIntegerColumn* port_start;
     TIntegerColumn* port_end;
 	TIntegerColumn *col_count;
-    TIntegerColumn* end_diff;
+	TIntegerColumn *int_col;
 	TButton *ButtonLoad;
 	TEdit *block_start_x;
 	TEdit *block_start_y;
@@ -127,6 +127,7 @@ class TDataFrm : public TForm
 	TLabel *Label14;
 	TLabel *Label15;
 	TButton *ButPdfRead;
+	TStringColumn *end_diff;
     void __fastcall HintCorButton1Click(TObject* Sender);
     void __fastcall BtnReadFromSheetClick(TObject* Sender);
     void __fastcall FormCreate(TObject* Sender);

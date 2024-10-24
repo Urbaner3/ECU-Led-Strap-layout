@@ -146,12 +146,14 @@ class strap:
             else:
                 pat = lines.split(',')
                 temp = []
+                r_ct = read_count - row_in_meta[0]
                 for items in range(len(pat)):
                     if items == 0:
                         temp.append(pat[items])
+                    elif items == self.Flr_list[r_ct] + 1:
+                        continue
+                        # temp.append(pat[items])
                     elif pat[items]:
-                        temp.append(pat[items])
-                    elif pat[items] == "\n":
                         temp.append(pat[items])
                     else:
                         break
@@ -161,15 +163,20 @@ class strap:
                 for items in range(len(pat)):
                     if items == 0:
                         continue
+                    elif items > self.Flr_list[r_ct]:
+                        continue
+                    elif pat[items] != "76":
+                        # return place
+                        print(items, "th strip modified")
+                        Nled = int(pat[items])
+                        temp.append(Nled)
                     elif pat[items] == "76":
                         Nled = int(pat[items])
                         temp.append(Nled)
                         # modified_straps_inblock.append(Nled)
                     else:
-                        # return place
-                        print(items, "th strip modified")
-                        Nled = int(pat[items])
-                        temp.append(Nled)
+                        print("row case overhead")
+                        break
 
                 modified_straps_inblock.append(temp)
                 read_count += 1
@@ -218,8 +225,10 @@ class strap:
         #     Nled = 76 # use 23 lines below instead
         if option == 1:
             # stp_ls is list of modified straps in length
+            block_list = open("east_led_update.csv", "r")
             stp_ls = self.read_strap_change(
-                wt_file, ledrd, block_size, self.bound)
+                wt_file, block_list, block_size, self.bound)
+            block_list.close()
         for jj in range(self.port_num):  # total num of ports in a block
             startup = self.PLlist[jj]
             # port_n is exact num of ports in jj-th port

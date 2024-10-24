@@ -462,6 +462,7 @@ object DataFrm: TDataFrm
     Size.Width = 512.000000000000000000
     Size.Height = 644.000000000000000000
     Size.PlatformDefault = False
+    TabIndex = 1
     TabOrder = 0
     TabPosition = Top
     Sizes = (
@@ -607,7 +608,7 @@ object DataFrm: TDataFrm
       CustomIcon = <
         item
         end>
-      IsSelected = False
+      IsSelected = True
       ImageIndex = 9
       Size.Width = 68.000000000000000000
       Size.Height = 26.000000000000000000
@@ -649,8 +650,10 @@ object DataFrm: TDataFrm
         object dir_strap: TStringColumn
           Header = #29128#31649#21312#36039#26009#26041#21521
         end
-        object end_diff: TIntegerColumn
+        object end_diff: TStringColumn
           Header = #29128#31649#23614#20301#31227#37327
+        end
+        object int_col: TIntegerColumn
         end
         object PopupColumn1: TPopupColumn
         end

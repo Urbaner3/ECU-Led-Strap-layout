@@ -8,6 +8,7 @@
 //#include "Strap.h"
 #include <System.SysUtils.hpp>
 #include <System.IOUtils.hpp>
+#include <winbase.h>
 #include "libxl.h"
 #include <Vcl.Dialogs.hpp> //use vcl instead
 #include <string.h>
@@ -359,24 +360,25 @@ void TDataFrm::SaveLenGridToCSV(const String &FileName)
         // Save to the specified file
         CSVContent->SaveToFile(FileName);
     } __finally
-    {
+	{
         delete CSVContent; // Clean up
     }
 }
 
 void __fastcall TDataFrm::ButGenLedClick(TObject* Sender)
 {
-    ShellExecuteA(NULL, "open",
-        "C:\\Users\\Peter\\miniconda3\\envs\\winprog\\python.exe",
-        "C:\\Users\\Peter\\Documents\\ECU_projs\\Ecuui\\python\\gen_led.py",
-        NULL, SW_SHOWDEFAULT);
+	CopyFileW(L"..\\Python\\gen_led.exe", L".\\gen_led.exe", FALSE);
+	ShellExecuteA(NULL, "open",
+		".\\gen_led.exe", NULL,
+		NULL, SW_SHOWDEFAULT);
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TDataFrm::ButShowmapClick(TObject* Sender)
 {
-    ShellExecuteA(NULL, "", "cmd",
-        "cd C:\\Users\\Peter\\Documents\\ECU_projs\\Ecuui\\python", NULL,
+	CopyFileW(L".\\myout.txt", L"..\\Python\\showmap\\myout.txt", FALSE);
+	ShellExecuteA(NULL, "open", "..\\Python\\showmap\\showmap.exe",
+		"", NULL,
         SW_SHOWDEFAULT);
     //		ShellExecuteA(NULL, "",
     //		"C:\\Users\\Peter\\miniconda3\\envs\\winprog\\python.exe", "C:\\Users\\Peter\\Documents\\ECU_projs\\Ecuui\\python\\showmap.py",
@@ -386,22 +388,23 @@ void __fastcall TDataFrm::ButShowmapClick(TObject* Sender)
 
 void __fastcall TDataFrm::ButtonLoadXlsClick(TObject* Sender)
 {
-    LoadGridToCSV("Output");
+	LoadGridToCSV();
 }
 //---------------------------------------------------------------------------
-void TDataFrm::LoadGridToCSV(const String &fileName)
+void TDataFrm::LoadGridToCSV()
 {
     int BufferSize = 7;
     bool saved = false;
     Fmx::Dialogs::TOpenDialog* OpenDialog = new Fmx::Dialogs::TOpenDialog(this);
-    OpenDialog->DefaultExt = "xls";
+//    OpenDialog->DefaultExt = "xls";
     OpenDialog->Filter = "Excel files (*.xls)|*.xls|All files (*.*)|*.*";
     OpenDialog->Title = "Save Excel File As";
-    OpenDialog->FileName = fileName;
-    String locname = fileName;
+
 	if (OpenDialog->Execute()) {
+		String fileName = OpenDialog->FileName;
+		String locname = fileName;
 		Book* book = xlCreateBook(); // xlCreateXMLBook() for xlsx
-        if (book->load((fileName + String(".xls")).c_str(), 0)) {
+        if (book->load((fileName).c_str(), 0)) {
             Sheet* sheet = book->getSheet(0);
             if (sheet) {
                 //				String data[8] = { "行數範圍起始", "行數結束", "燈管行位移量",
@@ -412,7 +415,7 @@ void TDataFrm::LoadGridToCSV(const String &fileName)
                 int colint[4] = { 1, 2, 4, 8 }, colstr[4] = { 3, 5, 6, 7 }; //col 0 is empty
                 int size_ci = sizeof(colint) / sizeof(colint[0]),
                     size_cs = sizeof(colstr) / sizeof(colstr[0]);
-                for (int row = sheet->firstRow(); row < sheet->lastRow(); ++row)
+                for (int row = sheet->firstRow()+1; row < sheet->lastRow(); ++row)
 				{
 
 						//integer columns
@@ -423,7 +426,7 @@ void TDataFrm::LoadGridToCSV(const String &fileName)
 							}
 							else {
 								spc = spc + s;
-								LedlengthGrid->Cells[colint[colind]-1][row-1] =
+								LedlengthGrid->Cells[colint[colind]-1][row-2] =
 									StrToInt(spc);
 								spc = "";
 							}
@@ -437,7 +440,7 @@ void TDataFrm::LoadGridToCSV(const String &fileName)
 							}
 							else {
 								spc = spc + s;
-								LedlengthGrid->Cells[colstr[colind]-1][row-1] = spc;
+								LedlengthGrid->Cells[colstr[colind]-1][row-2] = spc;
                                 spc = "";
 							}
 						}
@@ -455,7 +458,7 @@ void TDataFrm::LoadGridToCSV(const String &fileName)
         //else book
 
 
-        book->release();
+		book->release();
     }
     //else
     //	delete OpenDialog;
@@ -466,7 +469,7 @@ void TDataFrm::LoadGridToCSV(const String &fileName)
 void __fastcall TDataFrm::ButPdfReadClick(TObject *Sender)
 {
 	ShellExecuteA(NULL, "open",
-		"..\\..\\viewpdf\\Win32\\Release\\PdfView.exe","",
+		"..\\viewpdf\\PdfView.exe","",
 		NULL, SW_SHOWDEFAULT);
 }
 //---------------------------------------------------------------------------

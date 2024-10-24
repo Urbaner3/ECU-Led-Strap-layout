@@ -36,6 +36,9 @@ supply/easy_tiny_out.txt
 supply/ECU_w2.xlsx
 supply/my_stream_test.csv
 
+#subdirectory Ecu/python
+./Ecuui/python/*.csv
+
 # 當然你要忽略自己也可以，只是通常不會這麼做
 # .gitignore
 # 檔案名稱 .gitignore

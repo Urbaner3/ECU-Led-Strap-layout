@@ -44,7 +44,7 @@ class TDataFrm : public TForm
     TLabel* Label4;
 	TExpander *portN;
     TLabel* Label5;
-    TExpander* Expander5;
+	TExpander *Strip_length;
     TLabel* Label6;
     TButton* BtnReadFromSheet;
 	TNumberBox *col_count1;
@@ -52,7 +52,7 @@ class TDataFrm : public TForm
     TTabControl* TabControl1;
 	TTabItem *TabLength;
 	TTabItem *TabMeta;
-    TTabItem* TabItem3;
+	TTabItem *SqlFunc;
     TGrid* Grid2;
     TBindNavigator* BindNavigator1;
     TImage* Image1;
@@ -152,7 +152,7 @@ class TDataFrm : public TForm
 	void LoadCSV(const String &FileName);
 	void SaveLenGridToCSV(const String &FileName);
 	void SaveGridToCSV(const String& fileName);
-	void LoadGridToCSV(const String &FileName);
+	void LoadGridToCSV(void);
     String EscapeCSV(const String& str);
   public: // User declarations
     __fastcall TDataFrm(TComponent* Owner);

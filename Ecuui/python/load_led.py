@@ -151,7 +151,7 @@ class strap:
                         temp.append(pat[items])
                     elif pat[items]:
                         temp.append(pat[items])
-                    elif pat[items] == '\n':
+                    elif pat[items] == "\n":
                         temp.append(pat[items])
                     else:
                         break
@@ -161,7 +161,7 @@ class strap:
                 for items in range(len(pat)):
                     if items == 0:
                         continue
-                    elif pat[items] == '76':
+                    elif pat[items] == "76":
                         Nled = int(pat[items])
                         temp.append(Nled)
                         # modified_straps_inblock.append(Nled)

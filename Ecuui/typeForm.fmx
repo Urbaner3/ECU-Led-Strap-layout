@@ -2,7 +2,7 @@ object DataFrm: TDataFrm
   Left = 0
   Top = 0
   ActiveControl = VisualCheckTab
-  Caption = 'Form6'
+  Caption = 'ECU mapper'
   ClientHeight = 660
   ClientWidth = 1033
   FormFactor.Width = 320
@@ -45,7 +45,7 @@ object DataFrm: TDataFrm
       Size.Width = 217.000000000000000000
       Size.Height = 183.000000000000000000
       Size.PlatformDefault = False
-      Text = '('#65298') Block_head'
+      Text = '('#65298') '#21312#22602#36039#35338
       TabOrder = 0
       ContentSize = '158'
       object Label1: TLabel
@@ -70,7 +70,7 @@ object DataFrm: TDataFrm
       end
       object Label3: TLabel
         Position.X = 138.000000000000000000
-        Position.Y = 19.000000000000000000
+        Position.Y = 18.000000000000000000
         Size.Width = 33.000000000000000000
         Size.Height = 17.000000000000000000
         Size.PlatformDefault = False
@@ -111,7 +111,7 @@ object DataFrm: TDataFrm
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 2
-        Text = 'load to led_lang'
+        Text = #36617#20837#36039#26009#32232#36655'_'#24478#38957
         OnClick = ButtonLoadClick
       end
       object block_start_x: TEdit
@@ -141,7 +141,7 @@ object DataFrm: TDataFrm
       Size.Width = 254.000000000000000000
       Size.Height = 161.000000000000000000
       Size.PlatformDefault = False
-      Text = '('#65297') port number'
+      Text = '('#65297') '#29128#31649#34892#36039#35338
       TabOrder = 3
       ContentSize = '136'
       object Label5: TLabel
@@ -291,7 +291,7 @@ object DataFrm: TDataFrm
         Size.PlatformDefault = False
       end
     end
-    object Expander5: TExpander
+    object Strip_length: TExpander
       TextSettings.HorzAlign = Center
       HelpType = htKeyword
       Position.X = -3.000000000000000000
@@ -300,7 +300,7 @@ object DataFrm: TDataFrm
       Size.Width = 234.000000000000000000
       Size.Height = 143.000000000000000000
       Size.PlatformDefault = False
-      Text = 'Expander'
+      Text = #29128#31649#38263#24230#36039#35338
       TabOrder = 4
       ContentSize = '118'
       object BtnReadFromSheet: TButton
@@ -436,6 +436,7 @@ object DataFrm: TDataFrm
       Size.PlatformDefault = False
       TabOrder = 8
       Text = #22806#25509#31243#24335
+      Visible = False
       OnClick = ButtonExtProgClick
     end
     object SheetComboBox: TComboBox
@@ -461,7 +462,6 @@ object DataFrm: TDataFrm
     Size.Width = 512.000000000000000000
     Size.Height = 644.000000000000000000
     Size.PlatformDefault = False
-    TabIndex = 1
     TabOrder = 0
     TabPosition = Top
     Sizes = (
@@ -607,7 +607,7 @@ object DataFrm: TDataFrm
       CustomIcon = <
         item
         end>
-      IsSelected = True
+      IsSelected = False
       ImageIndex = 9
       Size.Width = 68.000000000000000000
       Size.Height = 26.000000000000000000
@@ -656,7 +656,7 @@ object DataFrm: TDataFrm
         end
       end
     end
-    object TabItem3: TTabItem
+    object SqlFunc: TTabItem
       CustomIcon = <
         item
         end>
@@ -668,6 +668,7 @@ object DataFrm: TDataFrm
       StyleLookup = ''
       TabOrder = 0
       Text = 'Grid and Live Binding'
+      Visible = False
       ExplicitSize.cx = 150.000000000000000000
       ExplicitSize.cy = 26.000000000000000000
       object Grid2: TGrid

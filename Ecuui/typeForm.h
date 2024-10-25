@@ -128,6 +128,7 @@ class TDataFrm : public TForm
 	TLabel *Label15;
 	TButton *ButPdfRead;
 	TStringColumn *end_diff;
+	TButton *ButClearGrid;
     void __fastcall HintCorButton1Click(TObject* Sender);
     void __fastcall BtnReadFromSheetClick(TObject* Sender);
     void __fastcall FormCreate(TObject* Sender);
@@ -144,6 +145,7 @@ class TDataFrm : public TForm
 	void __fastcall ButShowmapClick(TObject *Sender);
 	void __fastcall ButtonLoadXlsClick(TObject *Sender);
 	void __fastcall ButPdfReadClick(TObject *Sender);
+	void __fastcall ButClearGridClick(TObject *Sender);
 
   private: // User declarations
 	void split(

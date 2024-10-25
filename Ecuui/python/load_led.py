@@ -28,12 +28,12 @@ class strap:
             if n > 0:
                 print(line)
                 pat = line.split('|')
-                self.c1(pat[1])
-                self.c2(pat[5])
-                self.c3(pat[2])
-                self.c4(pat[3])
-                self.col_bound(pat[0], pat[4])
-                self.str_proc(pat[6])
+                self.c1(pat[5])
+                self.c2(pat[3])
+                self.c3(pat[6])
+                self.c4(pat[2])
+                self.col_bound(pat[0], pat[1])
+                self.str_proc(pat[4])
                 self.bfs_on_port()
                 self.strap_dfs(wt_file, ledrd, 80, 0)
             n += 1
@@ -312,12 +312,12 @@ class strap:
             if n > 0:
                 print(line)
                 pat = line.split('|')
-                self.c1(pat[1])
-                self.c2(pat[5])
-                self.c3(pat[2])
-                self.c4(pat[3])
-                self.col_bound(pat[0], pat[4])
-                self.str_proc(pat[6])
+                self.c1(pat[5])
+                self.c2(pat[3])
+                self.c3(pat[6])
+                self.c4(pat[2])
+                self.col_bound(pat[0], pat[1])
+                self.str_proc(pat[4])
                 self.bfs_on_port()
                 self.strap_dfs(wd, ledrd, 80, 1)
             n += 1
@@ -362,7 +362,7 @@ def main():
     # Flr_list = seqbak(Flr_list, 29,1)
     # strap_cord(Flr_list, port_num)
     # xx = strap()
-    wait = input("Press Enter to continue.")
+    # wait = input("Press Enter to continue.")
     xx.modify()
 
 

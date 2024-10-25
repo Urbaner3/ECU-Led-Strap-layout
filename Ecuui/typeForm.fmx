@@ -420,7 +420,7 @@ object DataFrm: TDataFrm
     object ButtonLoadXls: TButton
       HelpType = htKeyword
       Position.X = 371.000000000000000000
-      Position.Y = 497.000000000000000000
+      Position.Y = 480.000000000000000000
       Size.Width = 98.000000000000000000
       Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
@@ -453,6 +453,16 @@ object DataFrm: TDataFrm
       TabOrder = 10
       Text = #32412#32218#22294
       OnClick = ButPdfReadClick
+    end
+    object ButClearGrid: TButton
+      Position.X = 371.000000000000000000
+      Position.Y = 512.000000000000000000
+      Size.Width = 98.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 11
+      Text = #28165#38500#36039#26009
+      OnClick = ButClearGridClick
     end
   end
   object TabControl1: TTabControl

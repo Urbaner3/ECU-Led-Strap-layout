@@ -23,25 +23,25 @@ def strget(rd_file):
             line = line[1:-2]
             pat = line.split(', ')
             # print('strget', int(pat[0]), int(pat[1]), pat[0], pat[1])
-            if port_count == 2:  # """and count < 5""":
-                # plt.plot(xx, yy, 'x')
-                txx.append(int(pat[0]))
-                tyy.append(int(pat[1]))
-
-            else:
-                xx.append(int(pat[0]))
-                yy.append(int(pat[1]))
-                pt_col.append(col_pen)
-                # plt.plot(xx, yy, ',')
+            # if port_count == 149:  # """and count < 5""":
+            #     # plt.plot(xx, yy, 'x')
+            #     txx.append(int(pat[0]))
+            #     tyy.append(int(pat[1]))
+            #
+            # else:
+            xx.append(int(pat[0]))
+            yy.append(int(pat[1]))
+            pt_col.append(col_pen)
+            # plt.plot(xx, yy, ',')
         # elif line[0] == '-' and line[1] == '-' :
         #     col_pen+=1
         # gather data of xx and yy and print format
 
         elif line[0] == '-' and line[1] == '-':
-            if port_count == 2:  # """ and count < 5""":
-                plt.plot(txx, tyy, 'o')
-            else:
-                plt.plot(xx, yy, ',')
+            # if port_count == 149:  # """ and count < 5""":
+            #     plt.plot(txx, tyy, 'o')
+            # else:
+            plt.plot(xx, yy, ',')
             xx = []
             yy = []
             port_count += 1
@@ -70,7 +70,7 @@ def strget(rd_file):
         #     break
 
     # print([xx, yy])
-    plt.plot(xx, yy, 'o')
+    # plt.plot(xx, yy, 'o')
     print("here is o labels")
     return [xx, yy, pt_col]
 

@@ -5,7 +5,7 @@
         <FrameworkType>FMX</FrameworkType>
         <MainSource>Ecuui.cpp</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Debug</Config>
+        <Config Condition="'$(Config)'==''">Release</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>1043</TargetedPlatforms>
         <AppType>Application</AppType>
@@ -248,6 +248,9 @@
         <BCC_ExecutionCharacterSet>UTF-8</BCC_ExecutionCharacterSet>
         <BCC_EnableCodePaging>950</BCC_EnableCodePaging>
         <LinkPackageStatics>rtl.lib;fmx.lib;bindcomp.lib;dbrtl.lib;bindengine.lib;bindcompfmx.lib;adortl.lib;vcl.lib</LinkPackageStatics>
+        <BCC_IncludePath>..\include_libxl;$(BCC_IncludePath)</BCC_IncludePath>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Locale>1033</VerInfo_Locale>
         <CfgDependentOn>..\..\Embarcadero\Studio\22.0\release.optset</CfgDependentOn>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">

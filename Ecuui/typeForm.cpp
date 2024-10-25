@@ -125,7 +125,8 @@ void __fastcall TDataFrm::BtnReadFromSheetClick(TObject* Sender)
         LoadCSV(OpenDialog->FileName);
     }
 
-    delete OpenDialog;
+	delete OpenDialog;
+    TabControl1->ActiveTab =  TabLength;
 }
 
 //---------------------------------------------------------------------------
@@ -191,7 +192,8 @@ void TDataFrm::split(
 void __fastcall TDataFrm::ButtonLoadClick(TObject* Sender)
 {
     WriteToRows(this->datacount);
-    datacount++;
+	datacount++;
+    TabControl1->ActiveTab =  TabMeta;
 }
 //---------------------------------------------------------------------------
 
@@ -269,7 +271,8 @@ void TDataFrm::SaveGridToCSV(const String &fileName)
         book->release();
     }
     //else
-    //	delete SaveDialog;
+	//	delete SaveDialog;
+    TabControl1->ActiveTab =  TabMeta;
 }
 
 //---------------------------------------------------------------------------
@@ -317,7 +320,7 @@ void __fastcall TDataFrm::end_diff1Change(TObject* Sender)
 
 void __fastcall TDataFrm::BtnWriteLenClick(TObject* Sender)
 {
-    Fmx::Dialogs::TSaveDialog* SaveDialog = new Fmx::Dialogs::TSaveDialog(this);
+	Fmx::Dialogs::TSaveDialog* SaveDialog = new Fmx::Dialogs::TSaveDialog(this);
     SaveDialog->Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
     SaveDialog->DefaultExt = "csv";
 
@@ -325,7 +328,8 @@ void __fastcall TDataFrm::BtnWriteLenClick(TObject* Sender)
         SaveLenGridToCSV(SaveDialog->FileName);
     }
 
-    delete SaveDialog;
+	delete SaveDialog;
+    TabControl1->ActiveTab =  TabLength;
 }
 //---------------------------------------------------------------------------
 
@@ -367,7 +371,7 @@ void TDataFrm::SaveLenGridToCSV(const String &FileName)
 
 void __fastcall TDataFrm::ButGenLedClick(TObject* Sender)
 {
-	CopyFileW(L"..\\Python\\gen_led.exe", L".\\gen_led.exe", FALSE);
+	CopyFileW(L"..\\Python\\load_led.exe", L".\\gen_led.exe", FALSE);
 	ShellExecuteA(NULL, "open",
 		".\\gen_led.exe", NULL,
 		NULL, SW_SHOWDEFAULT);
@@ -389,6 +393,7 @@ void __fastcall TDataFrm::ButShowmapClick(TObject* Sender)
 void __fastcall TDataFrm::ButtonLoadXlsClick(TObject* Sender)
 {
 	LoadGridToCSV();
+	TabControl1->ActiveTab =  TabMeta;
 }
 //---------------------------------------------------------------------------
 void TDataFrm::LoadGridToCSV()
@@ -408,14 +413,14 @@ void TDataFrm::LoadGridToCSV()
             Sheet* sheet = book->getSheet(0);
             if (sheet) {
                 //				String data[8] = { "行數範圍起始", "行數結束", "燈管行位移量",
-                //					"燈管行數量", "燈管管數", "燈管區起始座標",
+				//					"燈管行數量", "燈管管數", "燈管區起始座標",
 				//					"燈管區資料方向", "燈管尾位移量" };     wchar_t
 				String spc;
-                //                LedlengthGrid->RowCount
-                int colint[4] = { 1, 2, 4, 8 }, colstr[4] = { 3, 5, 6, 7 }; //col 0 is empty
-                int size_ci = sizeof(colint) / sizeof(colint[0]),
-                    size_cs = sizeof(colstr) / sizeof(colstr[0]);
-                for (int row = sheet->firstRow()+1; row < sheet->lastRow(); ++row)
+				//                LedlengthGrid->RowCount
+				int colint[4] = { 1, 2, 4, 8 }, colstr[4] = { 3, 5, 6, 7 }; //col 0 is empty
+				int size_ci = sizeof(colint) / sizeof(colint[0]),
+					size_cs = sizeof(colstr) / sizeof(colstr[0]);
+				for (int row = sheet->firstRow()+1; row < sheet->lastRow(); ++row)
 				{
 
 						//integer columns
@@ -434,14 +439,14 @@ void TDataFrm::LoadGridToCSV()
 
 //						//string columns
 						for (int colind = 0; colind < size_cs; ++colind) {
-                            const wchar_t *s = sheet->readStr(row, colstr[colind]);
+							const wchar_t *s = sheet->readStr(row, colstr[colind]);
 							if (!s) {
 								continue;
 							}
 							else {
 								spc = spc + s;
 								LedlengthGrid->Cells[colstr[colind]-1][row-2] = spc;
-                                spc = "";
+								spc = "";
 							}
 						}
 //
@@ -453,9 +458,9 @@ void TDataFrm::LoadGridToCSV()
 				//					Fmx::Dialogs::ShowMessage("XLS file saved failed!");
 				//else
 			}
-            //else sheet
-        }
-        //else book
+			//else sheet
+		}
+		//else book
 
 
 		book->release();
@@ -474,4 +479,28 @@ void __fastcall TDataFrm::ButPdfReadClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+
+void __fastcall TDataFrm::ButClearGridClick(TObject *Sender)
+{
+     int colint[4] = { 1, 2, 4, 8 }, colstr[4] = { 3, 5, 6, 7 }; //col 0 is empty
+	int size_ci = sizeof(colint) / sizeof(colint[0]),
+		size_cs = sizeof(colstr) / sizeof(colstr[0]);
+	 String spc;
+	 int row;
+	 for (row = 0; row < 20; ++row){
+		//integer columns
+		for (int colind = 0; colind < size_ci; ++colind) {
+				LedlengthGrid->Cells[colint[colind]-1][row] =0;
+
+		}
+
+		//string columns
+		for (int colind = 0; colind < size_cs; ++colind) {
+				spc = "";
+				LedlengthGrid->Cells[colstr[colind]-1][row] = spc;
+		}
+	 }
+	 TabControl1->ActiveTab =  TabMeta;
+}
+//---------------------------------------------------------------------------
 

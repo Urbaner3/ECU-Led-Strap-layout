@@ -70,7 +70,7 @@ def strget(rd_file):
         #     break
 
     # print([xx, yy])
-    # plt.plot(xx, yy, 'o')
+    # plt.plot(xx, yy, 'x')
     print("here is o labels")
     return [xx, yy, pt_col]
 

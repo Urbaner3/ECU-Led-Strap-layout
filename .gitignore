@@ -38,6 +38,8 @@ supply/my_stream_test.csv
 
 #subdirectory Ecu/python
 ./Ecuui/python/*.csv
+./Ecuui/python/*.txt
+
 
 # 當然你要忽略自己也可以，只是通常不會這麼做
 # .gitignore

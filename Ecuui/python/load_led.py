@@ -98,6 +98,19 @@ class strap:
                 # self.port_num = ind2
                 # self.strap_cord()
 
+    def trans_jerry(self, mystr):  # transform length format to Jerry's format
+        ind = mystr.split(', ')
+        for ii in range(len(ind)):
+            if ind[ii].find('x') != -1:
+                pls = ind[ii].find('x')
+                ind[ii][pls] = '*'
+            # elif ind[ii].find(':') != -1:
+        new_form = ""
+        for ii in range(len(ind)):
+            new_form.append(ind[ii] + ", ")
+
+        return str_proc(new_form)
+
     def seq(self, st, ed):
         # self.Flr_list = []
         for ii in range(st, ed+1):

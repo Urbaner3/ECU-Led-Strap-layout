@@ -49,9 +49,9 @@ void __fastcall THintFrm::FormCreate(TObject* Sender)
 		for (const String &line : lines) {
 			HintMemo->Lines->Add( line); // Add each line to the memo
 			//independent task which takes for loop
-			if (33 < ii && ii < 46) { //34-45 cond
+			if (39 < ii && ii < 54) { //line 41-54 cond ii 40-53
 				MystepsMemo->Lines->Add(IntToStr(ii) + line);
-			} else if (13 < ii && ii < 33) {
+			} else if (13 < ii && ii < 39) { //  ii 14-38 ;line 15-39 odds
 				if ((ii - 14) % 2 == 0) {
 					checklist->Add(line);
 				}
@@ -117,4 +117,5 @@ void __fastcall THintFrm::FormClose(TObject *Sender, TCloseAction &Action)
     checklist->Clear();
 }
 //---------------------------------------------------------------------------
+
 

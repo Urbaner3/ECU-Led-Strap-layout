@@ -1,7 +1,6 @@
 object DataFrm: TDataFrm
   Left = 0
   Top = 0
-  ActiveControl = VisualCheckTab
   Caption = 'ECU mapper'
   ClientHeight = 660
   ClientWidth = 1033
@@ -11,22 +10,25 @@ object DataFrm: TDataFrm
   OnCreate = FormCreate
   DesignerMasterStyle = 0
   object Panel1: TPanel
-    Position.X = 28.000000000000000000
+    Position.X = 16.000000000000000000
     Position.Y = 8.000000000000000000
-    Size.Width = 477.000000000000000000
+    Size.Width = 490.000000000000000000
     Size.Height = 583.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
     object Expander1: TExpander
+      StyledSettings = [Style, FontColor]
+      TextSettings.Font.Family = 'Microsoft YaHei UI'
+      TextSettings.Font.Size = 26.000000000000000000
       TextSettings.HorzAlign = Center
       HelpType = htKeyword
       Position.X = 263.000000000000000000
-      Position.Y = 210.000000000000000000
+      Position.Y = 361.000000000000000000
       ShowCheck = False
       Size.Width = 206.000000000000000000
       Size.Height = 205.000000000000000000
       Size.PlatformDefault = False
-      Text = #30456#20381#38364#20418
+      Text = #30456#38364#36039#35338
       TabOrder = 5
       ContentSize = '180'
       object Text1: TText
@@ -38,9 +40,11 @@ object DataFrm: TDataFrm
       end
     end
     object Blockhead: TExpander
+      StyledSettings = [Family, Style, FontColor]
+      TextSettings.Font.Size = 20.000000000000000000
       TextSettings.HorzAlign = Center
       HelpType = htKeyword
-      Position.X = 259.000000000000000000
+      Position.X = 265.000000000000000000
       ShowCheck = False
       Size.Width = 217.000000000000000000
       Size.Height = 183.000000000000000000
@@ -104,14 +108,16 @@ object DataFrm: TDataFrm
         end
       end
       object ButtonLoad: TButton
+        StyledSettings = [Family, Style, FontColor]
         HelpType = htKeyword
         Position.X = 16.000000000000000000
         Position.Y = 118.000000000000000000
-        Size.Width = 113.000000000000000000
+        Size.Width = 161.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 2
         Text = #36617#20837#36039#26009#32232#36655'_'#24478#38957
+        TextSettings.Font.Size = 16.000000000000000000
         OnClick = ButtonLoadClick
       end
       object block_start_x: TEdit
@@ -134,9 +140,11 @@ object DataFrm: TDataFrm
       end
     end
     object portN: TExpander
+      StyledSettings = [Family, Style, FontColor]
+      TextSettings.Font.Size = 20.000000000000000000
       TextSettings.HorzAlign = Center
       HelpType = htKeyword
-      Position.X = -3.000000000000000000
+      Position.X = 8.000000000000000000
       ShowCheck = False
       Size.Width = 254.000000000000000000
       Size.Height = 161.000000000000000000
@@ -292,26 +300,30 @@ object DataFrm: TDataFrm
       end
     end
     object Strip_length: TExpander
+      StyledSettings = [Family, Style, FontColor]
+      TextSettings.Font.Size = 20.000000000000000000
       TextSettings.HorzAlign = Center
       HelpType = htKeyword
-      Position.X = -3.000000000000000000
+      Position.X = 8.000000000000000000
       Position.Y = 210.000000000000000000
       ShowCheck = False
-      Size.Width = 234.000000000000000000
+      Size.Width = 249.000000000000000000
       Size.Height = 143.000000000000000000
       Size.PlatformDefault = False
       Text = #29128#31649#38263#24230#36039#35338
       TabOrder = 4
       ContentSize = '118'
       object BtnReadFromSheet: TButton
+        StyledSettings = [Family, Style, FontColor]
         HelpType = htKeyword
         Position.X = 169.000000000000000000
-        Position.Y = -7.000000000000000000
-        Size.Width = 59.000000000000000000
+        Position.Y = 1.000000000000000000
+        Size.Width = 80.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
         Text = #38263#24230#35712#21462
+        TextSettings.Font.Size = 16.000000000000000000
         OnClick = BtnReadFromSheetClick
       end
       object Label8: TLabel
@@ -369,13 +381,15 @@ object DataFrm: TDataFrm
         TabOrder = 15
       end
       object BtnWriteLen: TButton
-        Position.X = 27.000000000000000000
+        StyledSettings = [Family, Style, FontColor]
+        Position.X = 13.000000000000000000
         Position.Y = 64.000000000000000000
-        Size.Width = 62.000000000000000000
+        Size.Width = 94.000000000000000000
         Size.Height = 30.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 16
         Text = #38263#24230#23531#20837
+        TextSettings.Font.Size = 16.000000000000000000
         OnClick = BtnWriteLenClick
       end
     end
@@ -384,7 +398,7 @@ object DataFrm: TDataFrm
         item
         end>
       Position.X = 8.000000000000000000
-      Position.Y = 424.000000000000000000
+      Position.Y = 361.000000000000000000
       Size.Width = 239.000000000000000000
       Size.Height = 151.000000000000000000
       Size.PlatformDefault = False
@@ -392,8 +406,8 @@ object DataFrm: TDataFrm
     object HintCorButton1: TCornerButton
       StyledSettings = [Family, Style]
       HelpType = htKeyword
-      Position.X = 255.000000000000000000
-      Position.Y = 448.000000000000000000
+      Position.X = 265.000000000000000000
+      Position.Y = 210.000000000000000000
       Sides = [Top, Left, Bottom, Right]
       Size.Width = 91.000000000000000000
       Size.Height = 73.000000000000000000
@@ -407,25 +421,29 @@ object DataFrm: TDataFrm
       OnClick = HintCorButton1Click
     end
     object ButtonSave: TButton
+      StyledSettings = [Family, Style, FontColor]
       HelpType = htKeyword
       Position.X = 371.000000000000000000
-      Position.Y = 448.000000000000000000
+      Position.Y = 210.000000000000000000
       Size.Width = 98.000000000000000000
       Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 2
       Text = #23384#27284#36039#26009
+      TextSettings.Font.Size = 16.000000000000000000
       OnClick = ButtonSaveClick
     end
     object ButtonLoadXls: TButton
+      StyledSettings = [Family, Style, FontColor]
       HelpType = htKeyword
       Position.X = 371.000000000000000000
-      Position.Y = 480.000000000000000000
+      Position.Y = 253.000000000000000000
       Size.Width = 98.000000000000000000
       Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
       Text = #35712#21462#36039#26009
+      TextSettings.Font.Size = 16.000000000000000000
       OnClick = ButtonLoadXlsClick
     end
     object ButtonExtProg: TButton
@@ -439,29 +457,25 @@ object DataFrm: TDataFrm
       Visible = False
       OnClick = ButtonExtProgClick
     end
-    object SheetComboBox: TComboBox
-      Position.X = 87.000000000000000000
-      Position.Y = 361.000000000000000000
-      Size.Width = 101.000000000000000000
-      Size.Height = 32.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 9
-    end
     object ButPdfRead: TButton
-      Position.X = 266.000000000000000000
-      Position.Y = 529.000000000000000000
-      TabOrder = 10
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 265.000000000000000000
+      Position.Y = 299.000000000000000000
+      TabOrder = 9
       Text = #32412#32218#22294
+      TextSettings.Font.Size = 16.000000000000000000
       OnClick = ButPdfReadClick
     end
     object ButClearGrid: TButton
+      StyledSettings = [Family, Style, FontColor]
       Position.X = 371.000000000000000000
-      Position.Y = 512.000000000000000000
+      Position.Y = 296.000000000000000000
       Size.Width = 98.000000000000000000
       Size.Height = 25.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 11
+      TabOrder = 10
       Text = #28165#38500#36039#26009
+      TextSettings.Font.Size = 16.000000000000000000
       OnClick = ButClearGridClick
     end
   end
@@ -472,30 +486,33 @@ object DataFrm: TDataFrm
     Size.Width = 512.000000000000000000
     Size.Height = 644.000000000000000000
     Size.PlatformDefault = False
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 0
     TabPosition = Top
     Sizes = (
       512s
-      618s
+      611s
+      512s
+      611s
       512s
       618s
       512s
-      618s
-      512s
-      618s)
+      611s)
     object TabLength: TTabItem
       CustomIcon = <
         item
         end>
-      IsSelected = False
+      TextSettings.Font.Size = 18.000000000000000000
+      StyledSettings = [Family, Style, FontColor]
+      IsSelected = True
       ImageIndex = 11
-      Size.Width = 68.000000000000000000
-      Size.Height = 26.000000000000000000
+      Size.Width = 94.000000000000000000
+      Size.Height = 33.000000000000000000
       Size.PlatformDefault = False
       StyleLookup = ''
       TabOrder = 0
       Text = #38263#24230#32232#36655
+      OnMouseUp = TabLengthMouseUp
       ExplicitSize.cx = 80.000000000000000000
       ExplicitSize.cy = 26.000000000000000000
       object StrapInColStringGrid: TStringGrid
@@ -618,14 +635,17 @@ object DataFrm: TDataFrm
       CustomIcon = <
         item
         end>
-      IsSelected = True
+      TextSettings.Font.Size = 18.000000000000000000
+      StyledSettings = [Family, Style, FontColor]
+      IsSelected = False
       ImageIndex = 9
-      Size.Width = 68.000000000000000000
-      Size.Height = 26.000000000000000000
+      Size.Width = 94.000000000000000000
+      Size.Height = 33.000000000000000000
       Size.PlatformDefault = False
       StyleLookup = ''
       TabOrder = 0
       Text = #36039#26009#32232#36655
+      OnMouseUp = TabMetaMouseUp
       ExplicitSize.cx = 49.000000000000000000
       ExplicitSize.cy = 26.000000000000000000
       object LedlengthGrid: TStringGrid
@@ -710,13 +730,16 @@ object DataFrm: TDataFrm
       CustomIcon = <
         item
         end>
+      TextSettings.Font.Size = 18.000000000000000000
+      StyledSettings = [Family, Style, FontColor]
       IsSelected = False
-      Size.Width = 68.000000000000000000
-      Size.Height = 26.000000000000000000
+      Size.Width = 94.000000000000000000
+      Size.Height = 33.000000000000000000
       Size.PlatformDefault = False
       StyleLookup = ''
       TabOrder = 0
       Text = #35222#35258#27298#39511
+      OnMouseUp = VisualCheckTabMouseUp
       ExplicitSize.cx = 74.000000000000000000
       ExplicitSize.cy = 26.000000000000000000
       object PaintBox1: TPaintBox
@@ -739,15 +762,19 @@ object DataFrm: TDataFrm
         end
       end
       object ButGenLed: TButton
+        StyledSettings = [Family, Style, FontColor]
         Position.X = 32.000000000000000000
         Position.Y = 21.000000000000000000
         TabOrder = 1
         Text = #29986#29983#29128#40670
+        TextSettings.Font.Size = 16.000000000000000000
         OnClick = ButGenLedClick
         object ButShowmap: TButton
+          StyledSettings = [Family, Style, FontColor]
           Position.Y = 40.000000000000000000
           TabOrder = 5
           Text = #22294#24418#39023#31034
+          TextSettings.Font.Size = 16.000000000000000000
           OnClick = ButShowmapClick
         end
       end
@@ -766,7 +793,7 @@ object DataFrm: TDataFrm
         Size.Width = 80.000000000000000000
         Size.Height = 22.000000000000000000
         Size.PlatformDefault = False
-        Text = 'xy_coord.txt'
+        Text = 'myout.txt'
         TabOrder = 3
       end
     end

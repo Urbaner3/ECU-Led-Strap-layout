@@ -30,9 +30,9 @@ using namespace libxl;
 //---------------------------------------------------------------------------
 __fastcall TDataFrm::TDataFrm(TComponent* Owner) : TForm(Owner)
 {
-    this->Image1->Bitmap->LoadFromFile("eqblock.png");
-    this->Text1->Text =
-        L"區頭座標·行位移量·行頭座標·燈管行數量 \
+	this->Image1->Bitmap->LoadFromFile("eqblock.png");
+	this->Text1->Text =
+		L"區頭座標·行位移量·行頭座標·燈管行數量 \
 		燈管行之燈管管數·燈管行之燈管頭座標·燈管                \
 		行之燈管位移量·燈管行之燈管之燈點數量·燈                 \
 		管行之燈管之燈點座標";
@@ -79,7 +79,9 @@ void __fastcall TDataFrm::FormCreate(TObject* Sender)
     //    for (int col = 0; col < 26; col++) {
     //		((TStringColumn*)FindComponent("StringColumn" + String(col)))
 	//			->SetHeader = IntToStr(col + 1);
-    //    }
+	//    }
+
+
 }
 //---------------------------------------------------------------------------
 void TDataFrm::WriteToRows(int rowIndex)
@@ -501,6 +503,27 @@ void __fastcall TDataFrm::ButClearGridClick(TObject *Sender)
 		}
 	 }
 	 TabControl1->ActiveTab =  TabMeta;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TDataFrm::TabLengthMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift,
+          float X, float Y)
+{
+	this->Text1->Text = L"讀取燈管區的長度資料";
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TDataFrm::TabMetaMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift,
+          float X, float Y)
+{
+   this->Text1->Text =	L"燈管區的八項參數資料";
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TDataFrm::VisualCheckTabMouseUp(TObject *Sender, TMouseButton Button,
+          TShiftState Shift, float X, float Y)
+{
+	this->Text1->Text = L"電腦計算功能按鈕";
 }
 //---------------------------------------------------------------------------
 

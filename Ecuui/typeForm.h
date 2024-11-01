@@ -108,7 +108,6 @@ class TDataFrm : public TForm
 	TStringColumn *col_diff;
 	TPaintBox *PaintBox1;
 	TMemo *OutMemo;
-	TComboBox *SheetComboBox;
 	TButton *BtnWriteLen;
 	TStringColumn *StringColumn15;
 	TStringColumn *StringColumn16;
@@ -146,6 +145,12 @@ class TDataFrm : public TForm
 	void __fastcall ButtonLoadXlsClick(TObject *Sender);
 	void __fastcall ButPdfReadClick(TObject *Sender);
 	void __fastcall ButClearGridClick(TObject *Sender);
+	void __fastcall TabLengthMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift,
+		  float X, float Y);
+	void __fastcall TabMetaMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift,
+          float X, float Y);
+	void __fastcall VisualCheckTabMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift,
+          float X, float Y);
 
   private: // User declarations
 	void split(

@@ -31,27 +31,30 @@ using namespace libxl;
 __fastcall TDataFrm::TDataFrm(TComponent* Owner) : TForm(Owner)
 {
 	this->Image1->Bitmap->LoadFromFile("eqblock.png");
-	this->Text1->Text =
-		L"區頭座標·行位移量·行頭座標·燈管行數量 \
-		燈管行之燈管管數·燈管行之燈管頭座標·燈管                \
-		行之燈管位移量·燈管行之燈管之燈點數量·燈                 \
-		管行之燈管之燈點座標";
-    LedlengthGrid->RowCount = 35;
+//	this->Text1->Text =
+//		L"區頭座標·行位移量·行頭座標·燈管行數量 \
+//		燈管行之燈管管數·燈管行之燈管頭座標·燈管                \
+//		行之燈管位移量·燈管行之燈管之燈點數量·燈                 \
+//		管行之燈管之燈點座標";
+	LedlengthGrid->RowCount = 35;
+	LoadXlsToGrid(0);
+	LoadCSV("east_led.csv");
+
 }
 //---------------------------------------------------------------------------
 void __fastcall TDataFrm::FormCreate(TObject* Sender)
 {
     this->datacount = 1; //leave the first line blank
-    port_start1->ImeMode = Fmx::Types::TImeMode::imOnHalf;
-    port_end1->ImeMode = Fmx::Types::TImeMode::imOnHalf;
-    col_diff1->ImeMode = Fmx::Types::TImeMode::imOnHalf;
-    strap_amount1->ImeMode = Fmx::Types::TImeMode::imOnHalf;
-    block_start_x->ImeMode = Fmx::Types::TImeMode::imOnHalf;
-    block_start_y->ImeMode = Fmx::Types::TImeMode::imOnHalf;
+//    port_start1->ImeMode = Fmx::Types::TImeMode::imOnHalf;
+//    port_end1->ImeMode = Fmx::Types::TImeMode::imOnHalf;
+//    col_diff1->ImeMode = Fmx::Types::TImeMode::imOnHalf;
+//    strap_amount1->ImeMode = Fmx::Types::TImeMode::imOnHalf;
+//    block_start_x->ImeMode = Fmx::Types::TImeMode::imOnHalf;
+//    block_start_y->ImeMode = Fmx::Types::TImeMode::imOnHalf;
     // dir_strap1->ImeMode = TImeMode::imOnHalf;
-    strap_amount1->Items->Clear();
-    col_diff1->Items->Clear();
-    end_diff1->Items->Clear();
+//    strap_amount1->Items->Clear();
+//    col_diff1->Items->Clear();
+//    end_diff1->Items->Clear();
 
     StrapInColStringGrid->Canvas->Font->Size = 20;
     LedlengthGrid->Canvas->Font->Size = 20;
@@ -73,8 +76,8 @@ void __fastcall TDataFrm::FormCreate(TObject* Sender)
     //		SheetComboBox->ItemIndex ] +"]");// Adjust the sheet name as necessary
     //		ADOQuery1->Open(); // Execute the query
 
-    OutMemo->Lines->Add("cd ../../python");
-	OutMemo->Lines->Add("python showmap.py");
+//    OutMemo->Lines->Add("cd ../../python");
+//	OutMemo->Lines->Add("python showmap.py");
 
     //    for (int col = 0; col < 26; col++) {
     //		((TStringColumn*)FindComponent("StringColumn" + String(col)))
@@ -114,7 +117,7 @@ void __fastcall TDataFrm::HintCorButton1Click(TObject* Sender)
 
 void __fastcall TDataFrm::BtnReadFromSheetClick(TObject* Sender)
 {
-    UnicodeString us;
+	UnicodeString us;
     TStringList* str_rows = new TStringList();
     TStringList* str_cols = new TStringList();
 
@@ -124,8 +127,8 @@ void __fastcall TDataFrm::BtnReadFromSheetClick(TObject* Sender)
 	OpenDialog->DefaultExt = "csv";
 
     if (OpenDialog->Execute()) {
-        LoadCSV(OpenDialog->FileName);
-    }
+		LoadCSV(OpenDialog->FileName);
+	}
 
 	delete OpenDialog;
     TabControl1->ActiveTab =  TabLength;
@@ -149,7 +152,7 @@ void TDataFrm::LoadCSV(const String &FileName)
             // Process header row
             TStringList* Headers = new TStringList();
             Headers->CommaText =
-                CSVContent->Strings[0]; // Assuming first line is header
+				CSVContent->Strings[0]; // Assuming first line is header
             //			StrapInColStringGrid->ColumnCount = Headers->Count;
 
             //			for (int col = 0; col < Headers->Count; col++)
@@ -165,8 +168,8 @@ void TDataFrm::LoadCSV(const String &FileName)
                 StrapInColStringGrid->RowCount++;
 
                 for (int col = 0; col < RowValues->Count; col++) {
-                    StrapInColStringGrid->Cells[col][row] =
-                        RowValues->Strings[col];
+					StrapInColStringGrid->Cells[col][row] =
+						RowValues->Strings[col];
                 }
 
                 delete RowValues;
@@ -201,11 +204,12 @@ void __fastcall TDataFrm::ButtonLoadClick(TObject* Sender)
 
 void __fastcall TDataFrm::ButtonSaveClick(TObject* Sender)
 {
-    SaveGridToCSV("output");
+
+	SaveXlsToGrid("output");
 }
 //---------------------------------------------------------------------------
 
-void TDataFrm::SaveGridToCSV(const String &fileName)
+void TDataFrm::SaveXlsToGrid(const String &fileName)
 {
     int BufferSize = 7;
     bool saved = false;
@@ -373,9 +377,8 @@ void TDataFrm::SaveLenGridToCSV(const String &FileName)
 
 void __fastcall TDataFrm::ButGenLedClick(TObject* Sender)
 {
-	CopyFileW(L"..\\Python\\load_led.exe", L".\\gen_led.exe", FALSE);
 	ShellExecuteA(NULL, "open",
-		".\\gen_led.exe", NULL,
+		"..\\Python\\jload_led\\jload_led.exe", NULL,
 		NULL, SW_SHOWDEFAULT);
 }
 //---------------------------------------------------------------------------
@@ -394,27 +397,35 @@ void __fastcall TDataFrm::ButShowmapClick(TObject* Sender)
 
 void __fastcall TDataFrm::ButtonLoadXlsClick(TObject* Sender)
 {
-	LoadGridToCSV();
+	LoadXlsToGrid(1);
 	TabControl1->ActiveTab =  TabMeta;
 }
 //---------------------------------------------------------------------------
-void TDataFrm::LoadGridToCSV()
+void TDataFrm::LoadXlsToGrid(int state)
 {
-    int BufferSize = 7;
-    bool saved = false;
-    Fmx::Dialogs::TOpenDialog* OpenDialog = new Fmx::Dialogs::TOpenDialog(this);
+	int BufferSize = 7;
+	bool saved = false;
+	Fmx::Dialogs::TOpenDialog* OpenDialog = new Fmx::Dialogs::TOpenDialog(this);
 //    OpenDialog->DefaultExt = "xls";
-    OpenDialog->Filter = "Excel files (*.xls)|*.xls|All files (*.*)|*.*";
-    OpenDialog->Title = "Save Excel File As";
+	OpenDialog->Filter = "Excel files (*.xls)|*.xls|All files (*.*)|*.*";
+	OpenDialog->Title = "Save Excel File As";
 
-	if (OpenDialog->Execute()) {
+	if (state == 0) {
+	   //load default file
+	   OpenDialog->FileName = "default.xls";
+	}
+	else if (state == 1) {
+			 OpenDialog->Execute();
+		 }
+
+//	if (state == 1) {
 		String fileName = OpenDialog->FileName;
 		String locname = fileName;
 		Book* book = xlCreateBook(); // xlCreateXMLBook() for xlsx
-        if (book->load((fileName).c_str(), 0)) {
-            Sheet* sheet = book->getSheet(0);
-            if (sheet) {
-                //				String data[8] = { "行數範圍起始", "行數結束", "燈管行位移量",
+		if (book->load((fileName).c_str(), 0)) {
+			Sheet* sheet = book->getSheet(0);
+			if (sheet) {
+				//				String data[8] = { "行數範圍起始", "行數結束", "燈管行位移量",
 				//					"燈管行數量", "燈管管數", "燈管區起始座標",
 				//					"燈管區資料方向", "燈管尾位移量" };     wchar_t
 				String spc;
@@ -466,7 +477,7 @@ void TDataFrm::LoadGridToCSV()
 
 
 		book->release();
-    }
+//    }
     //else
     //	delete OpenDialog;
 }
@@ -489,7 +500,7 @@ void __fastcall TDataFrm::ButClearGridClick(TObject *Sender)
 		size_cs = sizeof(colstr) / sizeof(colstr[0]);
 	 String spc;
 	 int row;
-	 for (row = 0; row < 20; ++row){
+	 for (row = 0; row < 35; ++row){
 		//integer columns
 		for (int colind = 0; colind < size_ci; ++colind) {
 				LedlengthGrid->Cells[colint[colind]-1][row] =0;

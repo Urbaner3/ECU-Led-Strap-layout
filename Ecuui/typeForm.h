@@ -159,8 +159,8 @@ class TDataFrm : public TForm
 	int datacount;
 	void LoadCSV(const String &FileName);
 	void SaveLenGridToCSV(const String &FileName);
-	void SaveGridToCSV(const String& fileName);
-	void LoadGridToCSV(void);
+	void SaveXlsToGrid(const String& fileName);
+	void LoadXlsToGrid(int state);
     String EscapeCSV(const String& str);
   public: // User declarations
     __fastcall TDataFrm(TComponent* Owner);

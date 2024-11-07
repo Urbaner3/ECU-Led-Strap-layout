@@ -486,7 +486,7 @@ object DataFrm: TDataFrm
     Size.Width = 512.000000000000000000
     Size.Height = 644.000000000000000000
     Size.PlatformDefault = False
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 0
     TabPosition = Top
     Sizes = (
@@ -504,7 +504,7 @@ object DataFrm: TDataFrm
         end>
       TextSettings.Font.Size = 18.000000000000000000
       StyledSettings = [Family, Style, FontColor]
-      IsSelected = True
+      IsSelected = False
       ImageIndex = 11
       Size.Width = 94.000000000000000000
       Size.Height = 33.000000000000000000
@@ -637,7 +637,7 @@ object DataFrm: TDataFrm
         end>
       TextSettings.Font.Size = 18.000000000000000000
       StyledSettings = [Family, Style, FontColor]
-      IsSelected = False
+      IsSelected = True
       ImageIndex = 9
       Size.Width = 94.000000000000000000
       Size.Height = 33.000000000000000000

@@ -38,7 +38,7 @@ def strget(rd_file):
         # gather data of xx and yy and print format
 
         elif line[0] == '-' and line[1] == '-':
-            # if port_count == 149:  # """ and count < 5""":
+            # if port_count == 78:  # """ and count < 5""":
             #     plt.plot(txx, tyy, 'o')
             # else:
             plt.plot(xx, yy, ',')

@@ -26,7 +26,7 @@ class strap:
         n = 0
         for line in rd_file.readlines():
             if n > 0:
-                print(line)
+                # print(line)
                 pat = line.split(',')
                 self.c1(pat[5])
                 self.c2(pat[3])
@@ -35,7 +35,7 @@ class strap:
                 self.col_bound(pat[0], pat[1])
                 self.trans_jerry(pat[4])
                 self.bfs_on_port()
-                self.strap_dfs(wt_file, ledrd, 80, 0)
+                self.strap_dfs(wt_file, ledrd, 82, 0)
             n += 1
 
     def c1(self, mystr):  # string mystr converted to list start
@@ -47,7 +47,10 @@ class strap:
         self.block_width.append(self.port_num)
 
     def c3(self, mystr):  # string mystr converted to direction of strap
-        ind = mystr.split('^ ')
+        # mystr_vr = mystr.strip()[3:-3]
+        mystr_v1 = mystr.strip()
+        mystr_v2 = mystr_v1[3:-3]
+        ind = mystr_v2.split('^ ')
         self.v_ang = [int(ind[0]), int(ind[1])]
 
     def c4(self, mystr):  # string mystr converted to list start
@@ -186,6 +189,7 @@ class strap:
                 pat = lines.split(',')
                 temp = []
                 r_ct = read_count - row_in_meta[0]
+                # filter ', ' convert read text to python list
                 for items in range(len(pat)):
                     if items == 0:
                         temp.append(pat[items])
@@ -206,7 +210,7 @@ class strap:
                         continue
                     elif pat[items] != "76":
                         # return place
-                        print(items, "th strip modified")
+                        # print(items, "th strip modified")
                         Nled = int(pat[items])
                         temp.append(Nled)
                     elif pat[items] == "76":
@@ -264,10 +268,11 @@ class strap:
         #     Nled = 76 # use 23 lines below instead
         if option == 1:
             # stp_ls is list of modified straps in length
-            block_list = open("east_led_update.csv", "r")
+            block_list = open("icc_length_update.csv", "r")
             stp_ls = self.read_strap_change(
                 wt_file, block_list, block_size, self.bound)
             block_list.close()
+
         for jj in range(self.port_num):  # total num of ports in a block
             startup = self.PLlist[jj]
             # port_n is exact num of ports in jj-th port
@@ -290,8 +295,26 @@ class strap:
 
                 scl_buff = [buff[0]*block_size, buff[1]*block_size]  # scaling
                 # print(str(scl_buff[0])+' | '+str(scl_buff[1]))
-                print(scl_buff)
+                # $$ Add shift to scaled coordinate points
+                # which gets connected point
+                scl_buff = [scl_buff[0]+6, scl_buff[1] + -3]
+                # Show scl buff point
+                # make y coordinate positive
+                if scl_buff[1] < 0:
+                    out_buff = [scl_buff[0], -scl_buff[1]]
+                if ii == 0:
+                    print(out_buff)
+                # $$ Add shift to scaled coordinate points
+                # which gets line start point
+                scl_buff = [scl_buff[0]+6, scl_buff[1] + -6]
+                # Show scl buff point
+                # make y coordinate positive
+                if scl_buff[1] < 0:
+                    out_buff = [scl_buff[0], -scl_buff[1]]
+                if ii == 0:
+                    print(out_buff)
                 scl_list.append(scl_buff)
+                #
                 buff = [buff[0]+self.v_ang[0], buff[1]+self.v_ang[1]]
                 # if option > 0 :
                 linetext = linetext + str(Nled) + ','
@@ -322,10 +345,37 @@ class strap:
             stt = scl_list[ii]
             vec = self.v_ang
             buff = stt
-            for jj in range(int(leng[ii+1])):
-                buff = [buff[0]+vec[0], buff[1]+vec[1]]
-                # print(str(buff[0]) + ' | ' + str(buff[1]))
-                print(buff)
+            # when first strip is short modified start point pixel
+            first_strip_size = int(leng[1])
+            strap_led_count = 0
+            len_strap = int(leng[ii+1])
+            print("strip is of ", len_strap, "length")
+            if first_strip_size < 76 and ii == 0:
+                shift = 82 - first_strip_size
+                buff = [buff[0]+shift*vec[0], buff[1]+shift*vec[1]]
+                # make y coordinate positive
+                # if buff[1] < 0:
+                #     buff = [buff[0], (-1)*buff[1]]
+                # In strap, let jj be from 0 to length of strap
+                # named it i-th strap conduct coordinate
+                # length = 76 , iteration 0-75, scl_buff above is the first point, so one iteration is ommited
+                # so iteration 0-74
+                for jj in range(len_strap):
+                    buff = [buff[0]+vec[0], buff[1]+vec[1]]
+                    if jj == 00 or jj == len_strap - 1:
+                        print(str(buff[0]) + '\t' + str((-1)*buff[1]))
+                    # print(buff)
+            else:
+                # In strap, let jj be from 0 to length of strap
+                # named it i-th strap conduct coordinate
+                for jj in range(len_strap):
+                    if jj == 00 or jj == len_strap - 1:
+                        print(str(buff[0]) + '\t' + str((-1)*buff[1]))
+                    # print(buff)
+                    buff = [buff[0]+vec[0], buff[1]+vec[1]]
+                    # make y coordinate positive
+                    # if buff[1] < 0:
+                    #     buff = [buff[0], (-1)*buff[1]]
 
         #
 
@@ -339,11 +389,11 @@ class strap:
         # the end
 
     def modify(self):
-        rd = open("east_port.csv", "r")
+        rd = open("icc_meta.csv", "r")
         wd = open("null.txt", "w")
-        ledrd = open("east_led_update.csv", "r")
+        ledrd = open("icc_length_update.csv", "r")
         original = sys.stdout
-        sys.stdout = open("myout.txt", 'w')
+        sys.stdout = open("filed3.txt", 'w')
 
         # read meta file and do the modification
         n = 0
@@ -358,7 +408,7 @@ class strap:
                 self.col_bound(pat[0], pat[1])
                 self.trans_jerry(pat[4])
                 self.bfs_on_port()
-                self.strap_dfs(wd, ledrd, 80, 1)
+                self.strap_dfs(wd, ledrd, 82, 1)
             n += 1
 
         # n += 1
@@ -379,12 +429,12 @@ class strap:
 
 def main():
     xx = strap()
-    wd = open("east_led.csv", "w")
-    rd = open("east_port.csv", "r")
-    ledrd = open("east_led.csv", "r")
+    wd = open("icc_length.csv", "w")
+    rd = open("icc_meta.csv", "r")
+    ledrd = open("icc_length.csv", "r")
     # rd2 = open("north_led.csv", "r")
     original = sys.stdout
-    sys.stdout = open("myout.txt", 'w')
+    sys.stdout = open("filed3.txt", 'w')
     xx.strget(rd, wd, ledrd)
     sys.stdout.close()
     sys.stdout = original
